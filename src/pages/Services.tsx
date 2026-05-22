@@ -1,17 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
 
-const theme = {
-  bg: "#F7F3EE",
-  dark: "#2C1F14",
-  earth: "#8B5E3C",
-  earthLight: "#C4956A",
-  muted: "#9C8B7A",
-  text: "#4A3B28",
-  parchment: "#EDE3D2",
-  white: "#FFFFFF",
-  overlayDark: "rgba(30,18,10,0.48)",
-};
-
 const services = [
   {
     title: "Sustainable Construction",
@@ -77,7 +65,7 @@ const roofFinishes = [
   "Artisanal Textures",
 ];
 
-function Reveal({ children, delay = 0, as: Tag = "div" as any, style = {}, ...rest }: any) {
+function Reveal({ children, delay = 0, as: Tag = "div" as any, style = {}, className = "", ...rest }: any) {
   const ref = useRef<any>(null);
   const [visible, setVisible] = useState(false);
   useEffect(() => {
@@ -100,11 +88,11 @@ function Reveal({ children, delay = 0, as: Tag = "div" as any, style = {}, ...re
   return (
     <Tag
       ref={ref}
+      className={className}
       style={{
         opacity: visible ? 1 : 0,
         transform: visible ? "translateY(0)" : "translateY(28px)",
-        transition:
-          "opacity 0.8s cubic-bezier(0.22,1,0.36,1), transform 0.8s cubic-bezier(0.22,1,0.36,1)",
+        transition: "opacity 0.8s cubic-bezier(0.22,1,0.36,1), transform 0.8s cubic-bezier(0.22,1,0.36,1)",
         transitionDelay: `${delay}ms`,
         ...style,
       }}
@@ -116,36 +104,25 @@ function Reveal({ children, delay = 0, as: Tag = "div" as any, style = {}, ...re
 }
 
 export default function Services() {
-  const [heroParallax, setHeroParallax] = useState(0);
-  const [quoteBannerParallax, setQuoteBannerParallax] = useState(0);
-  const [windowWidth, setWindowWidth] = useState(
-    typeof window !== "undefined" ? window.innerWidth : 1440
-  );
+  const [scrollY, setScrollY] = useState(0);
+  const [windowWidth, setWindowWidth] = useState(typeof window !== "undefined" ? window.innerWidth : 1280);
   const [heroLoaded, setHeroLoaded] = useState(false);
-  const [imgHovered, setImgHovered] = useState<any>({});
-  const [linkHovered, setLinkHovered] = useState<any>({});
   const [cardHovered, setCardHovered] = useState<any>({});
+  const [linkHovered, setLinkHovered] = useState<any>({});
+  const [imgHovered, setImgHovered] = useState<any>({});
 
   const quoteBannerRef = useRef<any>(null);
+  const [quoteBannerParallax, setQuoteBannerParallax] = useState(0);
 
   useEffect(() => {
-    const reduced =
-      typeof window !== "undefined" &&
-      window.matchMedia &&
-      window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     const onScroll = () => {
-      const y = window.scrollY;
-      if (!reduced) {
-        setHeroParallax(y * 0.15);
-        if (quoteBannerRef.current) {
-          const rect = quoteBannerRef.current.getBoundingClientRect();
-          const offset = (window.innerHeight - rect.top) * 0.1;
-          setQuoteBannerParallax(Math.max(-60, Math.min(60, offset * 0.2)));
-        }
+      setScrollY(window.scrollY);
+      if (quoteBannerRef.current) {
+        const rect = quoteBannerRef.current.getBoundingClientRect();
+        setQuoteBannerParallax((window.innerHeight - rect.top) * 0.1);
       }
     };
     window.addEventListener("scroll", onScroll, { passive: true });
-    onScroll();
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
@@ -156,222 +133,85 @@ export default function Services() {
   }, []);
 
   useEffect(() => {
-    const t2 = setTimeout(() => setHeroLoaded(true), 100);
-    return () => clearTimeout(t2);
+    const t = setTimeout(() => setHeroLoaded(true), 30);
+    return () => clearTimeout(t);
   }, []);
 
   const isMobile = windowWidth <= 768;
-  const isTablet = windowWidth <= 1024;
-
-  const sectionPad = isMobile ? "64px 24px" : isTablet ? "80px 48px" : "100px 80px";
+  const heroParallax = scrollY * 0.15;
 
   return (
-    <div style={{ background: theme.bg, color: theme.dark, fontFamily: "Jost, sans-serif" }}>
+    <div className="bg-brand-bg text-brand-dark font-sans">
       {/* ====== HERO ====== */}
-      <header
-        style={{
-          width: "100%",
-          height: "100vh",
-          position: "relative",
-          overflow: "hidden",
-        }}
-      >
+      <header className="relative w-full h-screen overflow-hidden">
         <img
           src="https://images.unsplash.com/photo-1600585154526-990dced4db0d?w=1920"
           alt="Sustainable architecture and planning"
+          className="absolute inset-0 w-full h-[115%] object-cover will-change-transform"
           style={{
-            position: "absolute",
-            inset: 0,
-            width: "100%",
-            height: "115%",
-            objectFit: "cover",
             transform: `translateY(${heroParallax}px)`,
-            willChange: "transform",
           }}
         />
-        <div
-          style={{
-            position: "absolute",
-            inset: 0,
-            background:
-              "linear-gradient(to bottom right, rgba(30,18,10,0.6) 0%, rgba(30,18,10,0.35) 50%, rgba(30,18,10,0.15) 100%)",
-          }}
-        />
-        <div
-          style={{
-            position: "absolute",
-            left: isMobile ? "6%" : "8%",
-            bottom: isMobile ? "12%" : "20%",
-            zIndex: 10,
-            maxWidth: 800,
-            right: isMobile ? "6%" : "auto",
-          }}
-        >
-          <div
-            style={{
-              height: 1,
-              width: 60,
-              background: "rgba(255,255,255,0.6)",
-              marginBottom: 24,
-              opacity: heroLoaded ? 1 : 0,
-              transition: "opacity 900ms ease 200ms",
-            }}
-          />
-          <h1
-            style={{
-              fontFamily: "'Cormorant Garamond', serif",
-              fontSize: isMobile ? 44 : isTablet ? 62 : 82,
-              fontWeight: 400,
-              color: "#FFFFFF",
-              lineHeight: 1.0,
-              margin: 0,
-            }}
-          >
-            <span style={{ display: "block", overflow: "hidden" }}>
-              <span
-                style={{
-                  display: "inline-block",
-                  transform: heroLoaded ? "translateY(0)" : "translateY(50px)",
-                  opacity: heroLoaded ? 1 : 0,
-                  transition: "all 900ms cubic-bezier(0.16,1,0.3,1) 300ms",
-                }}
-              >
+        <div className="absolute inset-0 bg-gradient-to-br from-[#1F1F1F]/60 via-[#1F1F1F]/35 to-[#1F1F1F]/15" />
+        <div className="absolute left-[6%] md:left-[8%] bottom-[12%] md:bottom-[20%] z-10 max-w-[800px] right-[6%] md:right-auto">
+          <div className={`h-[1px] w-[60px] bg-white/60 mb-6 transition-opacity duration-900 delay-200 ${heroLoaded ? "opacity-100" : "opacity-0"}`} />
+          <h1 className="font-serif text-[44px] md:text-[62px] lg:text-[82px] font-normal text-white leading-none m-0">
+            <span className="block overflow-hidden">
+              <span className={`inline-block transition-all duration-900 ease-[cubic-bezier(0.16,1,0.3,1)] delay-300 ${heroLoaded ? "translate-y-0 opacity-100" : "translate-y-[50px] opacity-0"}`}>
                 Our Expertise
               </span>
             </span>
-            <span style={{ display: "block", overflow: "hidden" }}>
-              <span
-                style={{
-                  display: "inline-block",
-                  fontStyle: "italic",
-                  transform: heroLoaded ? "translateY(0)" : "translateY(50px)",
-                  opacity: heroLoaded ? 1 : 0,
-                  transition: "all 900ms cubic-bezier(0.16,1,0.3,1) 520ms",
-                }}
-              >
+            <span className="block overflow-hidden">
+              <span className={`inline-block italic transition-all duration-900 ease-[cubic-bezier(0.16,1,0.3,1)] delay-520 ${heroLoaded ? "translate-y-0 opacity-100" : "translate-y-[50px] opacity-0"}`}>
                 In Sustainable Design
               </span>
             </span>
           </h1>
-          <div
-            style={{
-              height: 1,
-              width: 120,
-              background: "rgba(255,255,255,0.6)",
-              marginTop: 28,
-              marginLeft: "auto",
-              opacity: heroLoaded ? 1 : 0,
-              transition: "opacity 900ms ease 720ms",
-            }}
-          />
+          <div className={`h-[1px] w-[120px] bg-white/60 mt-7 ml-auto transition-opacity duration-900 delay-720 ${heroLoaded ? "opacity-100" : "opacity-0"}`} />
         </div>
       </header>
 
       <main>
         {/* ====== CORE SERVICES ====== */}
-        <section style={{ padding: sectionPad }}>
+        <section className="px-6 md:px-12 lg:px-20 py-16 md:py-20 lg:py-24">
           {services.map((s, i) => (
             <div
               key={s.title}
-              style={{
-                display: "grid",
-                gridTemplateColumns: isMobile ? "1fr" : "1fr 1fr",
-                gap: isMobile ? 40 : 100,
-                alignItems: "center",
-                marginBottom: i === services.length - 1 ? 0 : isMobile ? 80 : 140,
-              }}
+              className={`grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-[100px] items-center ${i === services.length - 1 ? "" : "mb-20 md:mb-[140px]"}`}
             >
-              <div
-                style={{
-                  order: isMobile ? 2 : s.imageLeft ? 2 : 1,
-                }}
-              >
+              <div className={isMobile ? "order-2" : s.imageLeft ? "order-2" : "order-1"}>
                 <Reveal>
-                  <span
-                    style={{
-                      fontFamily: "Jost, sans-serif",
-                      fontSize: 11,
-                      textTransform: "uppercase",
-                      letterSpacing: "0.18em",
-                      color: theme.muted,
-                    }}
-                  >
+                  <span className="font-sans text-[11px] uppercase tracking-[0.18em] text-brand-muted">
                     Service {i + 1}
                   </span>
-                  <h2
-                    style={{
-                      fontFamily: "'Cormorant Garamond', serif",
-                      fontSize: isMobile ? 32 : 44,
-                      color: theme.earth,
-                      marginTop: 12,
-                      marginBottom: 24,
-                      fontWeight: 400,
-                    }}
-                  >
+                  <h2 className="font-serif text-[32px] md:text-[44px] text-brand-earth mt-3 mb-6 font-normal">
                     {s.title}
                   </h2>
-                  <p
-                    style={{
-                      fontFamily: "Jost, sans-serif",
-                      fontSize: 15,
-                      fontWeight: 300,
-                      color: theme.text,
-                      lineHeight: 1.95,
-                      margin: 0,
-                    }}
-                  >
+                  <p className="font-sans text-[15px] font-light text-brand-text leading-[1.95] m-0">
                     {s.body}
                   </p>
                   <a
                     href="/contact"
+                    className={`inline-block mt-8 font-sans text-[12px] uppercase tracking-[0.12em] text-brand-earth no-underline border-b transition-all duration-300 ${linkHovered[i] ? "border-brand-earth" : "border-transparent"}`}
                     onMouseEnter={() => setLinkHovered({ ...linkHovered, [i]: true })}
                     onMouseLeave={() => setLinkHovered({ ...linkHovered, [i]: false })}
-                    style={{
-                      display: "inline-block",
-                      marginTop: 32,
-                      fontFamily: "Jost, sans-serif",
-                      fontSize: 12,
-                      textTransform: "uppercase",
-                      letterSpacing: "0.12em",
-                      color: theme.earth,
-                      textDecoration: "none",
-                      borderBottom: linkHovered[i]
-                        ? `1px solid ${theme.earth}`
-                        : "1px solid transparent",
-                      transition: "all 0.3s ease",
-                    }}
                   >
                     Inquire about this service →
                   </a>
                 </Reveal>
               </div>
 
-              <div
-                style={{
-                  order: isMobile ? 1 : s.imageLeft ? 1 : 2,
-                }}
-              >
+              <div className={isMobile ? "order-1" : s.imageLeft ? "order-1" : "order-2"}>
                 <Reveal delay={120}>
                   <div
+                    className="overflow-hidden rounded-[3px] shadow-[0_24px_48px_rgba(31,31,31,0.12)] group"
                     onMouseEnter={() => setImgHovered({ ...imgHovered, [i]: true })}
                     onMouseLeave={() => setImgHovered({ ...imgHovered, [i]: false })}
-                    style={{
-                      overflow: "hidden",
-                      borderRadius: 3,
-                      boxShadow: "0 24px 48px rgba(44,31,20,0.12)",
-                    }}
                   >
                     <img
                       src={s.image}
                       alt={s.alt}
-                      style={{
-                        width: "100%",
-                        height: isMobile ? 320 : 540,
-                        objectFit: "cover",
-                        display: "block",
-                        transform: imgHovered[i] ? "scale(1.04)" : "scale(1)",
-                        transition: "transform 0.8s ease",
-                      }}
+                      className="w-full h-[320px] md:h-[540px] object-cover block transition-transform duration-800 ease-in-out group-hover:scale-[1.04]"
                     />
                   </div>
                 </Reveal>
@@ -381,58 +221,19 @@ export default function Services() {
         </section>
 
         {/* ====== QUOTE BANNER ====== */}
-        <section
-          ref={quoteBannerRef}
-          style={{
-            position: "relative",
-            width: "100%",
-            height: isMobile ? 340 : 480,
-            overflow: "hidden",
-          }}
-        >
+        <section ref={quoteBannerRef} className="relative w-full h-[340px] md:h-[480px] overflow-hidden">
           <img
             src="https://images.unsplash.com/photo-1518005020250-6eb5f3f2754d?w=1920"
             alt="Natural stone texture close-up"
+            className="absolute inset-0 w-full h-[120%] object-cover will-change-transform"
             style={{
-              position: "absolute",
-              inset: 0,
-              width: "100%",
-              height: "120%",
-              objectFit: "cover",
               transform: `translateY(${quoteBannerParallax}px)`,
-              willChange: "transform",
             }}
           />
-          <div
-            style={{
-              position: "absolute",
-              inset: 0,
-              background: "rgba(30,18,10,0.42)",
-            }}
-          />
-          <div
-            style={{
-              position: "absolute",
-              inset: 0,
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-              padding: "0 24px",
-              textAlign: "center",
-            }}
-          >
+          <div className="absolute inset-0 bg-brand-dark/40" />
+          <div className="absolute inset-0 flex items-center justify-center px-6 text-center">
             <Reveal>
-              <h2
-                style={{
-                  fontFamily: "'Cormorant Garamond', serif",
-                  fontSize: isMobile ? 28 : 42,
-                  fontStyle: "italic",
-                  color: "#FFFFFF",
-                  maxWidth: 800,
-                  margin: 0,
-                  fontWeight: 400,
-                }}
-              >
+              <h2 className="font-serif text-[28px] md:text-[42px] italic text-white max-w-[800px] m-0 font-normal leading-tight">
                 "Traditional building wisdom meets modern engineering for spaces that truly breathe."
               </h2>
             </Reveal>
@@ -440,107 +241,60 @@ export default function Services() {
         </section>
 
         {/* ====== FINISHES SECTION ====== */}
-        <section style={{ padding: sectionPad, background: theme.parchment }}>
-          <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr" : "1fr 1fr", gap: 60, alignItems: "center" }}>
+        <section className="px-6 md:px-12 lg:px-20 py-16 md:py-20 lg:py-24 bg-brand-parchment">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-[60px] items-center">
             <Reveal>
-              <h2 style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: isMobile ? 36 : 52, color: theme.earth, marginBottom: 24 }}>Luxury Finishes & Roof Options</h2>
-              <p style={{ color: theme.text, lineHeight: 1.8, marginBottom: 32 }}>Natural finishes and climate-conscious roofing systems crafted for timeless elegance. We specialize in artisanal textures that support healthy indoor air quality.</p>
-              <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "16px 32px" }}>
+              <h2 className="font-serif text-[36px] md:text-[52px] text-brand-earth mb-6 leading-tight">Luxury Finishes & Roof Options</h2>
+              <p className="text-brand-text leading-[1.8] mb-8 font-light">Natural finishes and climate-conscious roofing systems crafted for timeless elegance. We specialize in artisanal textures that support healthy indoor air quality.</p>
+              <div className="grid grid-cols-2 gap-[16px_32px]">
                 {roofFinishes.map(f => (
-                  <div key={f} style={{ display: "flex", alignItems: "center", gap: 12 }}>
-                    <span style={{ width: 6, height: 6, borderRadius: "50%", background: theme.earthLight }} />
-                    <span style={{ fontSize: 14, color: theme.dark }}>{f}</span>
+                  <div key={f} className="flex items-center gap-3">
+                    <span className="w-1.5 h-1.5 rounded-full bg-brand-earth-light" />
+                    <span className="text-[14px] text-brand-dark font-light">{f}</span>
                   </div>
                 ))}
               </div>
             </Reveal>
             <Reveal delay={200}>
-              <div style={{ overflow: "hidden", borderRadius: 3 }}>
-                <img src="https://images.unsplash.com/photo-1600047509807-ba8f99d2cdde?w=800" alt="Artisanal wall finish" style={{ width: "100%", height: isMobile ? 300 : 440, objectFit: "cover" }} />
+              <div className="overflow-hidden rounded-[3px]">
+                <img src="https://images.unsplash.com/photo-1600047509807-ba8f99d2cdde?w=800" alt="Artisanal wall finish" className="w-full h-[300px] md:h-[440px] object-cover" />
               </div>
             </Reveal>
           </div>
         </section>
 
         {/* ====== ADDITIONAL SERVICES ====== */}
-        <section style={{ padding: sectionPad }}>
-          <div style={{ textAlign: "center", marginBottom: 72 }}>
+        <section className="px-6 md:px-12 lg:px-20 py-16 md:py-20 lg:py-24">
+          <div className="text-center mb-[72px]">
             <Reveal>
-              <span
-                style={{
-                  fontFamily: "Jost, sans-serif",
-                  fontSize: 11,
-                  textTransform: "uppercase",
-                  letterSpacing: "0.18em",
-                  color: theme.muted,
-                }}
-              >
+              <span className="font-sans text-[11px] uppercase tracking-[0.18em] text-brand-muted">
                 Specialised Expertise
               </span>
-              <h2
-                style={{
-                  fontFamily: "'Cormorant Garamond', serif",
-                  fontSize: isMobile ? 36 : 52,
-                  color: theme.earth,
-                  marginTop: 12,
-                  fontWeight: 400,
-                }}
-              >
+              <h2 className="font-serif text-[36px] md:text-[52px] text-brand-earth mt-3 font-normal">
                 Additional Offerings
               </h2>
             </Reveal>
           </div>
 
-          <div
-            style={{
-              display: "grid",
-              gridTemplateColumns: isMobile ? "1fr" : "repeat(3,1fr)",
-              gap: 32,
-            }}
-          >
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {additionalServices.map((s, i) => (
               <Reveal key={s.title} delay={i * 120}>
                 <div
+                  className="cursor-pointer group"
                   onMouseEnter={() => setCardHovered({ ...cardHovered, [i]: true })}
                   onMouseLeave={() => setCardHovered({ ...cardHovered, [i]: false })}
-                  style={{ cursor: "pointer" }}
                 >
-                  <div style={{ overflow: "hidden", borderRadius: 2 }}>
+                  <div className="overflow-hidden rounded-[2px] aspect-[3/4]">
                     <img
                       src={s.image}
                       alt={s.alt}
-                      style={{
-                        width: "100%",
-                        aspectRatio: "3/4",
-                        objectFit: "cover",
-                        display: "block",
-                        transform: cardHovered[i] ? "scale(1.06)" : "scale(1)",
-                        transition: "transform 0.75s ease",
-                      }}
+                      className="w-full h-full object-cover block transition-transform duration-750 ease-in-out group-hover:scale-[1.06]"
                     />
                   </div>
-                  <h3
-                    style={{
-                      fontFamily: "'Cormorant Garamond', serif",
-                      fontSize: 26,
-                      color: theme.earth,
-                      marginTop: 20,
-                      marginBottom: 10,
-                      fontWeight: 400,
-                    }}
-                  >
+                  <h3 className="font-serif text-[26px] text-brand-earth mt-5 mb-2.5 font-normal leading-tight">
                     {s.title}
                   </h3>
-                  <p
-                    style={{
-                      fontFamily: "Jost, sans-serif",
-                      fontSize: 14,
-                      fontWeight: 300,
-                      color: theme.text,
-                      lineHeight: 1.7,
-                      margin: 0,
-                    }}
-                  >
+                  <p className="font-sans text-[14px] font-light text-brand-text leading-[1.7] m-0">
                     {s.desc}
                   </p>
                 </div>

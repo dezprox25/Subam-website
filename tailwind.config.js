@@ -15,8 +15,22 @@ module.exports = {
         "2xl": "1400px",
       },
     },
+    fontFamily: {
+      serif: ["'Cormorant Garamond'", "serif"],
+      sans: ["'Jost'", "sans-serif"],
+    },
     extend: {
       colors: {
+        brand: {
+          bg: "#FFF2DB",
+          dark: "#1F1F1F",
+          earth: "#B79454",
+          "earth-light": "#E5BE78",
+          muted: "#9C8B7A",
+          text: "#1F1F1F",
+          parchment: "#FFF2DB",
+          forest: "#3B4022",
+        },
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
         ring: "hsl(var(--ring))",

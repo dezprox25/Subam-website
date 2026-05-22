@@ -39,46 +39,32 @@ export default function Layout() {
   }, [location]);
 
   return (
-    <div className="shubham" style={{ background: theme.bg, minHeight: '100vh', display: 'flex', flexDirection: 'column' }}>
+    <div className="shubham bg-brand-bg min-h-screen flex flex-col">
       {/* NAVBAR */}
       <nav
-        style={{
-          position: 'fixed',
-          top: 0,
-          left: 0,
-          width: '100%',
-          height: 64,
-          zIndex: 1000,
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'space-between',
-          padding: '0 40px',
-          color: scrolled ? theme.dark : theme.white,
-          background: scrolled ? 'rgba(247,243,238,0.96)' : 'transparent',
-          backdropFilter: scrolled ? 'blur(14px)' : 'none',
-          WebkitBackdropFilter: scrolled ? 'blur(14px)' : 'none',
-          boxShadow: scrolled ? '0 1px 0 rgba(139,94,60,0.1)' : 'none',
-          transition: 'all 0.4s ease',
-        }}
+        className={`fixed top-0 left-0 w-full h-20 z-[1000] flex items-center justify-between px-10 transition-all duration-400 ${
+          scrolled 
+            ? " bg-white backdrop-blur-[14px] shadow-[0_1px_0_rgba(139,94,60,0.1)] text-brand-dark" 
+            : " text-white"
+        }`}
       >
-        <Link to="/" style={{ fontFamily: 'Cormorant Garamond, serif', fontStyle: 'italic', fontSize: 26, color: 'inherit' }}>
-          Shubham
+        <Link to="/" className="flex items-center">
+          <img 
+            src="/Subam Logo.png" 
+            alt="Shubham Logo" 
+            className={`h-12 md:h-14 w-auto object-contain transition-all ${!scrolled ? "brightness-0 invert" : ""}`}
+          />
         </Link>
 
-        <div style={{ display: 'flex', alignItems: 'center', gap: 24 }}>
-          <div className="hidden md:flex" style={{ gap: 24 }}>
+        <div className="flex items-center gap-6">
+          <div className="hidden md:flex items-center gap-6">
             {navItems.map((item) => (
               <Link
                 key={item.href}
                 to={item.href}
-                style={{
-                  fontFamily: 'Jost, sans-serif',
-                  fontSize: 12,
-                  textTransform: 'uppercase',
-                  letterSpacing: '0.1em',
-                  color: 'inherit',
-                  opacity: location.pathname === item.href ? 1 : 0.7,
-                }}
+                className={`font-sans text-[12px] uppercase tracking-[0.1em] text-inherit transition-opacity ${
+                  location.pathname === item.href ? "opacity-100" : "opacity-70"
+                }`}
               >
                 {item.label}
               </Link>
@@ -87,46 +73,25 @@ export default function Layout() {
 
           <button
             onClick={() => setMenuOpen(true)}
-            style={{
-              width: 40,
-              height: 40,
-              borderRadius: '50%',
-              background: scrolled ? 'rgba(44,31,20,0.08)' : 'rgba(255,255,255,0.15)',
-              border: 'none',
-              cursor: 'pointer',
-              display: 'flex',
-              flexDirection: 'column',
-              alignItems: 'center',
-              justifyContent: 'center',
-              gap: 3,
-            }}
+            className={`w-10 h-10 rounded-full flex flex-col items-center justify-center gap-[3px] transition-colors ${
+              scrolled ? "bg-brand-dark/10" : "bg-white/15"
+            }`}
           >
-            <span style={{ display: 'block', width: 14, height: 1.5, background: 'currentColor' }} />
-            <span style={{ display: 'block', width: 14, height: 1.5, background: 'currentColor' }} />
+            <span className="block w-3.5 h-[1.5px] bg-current" />
+            <span className="block w-3.5 h-[1.5px] bg-current" />
           </button>
         </div>
       </nav>
 
       {/* MOBILE MENU */}
       <div
-        style={{
-          position: 'fixed',
-          inset: 0,
-          background: theme.dark,
-          zIndex: 2000,
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
-          justifyContent: 'center',
-          gap: 48,
-          opacity: menuOpen ? 1 : 0,
-          pointerEvents: menuOpen ? 'auto' : 'none',
-          transition: 'opacity 0.4s ease',
-        }}
+        className={`fixed inset-0 bg-brand-dark z-[2000] flex flex-col items-center justify-center gap-12 transition-opacity duration-400 ${
+          menuOpen ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"
+        }`}
       >
         <button
           onClick={() => setMenuOpen(false)}
-          style={{ position: 'absolute', top: 32, right: 48, background: 'none', border: 'none', color: theme.bg, fontSize: 24, cursor: 'pointer' }}
+          className="absolute top-8 right-12 bg-none border-none text-brand-bg text-[24px] cursor-pointer"
         >
           ✕
         </button>
@@ -134,15 +99,9 @@ export default function Layout() {
           <Link
             key={item.href}
             to={item.href}
-            style={{
-              fontFamily: 'Cormorant Garamond, serif',
-              fontStyle: 'italic',
-              fontSize: 52,
-              color: theme.bg,
-              opacity: menuOpen ? 1 : 0,
-              transform: menuOpen ? 'translateX(0)' : 'translateX(30px)',
-              transition: 'all 0.5s ease',
-            }}
+            className={`font-serif italic text-[52px] text-brand-bg transition-all duration-500 ${
+              menuOpen ? "translate-x-0 opacity-100" : "translate-x-[30px] opacity-0"
+            }`}
           >
             {item.label}
           </Link>
@@ -150,41 +109,44 @@ export default function Layout() {
       </div>
 
       {/* CONTENT */}
-      <main style={{ flex: 1 }}>
+      <main className="flex-1">
         <Outlet />
       </main>
 
       {/* FOOTER */}
-      <footer style={{ background: theme.dark, padding: '80px 80px 48px', color: 'rgba(247,243,238,0.85)' }}>
-        <div style={{ textAlign: 'center', marginBottom: 64 }}>
-          <h2 style={{ fontSize: 52, color: '#fff', marginBottom: 12 }}>Newsletter</h2>
-          <p style={{ fontSize: 14, color: 'rgba(255,255,255,0.5)', fontWeight: 300 }}>
+      <footer className="bg-brand-dark px-10 md:px-20 py-20 pb-12 text-brand-bg/85">
+        <div className="text-center mb-16">
+          <h2 className="font-serif text-[36px] md:text-[52px] text-white mb-3">Newsletter</h2>
+          <p className="text-[14px] text-white/50 font-light">
             Join our mailing list for updates on sustainable building and new projects.
           </p>
-          <div style={{ display: 'flex', maxWidth: 480, margin: '32px auto 0', border: '1px solid rgba(247,243,238,0.25)', borderRadius: 4, overflow: 'hidden' }}>
+          <div className="flex max-w-[480px] mx-auto mt-8 border border-white/25 rounded-[4px] overflow-hidden">
             <input
               placeholder="Email address"
-              style={{ flex: 1, background: 'transparent', border: 'none', padding: '14px 20px', color: '#fff', outline: 'none' }}
+              className="flex-1 bg-transparent border-none px-5 py-3.5 text-white outline-none font-sans"
             />
-            <button style={{ background: theme.earth, border: 'none', padding: '14px 20px', cursor: 'pointer', color: '#fff' }}>
+            <button className="bg-brand-earth border-none px-5 py-3.5 cursor-pointer text-white transition-colors hover:bg-brand-earth/90">
               Subscribe
             </button>
           </div>
         </div>
 
-        <div style={{ display: 'flex', justifyContent: 'center', gap: 24, borderTop: '1px solid rgba(247,243,238,0.1)', paddingTop: 40, marginBottom: 32 }}>
+        <div className="flex justify-center gap-6 border-t border-white/10 pt-10 mb-8">
           {navItems.map((item) => (
-            <Link key={item.href} to={item.href} style={{ fontSize: 12, textTransform: 'uppercase', letterSpacing: '0.08em', color: 'rgba(255,255,255,0.5)' }}>
+            <Link key={item.href} to={item.href} className="text-[12px] uppercase tracking-[0.08em] text-white/50 transition-colors hover:text-white">
               {item.label}
             </Link>
           ))}
         </div>
 
-        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', borderTop: '1px solid rgba(247,243,238,0.08)', paddingTop: 28 }}>
-          <span style={{ fontSize: 12, color: 'rgba(255,255,255,0.3)' }}>
-            © {new Date().getFullYear()} Shubham Consulting & Construction. All rights reserved.
-          </span>
-          <span style={{ fontFamily: 'Cormorant Garamond, serif', fontStyle: 'italic', fontSize: 14, color: 'rgba(196,149,106,0.5)' }}>
+        <div className="flex flex-col md:flex-row justify-between items-center border-t border-white/5 pt-7 gap-4">
+          <div className="flex items-center gap-4">
+            <img src="/Subam Logo.png" alt="Shubham" className="h-8 w-auto brightness-0 invert opacity-50" />
+            <span className="text-[12px] text-white/30 font-light">
+              © {new Date().getFullYear()} Shubham Consulting & Construction. All rights reserved.
+            </span>
+          </div>
+          <span className="font-serif italic text-[14px] text-brand-earth-light/50">
             Sustainable Luxury, Naturally Built.
           </span>
         </div>

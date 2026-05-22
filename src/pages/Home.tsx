@@ -72,264 +72,165 @@ export default function Home() {
 
   return (
     <>
-      <header className="hero">
+      <header className="relative w-full h-screen overflow-hidden">
         {SLIDES.map((src, i) => (
-          <div key={src} className={`hero__slide${i === activeSlide ? " active" : ""}`}>
-            <img src={src} alt="Shubham sustainable architecture" />
+          <div 
+            key={src} 
+            className={`absolute inset-0 opacity-0 transition-opacity duration-1000 ease-in-out ${i === activeSlide ? "opacity-100" : ""}`}
+          >
+            <img 
+              src={src} 
+              alt="Shubham sustainable architecture" 
+              className={`w-full h-full object-cover ${i === activeSlide ? "animate-[kenburns_8s_ease-in-out_forwards]" : ""}`}
+            />
           </div>
         ))}
-        <div className="hero__overlay" />
-        <div className="hero__content">
-          <div className={`hero__line${showHl1 ? " show" : ""}`}><span>Luxury That</span></div>
-          <span className="hero__rule" />
-          <div className={`hero__line${showHl2 ? " show" : ""}`}><span>Breathes</span></div>
-          <span className="hero__rule hero__rule--end" />
+        <div className="absolute inset-0 bg-gradient-to-br from-[#1F1F1F]/55 via-[#1F1F1F]/30 to-[#1F1F1F]/10" />
+        <div className="absolute left-[6%] bottom-[18%] z-10 max-w-[660px]">
+          <div className="overflow-hidden">
+            <span className={`block font-serif text-[48px] md:text-[64px] lg:text-[82px] font-normal text-white leading-none transition-all duration-900 ease-[cubic-bezier(0.16,1,0.3,1)] ${showHl1 ? "translate-y-0 opacity-100" : "translate-y-[50px] opacity-0"}`}>
+              Luxury That
+            </span>
+          </div>
+          <span className="block w-[60px] h-[1px] bg-white/50 my-[18px]" />
+          <div className="overflow-hidden">
+            <span className={`block font-serif text-[48px] md:text-[64px] lg:text-[82px] font-normal text-white leading-none transition-all duration-900 ease-[cubic-bezier(0.16,1,0.3,1)] ${showHl2 ? "translate-y-0 opacity-100" : "translate-y-[50px] opacity-0"}`}>
+              Breathes
+            </span>
+          </div>
+          <span className="block w-[60px] h-[1px] bg-white/50 my-[18px] ml-auto" />
         </div>
-        <div className={`scroll-down${showScroll ? " show" : ""}`}>
-          <div className="mouse" />
-          <div className="scroll-down__text">Scroll Down</div>
+        <div className={`absolute bottom-9 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 z-10 transition-opacity duration-600 ${showScroll ? "opacity-100" : "opacity-0"}`}>
+          <div className="w-[22px] height-[34px] border-[1.5px] border-white rounded-f-12 relative after:content-[''] after:absolute after:left-1/2 after:top-[6px] after:-translate-x-1/2 after:w-[2px] after:h-[5px] after:bg-white after:rounded-[2px] after:animate-[mousedot_1.8s_ease-in-out_infinite]" style={{ height: '34px', borderRadius: '12px' }} />
+          <div className="font-sans text-[10px] uppercase tracking-[0.2em] text-white/70 mt-1.5">Scroll Down</div>
         </div>
       </header>
 
-      <section className="intro">
-        <div className="intro__inner">
-          <h2 className="reveal">Not just a home.<br />A living ecosystem.</h2>
-          <p className="reveal">Shubham Consulting and Construction is redefining luxury through sustainability. We design and build high-end spaces that are fully self-sustainable, eco-conscious, and deeply connected to nature — without compromising on elegance. Every space is thoughtfully curated to create harmony between architecture, wellness, and the environment.</p>
+      <section className="bg-brand-bg px-6 md:px-12 lg:px-20 py-[120px] pb-[100px] text-center">
+        <div className="max-w-[720px] margin-0-auto" style={{ margin: '0 auto' }}>
+          <h2 className="reveal italic text-[38px] md:text-[52px] text-brand-earth leading-[1.15]">Not just a home.<br />A living ecosystem.</h2>
+          <p className="reveal mt-8 text-[15px] leading-[1.9] text-brand-text max-w-[680px] mx-auto font-light">Shubham Consulting and Construction is redefining luxury through sustainability. We design and build high-end spaces that are fully self-sustainable, eco-conscious, and deeply connected to nature — without compromising on elegance. Every space is thoughtfully curated to create harmony between architecture, wellness, and the environment.</p>
         </div>
       </section>
 
-      <section className="bleed" ref={bleedSec}>
-        <img ref={bleedRef} src="https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?w=1920" alt="Atmospheric Shubham project landscape" />
-        <div className="bleed__label"><h2>Crafting Future-Ready Residences</h2></div>
-      </section>
-
-      <section className="trust">
-        <h2 className="reveal">Our Philosophy: Zero Harm. Maximum Harmony.</h2>
-        <div className="trust__cols">
-          <p className="reveal">At Shubham, we believe your home should heal you, not harm the planet. Our construction methodology is built on a foundation of 0% hazardous chemicals, using breathable natural materials that support long-term human health. We combine traditional wisdom with modern engineering to create structures that are as durable as they are beautiful.</p>
-          <p className="reveal">What sets us apart is our commitment to integrated self-sustainable systems. From solar energy and rainwater harvesting to bio-gas plants and passive cooling design, every decision is guided by long-term efficiency, comfort, and environmental stewardship. This is conscious living, elevated.</p>
+      <section className="relative w-full h-[380px] md:h-[560px] overflow-hidden" ref={bleedSec}>
+        <img ref={bleedRef} src="https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?w=1920" alt="Atmospheric Shubham project landscape" className="w-full h-full object-cover will-change-transform" />
+        <div className="absolute bottom-0 left-0 w-full p-8 md:px-12 bg-gradient-to-t from-[#1F1F1F]/70 to-transparent">
+          <h2 className="text-[30px] md:text-[42px] text-white">Crafting Future-Ready Residences</h2>
         </div>
       </section>
 
-      <section className="values">
+      <section className="bg-brand-bg px-6 md:px-12 lg:px-20 py-[80px] md:py-[100px]">
+        <h2 className="reveal text-[36px] md:text-[52px] text-brand-earth max-w-[780px] mb-8 md:mb-12 leading-[1.15]">Our Philosophy: Zero Harm. Maximum Harmony.</h2>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-[60px]">
+          <p className="reveal text-[14px] leading-[1.9] text-brand-text font-light">At Shubham, we believe your home should heal you, not harm the planet. Our construction methodology is built on a foundation of 0% hazardous chemicals, using breathable natural materials that support long-term human health. We combine traditional wisdom with modern engineering to create structures that are as durable as they are beautiful.</p>
+          <p className="reveal text-[14px] leading-[1.9] text-brand-text font-light">What sets us apart is our commitment to integrated self-sustainable systems. From solar energy and rainwater harvesting to bio-gas plants and passive cooling design, every decision is guided by long-term efficiency, comfort, and environmental stewardship. This is conscious living, elevated.</p>
+        </div>
+      </section>
+
+      <section className="bg-brand-bg px-6 md:px-12 lg:px-20 pb-[80px] md:pb-[100px] grid grid-cols-2 lg:grid-cols-4 gap-4 md:gap-5">
         {[
           { img: "https://images.unsplash.com/photo-1521737604893-d14cc237f11d?w=600", tag: "Solar", h: "Solar Energy Systems", b: "Harnessing the sun to power your modern lifestyle with zero emissions." },
           { img: "https://images.unsplash.com/photo-1464226184884-fa280b87c399?w=600", tag: "Water", h: "Rainwater Harvesting", b: "Integrated collection systems designed to secure your water future naturally." },
           { img: "https://images.unsplash.com/photo-1545389336-cf090694435e?w=600", tag: "Cooling", h: "Passive Cooling", b: "Architectural design that maintains comfort without high energy consumption." },
           { img: "https://images.unsplash.com/photo-1574482620826-7f5f77f48d75?w=600", tag: "Waste", h: "Bio-Gas & Bio-Septic", b: "Closing the loop with integrated waste management and renewable energy." },
         ].map((v) => (
-          <article key={v.h} className="value reveal">
-            <div className="value__img">
-              <img src={v.img} alt={v.h} />
-              <span className="value__tag">{v.tag}</span>
+          <article key={v.h} className="group reveal">
+            <div className="relative overflow-hidden aspect-[3/4]">
+              <img src={v.img} alt={v.h} className="w-full h-full object-cover transition-transform duration-700 ease-in-out group-hover:scale-[1.06]" />
+              <span className="absolute bottom-4 left-4 bg-brand-bg/92 text-brand-earth font-sans text-[10px] uppercase tracking-[0.14em] px-3 py-1.5 rounded-[2px]">{v.tag}</span>
             </div>
-            <div className="value__body"><h3>{v.h}</h3><p>{v.b}</p></div>
+            <div className="pt-5">
+              <h3 className="text-[24px] text-brand-earth leading-tight">{v.h}</h3>
+              <p className="text-[13px] text-brand-text leading-[1.75] mt-2.5 font-light">{v.b}</p>
+            </div>
           </article>
         ))}
       </section>
 
-      <section className="services">
-        <div className="services__left">
-          <span className="lbl">Materials of Wisdom</span>
-          <h2>Traditional Materials. Modern Engineering.</h2>
+      <section className="bg-brand-bg pt-20 grid grid-cols-1 lg:grid-cols-[0.85fr_1.15fr] gap-0">
+        <div className="p-12 md:p-16 lg:p-20">
+          <span className="font-sans text-[11px] uppercase tracking-[0.16em] text-brand-earth-light">Materials of Wisdom</span>
+          <h2 className="text-[36px] md:text-[48px] text-brand-earth mt-3 mb-16">Traditional Materials. Modern Engineering.</h2>
           {[
             { h: "Rammed Earth & Mud Blocks", b: "Breathable, thermal-efficient walls that provide natural insulation and a unique organic aesthetic." },
             { h: "Natural COB & Stone", b: "Utilizing foundation stones and natural COB for structural integrity that honours building heritage." },
             { h: "Artisanal Finishes", b: "Lime plasters, traditional textures, and Madras terrace roofing for timeless elegance and health." },
           ].map((s) => (
-            <div key={s.h} className="service reveal"><h3>{s.h}</h3><p>{s.b}</p></div>
+            <div key={s.h} className="pt-7 border-t border-brand-earth/20 max-w-[380px] mb-[60px] last:mb-0 reveal">
+              <h3 className="text-[26px] text-brand-earth leading-tight">{s.h}</h3>
+              <p className="text-[14px] text-brand-text leading-[1.75] mt-2.5 font-light">{s.b}</p>
+            </div>
           ))}
         </div>
-        <div className="services__right">
+        <div className="flex flex-row lg:flex-col overflow-hidden">
           {[
             "https://images.unsplash.com/photo-1600047509807-ba8f99d2cdde?w=900",
             "https://images.unsplash.com/photo-1600566753086-00f18fb6b3ea?w=900",
             "https://images.unsplash.com/photo-1505409859467-3a796fd5798e?w=900",
           ].map((src) => (
-            <div key={src} className="imgwrap"><img src={src} alt="Shubham project" /></div>
+            <div key={src} className="flex-1 overflow-hidden group">
+              <img src={src} alt="Shubham project" className="w-full h-[240px] md:h-[300px] lg:h-[360px] object-cover transition-transform duration-700 ease-in-out group-hover:scale-[1.04]" />
+            </div>
           ))}
         </div>
       </section>
 
-      <section className="quote" ref={quoteSec}>
-        <img ref={quoteRef} src="https://images.unsplash.com/photo-1500534314209-a25ddb2bd429?w=1920" alt="Mountain landscape" />
-        <div className="quote__overlay" />
-        <div className="quote__content">
-          <span className="quote__mark">"</span>
-          <p className="quote__text">Build a home that lives with you, not against nature.</p>
-          <p style={{ color: 'white', marginTop: '20px', opacity: 0.8, fontSize: '14px' }}>Starting at ₹3,000 to ₹3,500 per sq.ft.*</p>
+      <section className="relative w-full h-[280px] md:h-[320px] overflow-hidden" ref={quoteSec}>
+        <img ref={quoteRef} src="https://images.unsplash.com/photo-1500534314209-a25ddb2bd429?w=1920" alt="Mountain landscape" className="w-full h-full object-cover will-change-transform" />
+        <div className="absolute inset-0 bg-gradient-to-r from-[#1F1F1F]/15 via-[#1F1F1F]/55 to-[#1F1F1F]/65" />
+        <div className="absolute right-[8%] top-1/2 -translate-y-1/2 text-right max-w-[560px] z-10">
+          <span className="font-serif text-[60px] md:text-[80px] text-white/70 leading-none float-left mr-2 pt-[30px] md:pt-10">"</span>
+          <p className="font-serif italic text-[24px] md:text-[34px] text-white leading-[1.45]">Build a home that lives with you, not against nature.</p>
+          <p className="text-white mt-5 opacity-80 text-sm font-light">Starting at ₹3,000 to ₹3,500 per sq.ft.*</p>
         </div>
       </section>
 
-      <section className="benefits">
-        <div className="benefits__inner">
-          <div className="benefits__header reveal">
-            <span className="lbl">Why Choose Shubham?</span>
-            <h2>Sustainable Luxury. Uncompromised Quality.</h2>
+      <section className="bg-brand-parchment px-6 md:px-12 lg:px-20 py-[80px] md:py-[120px]">
+        <div className="max-w-[1200px] mx-auto">
+          <div className="text-center mb-20 reveal">
+            <span className="font-sans text-[11px] uppercase tracking-[0.16em] text-brand-earth-light">Why Choose Shubham?</span>
+            <h2 className="text-[36px] md:text-[52px] text-brand-earth mt-3 leading-tight">Sustainable Luxury. Uncompromised Quality.</h2>
           </div>
-          <div className="benefits__grid">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-10">
             {[
               { h: "Lower Maintenance", b: "Built to last with natural materials that age gracefully, reducing long-term upkeep costs." },
               { h: "Healthier Living", b: "Zero hazardous chemicals and breathable walls ensure a living space that actively supports your wellness." },
               { h: "Unique Aesthetics", b: "Artisanal finishes and traditional wisdom meet modern design for a home unlike any other." },
               { h: "Future Ready", b: "A sustainable investment that appreciates in value while fulfilling your environmental responsibility." },
             ].map((item, i) => (
-              <div key={item.h} className="benefit reveal">
-                <span className="benefit__num">0{i + 1}</span>
-                <h3>{item.h}</h3>
-                <p>{item.b}</p>
+              <div key={item.h} className="relative pt-10 border-t border-brand-earth/15 reveal">
+                <span className="absolute top-3 left-0 font-sans text-[10px] text-brand-earth-light tracking-[0.1em]">0{i + 1}</span>
+                <h3 className="text-[24px] text-brand-earth mb-4 leading-tight">{item.h}</h3>
+                <p className="text-[14px] leading-[1.7] text-brand-text font-light">{item.b}</p>
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      <section className="connect">
-        <div className="connect__img">
-          <img src="https://images.unsplash.com/photo-1600047509358-9dc75507daeb?w=900" alt="Shubham project at golden hour" />
-          <div className="connect__title">Let's Connect</div>
+      <section className="grid grid-cols-1 md:grid-cols-2 min-h-[440px] mt-12 md:mt-20">
+        <div className="relative overflow-hidden group">
+          <img src="https://images.unsplash.com/photo-1600047509358-9dc75507daeb?w=900" alt="Shubham project at golden hour" className="w-full h-[280px] md:h-full object-cover transition-transform duration-800 ease-in-out group-hover:scale-[1.04]" />
+          <div className="absolute inset-0 bg-gradient-to-t from-[#1F1F1F]/72 via-[#1F1F1F]/10 to-transparent pointer-events-none" />
+          <div className="absolute bottom-10 left-1/2 -translate-x-1/2 z-10 text-center font-serif italic text-[40px] md:text-[48px] text-white">Let's Connect</div>
         </div>
-        <div className="connect__right">
+        <div className="bg-brand-parchment p-12 md:p-16 lg:p-[64px_72px] flex flex-col justify-center">
           {[
             { l: "Visit", d: "No:3 Sri Griha House, 8th Avenue\nAshok Nagar, Chennai - 600083" },
             { l: "Write", d: "consultingsubham@gmail.com\nsubhamconsulting@gmail.com" },
             { l: "Call", d: "+91 84385 30234 (WhatsApp)\nMon–Fri · 10:00 AM – 4:00 PM" },
           ].map((c) => (
-            <div key={c.l} className="crow">
-              <span className="crow__label">{c.l}</span>
-              <span className="crow__rule" />
-              <span className="crow__detail">{c.d}</span>
-              <span className="crow__arrow">→</span>
+            <div key={c.l} className="group flex items-center justify-between py-7 border-b border-brand-earth/18 cursor-pointer transition-colors duration-200 gap-6 hover:bg-brand-earth/5">
+              <span className="font-serif italic text-[26px] md:text-[32px] text-brand-earth flex-shrink-0">{c.l}</span>
+              <span className="flex-grow-0 flex-shrink-0 basis-10 h-[1px] bg-brand-earth/30" />
+              <span className="flex-1 text-right text-[13px] text-brand-text leading-[1.6] font-light whitespace-pre-line">{c.d}</span>
+              <span className="font-sans text-[18px] text-brand-earth-light transition-transform duration-250 ease-in-out group-hover:translate-x-1">→</span>
             </div>
           ))}
         </div>
       </section>
 
-      <style>{`
-        .hero { position: relative; width: 100%; height: 100vh; overflow: hidden; }
-        .hero__slide { position: absolute; inset: 0; opacity: 0; transition: opacity 1s ease-in-out; }
-        .hero__slide.active { opacity: 1; }
-        .hero__slide img { width: 100%; height: 100%; object-fit: cover; }
-        .hero__slide.active img { animation: kenburns 8s ease-in-out forwards; }
-        .hero__overlay { position: absolute; inset: 0; background: linear-gradient(to bottom right,rgba(30,18,10,.55) 0%,rgba(30,18,10,.3) 40%,rgba(30,18,10,.1) 100%); }
-        .hero__content { position: absolute; left: 6%; bottom: 18%; z-index: 10; max-width: 660px; }
-        .hero__line { overflow: hidden; }
-        .hero__line span { display: block; font-family: 'Cormorant Garamond', serif; font-size: 82px; font-weight: 400; color: #fff; line-height: 1.0; transform: translateY(50px); opacity: 0; }
-        .hero__line.show span { transform: translateY(0); opacity: 1; transition: transform .9s cubic-bezier(.16,1,.3,1), opacity .9s ease; }
-        .hero__rule { display: block; width: 60px; height: 1px; background: rgba(255,255,255,.5); margin: 18px 0; }
-        .hero__rule--end { margin-left: auto; margin-top: 18px; }
-        .scroll-down { position: absolute; bottom: 36px; left: 50%; transform: translateX(-50%); display: flex; flex-direction: column; align-items: center; gap: 8px; z-index: 10; opacity: 0; transition: opacity .6s ease; }
-        .scroll-down.show { opacity: 1; }
-        .mouse { width: 22px; height: 34px; border: 1.5px solid #fff; border-radius: 12px; position: relative; }
-        .mouse::after { content: ''; position: absolute; left: 50%; top: 6px; transform: translateX(-50%); width: 2px; height: 5px; background: #fff; border-radius: 2px; animation: mousedot 1.8s ease-in-out infinite; }
-        .scroll-down__text { font-family: 'Jost', sans-serif; font-size: 10px; text-transform: uppercase; letter-spacing: .2em; color: rgba(255,255,255,.7); margin-top: 6px; }
-
-        .intro { background: var(--bg); padding: 120px 80px 100px; text-align: center; }
-        .intro__inner { max-width: 720px; margin: 0 auto; }
-        .intro h2 { font-style: italic; font-size: 52px; color: var(--earth); line-height: 1.15; }
-        .intro p { margin-top: 32px; font-size: 15px; line-height: 1.9; color: var(--text); max-width: 680px; margin-left: auto; margin-right: auto; font-weight: 300; }
-
-        .bleed { position: relative; width: 100%; height: 560px; overflow: hidden; }
-        .bleed img { width: 100%; height: 100%; object-fit: cover; will-change: transform; }
-        .bleed__label { position: absolute; bottom: 0; left: 0; width: 100%; padding: 32px 48px; background: linear-gradient(to top, rgba(30,18,10,.7) 0%, transparent 100%); }
-        .bleed__label h2 { font-size: 42px; color: #fff; }
-
-        .projects { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0; background: var(--bg); padding-bottom: 80px; }
-        .project { cursor: pointer; }
-        .project__img { overflow: hidden; }
-        .project__img img { width: 100%; height: 340px; object-fit: cover; transition: transform .75s cubic-bezier(.25,.46,.45,.94); }
-        .project:hover .project__img img { transform: scale(1.06); }
-        .project__meta { padding: 20px 28px 0; }
-        .project__meta h3 { font-size: 20px; color: var(--earth); }
-        .project__meta p { font-size: 13px; color: var(--text); margin-top: 6px; font-weight: 300; }
-
-        .trust { background: var(--bg); padding: 100px 80px; }
-        .trust h2 { font-size: 52px; color: var(--earth); max-width: 780px; margin-bottom: 48px; line-height: 1.15; }
-        .trust__cols { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; }
-        .trust__cols p { font-size: 14px; line-height: 1.9; color: var(--text); font-weight: 300; }
-
-        .values { background: var(--bg); padding: 0 80px 100px; display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; }
-        .value__img { position: relative; overflow: hidden; aspect-ratio: 3/4; }
-        .value__img img { width: 100%; height: 100%; object-fit: cover; transition: transform .7s ease; }
-        .value:hover .value__img img { transform: scale(1.06); }
-        .value__tag { position: absolute; bottom: 16px; left: 16px; background: rgba(247,243,238,.92); color: var(--earth); font-family: 'Jost', sans-serif; font-size: 10px; text-transform: uppercase; letter-spacing: .14em; padding: 5px 12px; border-radius: 2px; }
-        .value__body { padding-top: 20px; }
-        .value__body h3 { font-size: 24px; color: var(--earth); }
-        .value__body p { font-size: 13px; color: var(--text); line-height: 1.75; margin-top: 10px; font-weight: 300; }
-
-        .services { background: var(--bg); padding: 80px 0 0; display: grid; grid-template-columns: .85fr 1.15fr; gap: 0; }
-        .services__left { padding: 80px; }
-        .lbl { font-family: 'Jost', sans-serif; font-size: 11px; text-transform: uppercase; letter-spacing: .16em; color: var(--earth-light); }
-        .services__left h2 { font-size: 48px; color: var(--earth); margin-top: 12px; margin-bottom: 64px; }
-        .service { padding-top: 28px; border-top: 1px solid rgba(139,94,60,.2); max-width: 380px; margin-bottom: 60px; }
-        .service:last-child { margin-bottom: 0; }
-        .service h3 { font-size: 26px; color: var(--earth); }
-        .service p { font-size: 14px; color: var(--text); line-height: 1.75; margin-top: 10px; font-weight: 300; }
-        .services__right { display: flex; flex-direction: column; }
-        .services__right .imgwrap { overflow: hidden; }
-        .services__right img { width: 100%; height: 360px; object-fit: cover; display: block; transition: transform .7s ease; }
-        .services__right .imgwrap:hover img { transform: scale(1.04); }
-
-        .quote { position: relative; width: 100%; height: 320px; overflow: hidden; }
-        .quote img { width: 100%; height: 100%; object-fit: cover; will-change: transform; }
-        .quote__overlay { position: absolute; inset: 0; background: linear-gradient(to right,rgba(30,18,10,.15) 0%,rgba(30,18,10,.55) 55%,rgba(30,18,10,.65) 100%); }
-        .quote__content { position: absolute; right: 8%; top: 50%; transform: translateY(-50%); text-align: right; max-width: 560px; z-index: 10; }
-        .quote__mark { font-family: 'Cormorant Garamond', serif; font-size: 80px; color: rgba(255,255,255,.7); line-height: 0; float: left; margin-right: 8px; padding-top: 40px; }
-        .quote__text { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 34px; color: #fff; line-height: 1.45; }
-
-        .benefits { background: var(--parchment); padding: 120px 80px; }
-        .benefits__inner { max-width: 1200px; margin: 0 auto; }
-        .benefits__header { text-align: center; marginBottom: 80px; }
-        .benefits__header h2 { font-size: 52px; color: var(--earth); margin-top: 12px; }
-        .benefits__grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 40px; }
-        .benefit { position: relative; padding-top: 40px; border-top: 1px solid rgba(139,94,60,0.15); }
-        .benefit__num { position: absolute; top: 12px; left: 0; font-family: 'Jost', sans-serif; font-size: 10px; color: var(--earth-light); letter-spacing: 0.1em; }
-        .benefit h3 { font-size: 24px; color: var(--earth); margin-bottom: 16px; }
-        .benefit p { font-size: 14px; line-height: 1.7; color: var(--text); font-weight: 300; }
-
-        .connect { display: grid; grid-template-columns: 1fr 1fr; min-height: 440px; margin-top: 80px; }
-        .connect__img { position: relative; overflow: hidden; }
-        .connect__img img { width: 100%; height: 100%; object-fit: cover; min-height: 440px; transition: transform .8s ease; }
-        .connect__img:hover img { transform: scale(1.04); }
-        .connect__img::after { content: ''; position: absolute; inset: 0; background: linear-gradient(to top, rgba(30,18,10,.72) 0%, rgba(30,18,10,.1) 60%, transparent 100%); pointer-events: none; }
-        .connect__title { position: absolute; bottom: 40px; left: 50%; transform: translateX(-50%); z-index: 10; text-align: center; font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 48px; color: #fff; }
-        .connect__right { background: var(--parchment); padding: 64px 72px; display: flex; flex-direction: column; justify-content: center; }
-        .crow { display: flex; align-items: center; justify-content: space-between; padding: 28px 0; border-bottom: 1px solid rgba(139,94,60,0.18); cursor: pointer; transition: background .2s ease; gap: 24px; }
-        .crow:hover { background: rgba(139,94,60,0.04); }
-        .crow__label { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 32px; color: var(--earth); flex-shrink: 0; }
-        .crow__rule { flex: 0 0 40px; height: 1px; background: rgba(139,94,60,0.3); }
-        .crow__detail { flex: 1; text-align: right; font-size: 13px; color: var(--text); line-height: 1.6; font-weight: 300; white-space: pre-line; }
-        .crow__arrow { font-family: 'Jost', sans-serif; font-size: 18px; color: var(--earth-light); transition: transform .25s ease; }
-        .crow:hover .crow__arrow { transform: translateX(4px); }
-
-        @media (max-width: 1024px) {
-          .intro, .trust, .values, .benefits { padding-left: 48px; padding-right: 48px; }
-          .hero__line span { font-size: 64px; }
-          .services { grid-template-columns: 1fr; }
-          .services__left { padding: 64px 48px; }
-          .values { grid-template-columns: repeat(2, 1fr); }
-          .benefits__grid { grid-template-columns: repeat(2, 1fr); }
-        }
-        @media (max-width: 768px) {
-          .hero__content { left: 5%; bottom: 12%; }
-          .hero__line span { font-size: 48px; }
-          .intro { padding: 80px 24px; } .intro h2 { font-size: 38px; }
-          .bleed { height: 380px; } .bleed__label h2 { font-size: 30px; }
-          .projects { grid-template-columns: 1fr; }
-          .trust { padding: 80px 24px; } .trust h2 { font-size: 36px; }
-          .trust__cols { grid-template-columns: 1fr; gap: 32px; }
-          .values { padding: 0 24px 80px; grid-template-columns: repeat(2, 1fr); gap: 16px; }
-          .services__left { padding: 48px 24px; } .services__left h2 { font-size: 36px; }
-          .services__right { flex-direction: row; } .services__right img { height: 200px; }
-          .quote { height: 280px; } .quote__text { font-size: 24px; } .quote__mark { font-size: 60px; padding-top: 30px; }
-          .benefits { padding: 80px 24px; } .benefits__header h2 { font-size: 36px; }
-          .benefits__grid { grid-template-columns: 1fr; gap: 24px; }
-          .connect { grid-template-columns: 1fr; margin-top: 48px; }
-          .connect__img img { height: 280px; min-height: 280px; }
-          .connect__right { padding: 48px 24px; }
-          .crow__label { font-size: 26px; }
-        }
-      `}</style>
     </>
   );
 }

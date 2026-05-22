@@ -1,17 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
 
-const theme = {
-  bg: "#F7F3EE",
-  dark: "#2C1F14",
-  earth: "#8B5E3C",
-  earthLight: "#C4956A",
-  muted: "#9C8B7A",
-  text: "#4A3B28",
-  parchment: "#EDE3D2",
-  white: "#FFFFFF",
-  overlayDark: "rgba(30,18,10,0.48)",
-};
-
 const EASE = "cubic-bezier(0.22,1,0.36,1)";
 
 // ---------- Reveal hook ----------
@@ -38,11 +26,12 @@ function useReveal(threshold = 0.12) {
   return [ref, shown];
 }
 
-function Reveal({ children, delay = 0, as: Tag = "div" as any, style = {}, ...rest }: any) {
+function Reveal({ children, delay = 0, as: Tag = "div" as any, style = {}, className = "", ...rest }: any) {
   const [ref, shown] = useReveal();
   return (
     <Tag
       ref={ref}
+      className={className}
       style={{
         opacity: shown ? 1 : 0,
         transform: shown ? "translateY(0)" : "translateY(28px)",
@@ -58,12 +47,13 @@ function Reveal({ children, delay = 0, as: Tag = "div" as any, style = {}, ...re
 }
 
 // ---------- Hover-zoom image ----------
-function ZoomImage({ src, alt, height, style = {}, wrapperStyle = {}, radius = 3 }: any) {
+function ZoomImage({ src, alt, height, style = {}, wrapperStyle = {}, radius = 3, className = "" }: any) {
   const [hover, setHover] = useState(false);
   return (
     <div
       onMouseEnter={() => setHover(true)}
       onMouseLeave={() => setHover(false)}
+      className={className}
       style={{ overflow: "hidden", borderRadius: radius, ...wrapperStyle }}
     >
       <img
@@ -141,12 +131,6 @@ function PolaroidSection({ parallaxY, isMobile }: any) {
     return () => io.disconnect();
   }, []);
 
-  const polaroidBase: any = {
-    background: "#FFFFFF",
-    padding: "12px 12px 36px",
-    boxShadow: "0 18px 40px rgba(30,18,10,0.35)",
-  };
-
   const imgSize = isMobile
     ? { width: 150, height: 120 }
     : { width: 240, height: 200 };
@@ -154,82 +138,40 @@ function PolaroidSection({ parallaxY, isMobile }: any) {
   return (
     <section
       ref={ref}
-      style={{
-        position: "relative",
-        width: "100%",
-        height: isMobile ? 420 : 560,
-        overflow: "hidden",
-      }}
+      className="relative w-full overflow-hidden h-[420px] md:h-[560px]"
     >
       <img
         src="https://images.unsplash.com/photo-1512917774080-9991f1c4c750?w=1920"
         alt="Immersive architectural interior"
+        className="absolute inset-0 object-cover w-full h-[110%] will-change-transform"
         style={{
-          position: "absolute",
-          inset: 0,
-          objectFit: "cover",
-          width: "100%",
-          height: "110%",
           transform: `translateY(${parallaxY * 0.4}px)`,
-          willChange: "transform",
         }}
       />
       <div
-        style={{
-          position: "absolute",
-          inset: 0,
-          background:
-            "linear-gradient(to right, rgba(30,18,10,0.55) 0%, rgba(30,18,10,0.35) 50%, rgba(30,18,10,0.1) 100%)",
-          pointerEvents: "none",
-        }}
+        className="absolute inset-0 bg-gradient-to-r from-[#1F1F1F]/55 via-[#1F1F1F]/35 to-[#1F1F1F]/10 pointer-events-none"
       />
       <div
-        style={{
-          position: "absolute",
-          bottom: 48,
-          right: isMobile ? "4%" : "8%",
-          zIndex: 10,
-          display: "flex",
-          alignItems: "flex-end",
-        }}
+        className="absolute bottom-12 right-[4%] md:right-[8%] z-10 flex items-end"
       >
         <div
-          style={{
-            ...polaroidBase,
-            zIndex: 2,
-            marginRight: -40,
-            opacity: trig ? 1 : 0,
-            transform: trig
-              ? "rotate(-6deg) translateY(0)"
-              : "rotate(-6deg) translateY(20px)",
-            transition:
-              "opacity 900ms ease-out, transform 900ms ease-out",
-            transitionDelay: "200ms",
-          }}
+          className={`bg-white p-3 pb-9 shadow-[0_18px_40px_rgba(31,31,31,0.35)] z-[2] -mr-10 transition-all duration-900 ease-out delay-200 ${trig ? "opacity-100 rotate-[-6deg] translate-y-0" : "opacity-0 rotate-[-6deg] translate-y-5"}`}
         >
           <img
             src="https://images.unsplash.com/photo-1600047509358-9dc75507daeb?w=400"
             alt="Interior architectural detail"
-            style={{ ...imgSize, objectFit: "cover", display: "block" }}
+            className="object-cover block"
+            style={imgSize}
           />
         </div>
         <div
-          style={{
-            ...polaroidBase,
-            zIndex: 1,
-            opacity: trig ? 1 : 0,
-            transform: trig
-              ? "rotate(4deg) translateY(0)"
-              : "rotate(4deg) translateY(20px)",
-            transition:
-              "opacity 900ms ease-out, transform 900ms ease-out",
-            transitionDelay: "450ms",
-          }}
+          className={`bg-white p-3 pb-9 shadow-[0_18px_40px_rgba(31,31,31,0.35)] z-[1] transition-all duration-900 ease-out delay-[450ms] ${trig ? "opacity-100 rotate-[4deg] translate-y-0" : "opacity-0 rotate-[4deg] translate-y-5"}`}
         >
           <img
             src="https://images.unsplash.com/photo-1600566752355-35792bedcfea?w=400"
             alt="Natural material texture detail"
-            style={{ ...imgSize, objectFit: "cover", display: "block" }}
+            className="object-cover block"
+            style={imgSize}
           />
         </div>
       </div>
@@ -300,97 +242,25 @@ export default function About() {
     },
   ];
 
-  const sectionPad = isMobile
-    ? "64px 24px"
-    : isTablet
-      ? "80px 48px"
-      : "100px 80px";
-
   return (
-    <div style={{ background: theme.bg, color: theme.dark, fontFamily: "Jost, sans-serif" }}>
-      <header
-        style={{
-          width: "100%",
-          height: "100vh",
-          position: "relative",
-          overflow: "hidden",
-        }}
-      >
+    <div className="bg-brand-bg text-brand-dark font-sans">
+      <header className="relative w-full h-screen overflow-hidden">
         <img
           src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=1920"
           alt="Sustainable architectural facade at golden hour"
-          style={{
-            position: "absolute",
-            inset: 0,
-            width: "100%",
-            height: "100%",
-            objectFit: "cover",
-            animation: "heroload 1.8s ease-out forwards",
-          }}
+          className="absolute inset-0 w-full h-full object-cover animate-[heroload_1.8s_ease-out_forwards]"
         />
-        <div
-          style={{
-            position: "absolute",
-            inset: 0,
-            background:
-              "linear-gradient(to bottom right, rgba(30,18,10,0.6) 0%, rgba(30,18,10,0.35) 50%, rgba(30,18,10,0.15) 100%)",
-          }}
-        />
-        <div
-          style={{
-            position: "absolute",
-            left: "6%",
-            bottom: isMobile ? "12%" : "20%",
-            zIndex: 10,
-            maxWidth: 700,
-            right: isMobile ? "6%" : "auto",
-          }}
-        >
-          <div
-            style={{
-              height: 1,
-              width: 80,
-              background: "rgba(255,255,255,0.6)",
-              marginBottom: 24,
-              opacity: mounted ? 1 : 0,
-              transition: "opacity 900ms ease",
-              transitionDelay: "200ms",
-            }}
-          />
-          <h1
-            style={{
-              fontFamily: "'Cormorant Garamond', serif",
-              fontSize: isMobile ? 44 : isTablet ? 62 : 78,
-              fontWeight: 400,
-              color: "#FFFFFF",
-              lineHeight: 1.0,
-              margin: 0,
-            }}
-          >
-            <span style={{ display: "block", overflow: "hidden" }}>
-              <span
-                style={{
-                  display: "inline-block",
-                  opacity: mounted ? 1 : 0,
-                  transform: mounted ? "translateY(0)" : "translateY(50px)",
-                  transition: `opacity 900ms cubic-bezier(0.16,1,0.3,1), transform 900ms cubic-bezier(0.16,1,0.3,1)`,
-                  transitionDelay: "300ms",
-                }}
-              >
+        <div className="absolute inset-0 bg-gradient-to-br from-[#1F1F1F]/60 via-[#1F1F1F]/35 to-[#1F1F1F]/15" />
+        <div className="absolute left-[6%] bottom-[12%] md:bottom-[20%] z-10 max-w-[700px] right-[6%] md:right-auto">
+          <div className={`h-[1px] w-20 bg-white/60 mb-6 transition-opacity duration-900 delay-200 ${mounted ? "opacity-100" : "opacity-0"}`} />
+          <h1 className="font-serif text-[44px] md:text-[62px] lg:text-[78px] font-normal text-white leading-none m-0">
+            <span className="block overflow-hidden">
+              <span className={`inline-block transition-all duration-900 ease-[cubic-bezier(0.16,1,0.3,1)] delay-300 ${mounted ? "translate-y-0 opacity-100" : "translate-y-[50px] opacity-0"}`}>
                 Reviving Wisdom
               </span>
             </span>
-            <span style={{ display: "block", overflow: "hidden" }}>
-              <span
-                style={{
-                  display: "inline-block",
-                  fontStyle: "italic",
-                  opacity: mounted ? 1 : 0,
-                  transform: mounted ? "translateY(0)" : "translateY(50px)",
-                  transition: `opacity 900ms cubic-bezier(0.16,1,0.3,1), transform 900ms cubic-bezier(0.16,1,0.3,1)`,
-                  transitionDelay: "520ms",
-                }}
-              >
+            <span className="block overflow-hidden">
+              <span className={`inline-block italic transition-all duration-900 ease-[cubic-bezier(0.16,1,0.3,1)] delay-520 ${mounted ? "translate-y-0 opacity-100" : "translate-y-[50px] opacity-0"}`}>
                 Engineering Change
               </span>
             </span>
@@ -399,49 +269,17 @@ export default function About() {
       </header>
 
       <main>
-        <section
-          style={{
-            background: theme.bg,
-            padding: isMobile ? "60px 0 24px" : "80px 0 40px",
-            overflow: "hidden",
-            position: "relative",
-          }}
-        >
+        <section className="bg-brand-bg py-10 md:py-15 lg:py-20 overflow-hidden relative">
           <p
             ref={ghostRef}
-            style={{
-              fontFamily: "'Cormorant Garamond', serif",
-              fontSize: isMobile ? 32 : isTablet ? 48 : 72,
-              fontStyle: "italic",
-              fontWeight: 400,
-              color: "rgba(139,94,60,0.12)",
-              textAlign: "center",
-              lineHeight: 1.2,
-              whiteSpace: isTablet ? "normal" : "nowrap" as any,
-              width: "100%",
-              margin: 0,
-              padding: "0 40px",
-              willChange: "transform",
-            }}
+            className="font-serif text-[32px] md:text-[48px] lg:text-[72px] italic font-normal text-brand-earth/10 text-center leading-[1.2] w-full m-0 px-10 will-change-transform whitespace-normal lg:whitespace-nowrap"
           >
             Crafting future-ready spaces that breathe.
           </p>
         </section>
 
-        <section
-          style={{
-            background: theme.bg,
-            padding: isMobile ? "40px 24px 64px" : "60px 80px 100px",
-          }}
-        >
-          <div
-            style={{
-              display: "grid",
-              gridTemplateColumns: isMobile ? "1fr" : "1fr 1fr",
-              gap: isMobile ? 32 : 60,
-              alignItems: "start",
-            }}
-          >
+        <section className="bg-brand-bg px-6 md:px-12 lg:px-20 py-10 md:py-15 lg:py-[100px] pt-0">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-[60px] items-start">
             <Reveal>
               <ZoomImage
                 src="https://images.unsplash.com/photo-1600566753086-00f18fb6b3ea?w=800"
@@ -449,7 +287,7 @@ export default function About() {
                 height={isMobile ? 360 : 560}
               />
             </Reveal>
-            <div style={{ display: "flex", flexDirection: "column", gap: 32 }}>
+            <div className="flex flex-col gap-8">
               <Reveal delay={100}>
                 <ZoomImage
                   src="https://images.unsplash.com/photo-1600047509807-ba8f99d2cdde?w=700"
@@ -458,31 +296,9 @@ export default function About() {
                   wrapperStyle={{ marginTop: isMobile ? 0 : 60 }}
                 />
               </Reveal>
-              <Reveal delay={220} style={{ marginTop: 8 }}>
-                <span
-                  style={{
-                    fontFamily: "'Cormorant Garamond', serif",
-                    fontSize: 80,
-                    color: theme.earthLight,
-                    lineHeight: 0,
-                    display: "block",
-                    marginBottom: 12,
-                    height: 40,
-                  }}
-                >
-                  “
-                </span>
-                <p
-                  style={{
-                    fontFamily: "'Cormorant Garamond', serif",
-                    fontSize: isMobile ? 22 : 26,
-                    fontWeight: 400,
-                    color: theme.earth,
-                    lineHeight: 1.55,
-                    maxWidth: 440,
-                    margin: 0,
-                  }}
-                >
+              <Reveal delay={220} className="mt-2">
+                <span className="font-serif text-[80px] text-brand-earth-light leading-none block mb-3 h-10">“</span>
+                <p className="font-serif text-[22px] md:text-[26px] font-normal text-brand-earth leading-[1.55] max-w-[440px] m-0">
                   Our vision is to redefine the future of construction through sustainable innovation, conscious design, and environmentally responsible building practices.
                 </p>
               </Reveal>
@@ -490,120 +306,31 @@ export default function About() {
           </div>
         </section>
 
-        <section
-          style={{
-            background: theme.bg,
-            padding: isMobile ? "48px 24px 56px" : "60px 80px 80px",
-            borderTop: "1px solid rgba(139,94,60,0.1)",
-            borderBottom: "1px solid rgba(139,94,60,0.1)",
-          }}
-        >
-          <div
-            style={{
-              display: "flex",
-              flexDirection: isMobile ? "column" : "row",
-              justifyContent: "center",
-              alignItems: "center",
-              gap: isMobile ? 32 : 0,
-            }}
-          >
+        <section className="bg-brand-bg px-6 md:px-12 lg:px-20 py-12 md:py-15 lg:py-20 border-t border-brand-earth/10 border-b border-brand-earth/10">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-12">
             {stats.map((s, i) => (
-              <React.Fragment key={s.label}>
-                <Reveal
-                  delay={i * 120}
-                  style={{
-                    flex: 1,
-                    textAlign: "center",
-                    padding: isMobile ? 0 : "0 40px",
-                    width: isMobile ? "100%" : "auto",
-                  }}
-                >
-                  <div
-                    style={{
-                      fontFamily: "'Cormorant Garamond', serif",
-                      fontSize: isTablet ? 56 : 72,
-                      fontWeight: 400,
-                      color: theme.earth,
-                      lineHeight: 1,
-                    }}
-                  >
-                    <CountUp target={s.target} suffix={s.suffix} />
-                  </div>
-                  <p
-                    style={{
-                      fontFamily: "Jost, sans-serif",
-                      fontSize: 12,
-                      textTransform: "uppercase",
-                      letterSpacing: "0.14em",
-                      color: theme.muted,
-                      marginTop: 12,
-                    }}
-                  >
-                    {s.label}
-                  </p>
-                </Reveal>
-                {!isMobile && i < stats.length - 1 && (
-                  <span
-                    aria-hidden
-                    style={{
-                      width: 1,
-                      height: 60,
-                      background: "rgba(139,94,60,0.2)",
-                    }}
-                  />
-                )}
-              </React.Fragment>
+              <Reveal key={s.label} delay={i * 100} className="text-center">
+                <span className="font-serif text-[48px] md:text-[62px] text-brand-earth block mb-2 leading-none">
+                  <CountUp target={s.target} suffix={s.suffix} />
+                </span>
+                <span className="font-sans text-[11px] uppercase tracking-[0.16em] text-brand-muted">
+                  {s.label}
+                </span>
+              </Reveal>
             ))}
           </div>
         </section>
 
-        <section style={{ background: theme.bg, padding: sectionPad }}>
-          <div
-            style={{
-              display: "grid",
-              gridTemplateColumns: isMobile ? "1fr" : "1fr 1fr",
-              gap: 80,
-            }}
-          >
+        <section className="bg-brand-bg px-6 md:px-12 lg:px-20 py-16 md:py-20 lg:py-24">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-20">
             <div>
-              <Reveal as="p"
-                style={{
-                  fontFamily: "Jost, sans-serif",
-                  fontSize: 11,
-                  color: "rgba(139,94,60,0.45)",
-                  letterSpacing: "0.06em",
-                  marginBottom: 32,
-                  marginTop: 0,
-                }}
-              >
+              <Reveal as="p" className="font-sans text-[11px] text-brand-earth/45 tracking-[0.06em] mb-8 mt-0">
                 About · Our Story · Foundation
               </Reveal>
-              <Reveal as="p"
-                delay={80}
-                style={{
-                  fontFamily: "Jost, sans-serif",
-                  fontSize: 11,
-                  textTransform: "uppercase",
-                  letterSpacing: "0.18em",
-                  color: theme.muted,
-                  marginBottom: 16,
-                  marginTop: 0,
-                }}
-              >
+              <Reveal as="p" delay={80} className="font-sans text-[11px] uppercase tracking-[0.18em] text-brand-muted mb-4 mt-0">
                 Our Story
               </Reveal>
-              <Reveal as="h3"
-                delay={160}
-                style={{
-                  fontFamily: "'Cormorant Garamond', serif",
-                  fontSize: isMobile ? 30 : 38,
-                  color: theme.earth,
-                  lineHeight: 1.2,
-                  marginBottom: 32,
-                  marginTop: 0,
-                  fontWeight: 400,
-                }}
-              >
+              <Reveal as="h3" delay={160} className="font-serif text-[30px] md:text-[38px] text-brand-earth leading-[1.2] mb-8 mt-0 font-normal">
                 Building for wellness and nature.
               </Reveal>
               {[
@@ -611,18 +338,7 @@ export default function About() {
                 "Believing that the spaces we live in should support both human well-being and nature, Sanchana explored how traditional architecture could be merged with modern engineering principles. Her goal was to make sustainable building practices practical, affordable, and relevant for contemporary lifestyles.",
                 "Today, Shubham Consulting and Construction is dedicated to reviving traditional building wisdom through modern and environmentally responsible practices. We create thoughtfully designed spaces using natural materials and climate-conscious design that remain connected to nature and local context.",
               ].map((p, i) => (
-                <Reveal as="p"
-                  key={i}
-                  delay={240 + i * 100}
-                  style={{
-                    fontFamily: "Jost, sans-serif",
-                    fontSize: 15,
-                    fontWeight: 300,
-                    color: theme.text,
-                    lineHeight: 1.95,
-                    margin: "0 0 24px",
-                  }}
-                >
+                <Reveal as="p" key={i} delay={240 + i * 100} className="font-sans text-[15px] font-light text-brand-text leading-[1.95] mb-6">
                   {p}
                 </Reveal>
               ))}
@@ -636,79 +352,33 @@ export default function About() {
           isMobile={isMobile}
         />
 
-        <section style={{ background: theme.bg, padding: sectionPad }}>
-          <div style={{ textAlign: "center", marginBottom: 72 }}>
-            <Reveal as="h2"
-              style={{
-                fontFamily: "'Cormorant Garamond', serif",
-                fontSize: isMobile ? 36 : 52,
-                fontStyle: "italic",
-                color: theme.earth,
-                lineHeight: 1.2,
-                fontWeight: 400,
-                margin: 0,
-              }}
-            >
+        <section className="bg-brand-bg px-6 md:px-12 lg:px-20 py-16 md:py-20 lg:py-24 pt-16 md:pt-20 lg:pt-24">
+          <div className="text-center mb-16 md:mb-[72px]">
+            <Reveal as="h2" className="font-serif text-[36px] md:text-[52px] italic text-brand-earth leading-[1.2] font-normal m-0">
               The People Behind
             </Reveal>
-            <Reveal as="h2"
-              delay={100}
-              style={{
-                fontFamily: "'Cormorant Garamond', serif",
-                fontSize: isMobile ? 36 : 52,
-                fontStyle: "italic",
-                color: theme.earth,
-                lineHeight: 1.2,
-                fontWeight: 400,
-                margin: 0,
-              }}
-            >
+            <Reveal as="h2" delay={100} className="font-serif text-[36px] md:text-[52px] italic text-brand-earth leading-[1.2] font-normal m-0">
               The Purpose.
             </Reveal>
           </div>
 
-          <div
-            style={{
-              display: "grid",
-              gridTemplateColumns: isMobile ? "1fr" : "1fr 1fr",
-              gap: 60,
-              alignItems: "start",
-            }}
-          >
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-[60px] items-start">
             <Reveal>
               <ZoomImage
                 src="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=600"
                 alt="Sustainable construction project"
                 height={300}
-                wrapperStyle={{ marginBottom: 24 }}
+                className="mb-6"
               />
-              <h3
-                style={{
-                  fontFamily: "'Cormorant Garamond', serif",
-                  fontSize: 24,
-                  color: theme.earth,
-                  lineHeight: 1.3,
-                  fontWeight: 400,
-                  margin: 0,
-                }}
-              >
+              <h3 className="font-serif text-[24px] text-brand-earth leading-[1.3] font-normal m-0">
                 Commitment to Lasting Value.
               </h3>
-              <p
-                style={{
-                  fontFamily: "Jost, sans-serif",
-                  fontSize: 13,
-                  fontWeight: 300,
-                  color: theme.text,
-                  lineHeight: 1.8,
-                  marginTop: 12,
-                }}
-              >
+              <p className="font-sans text-[13px] font-light text-brand-text leading-[1.8] mt-3">
                 Shubham is a sustainable consulting and construction company working across India. Our expertise includes farmhouses, residences, institutional spaces, schools, and eco-development projects. We balance functionality, long-term value, and environmental responsibility in every site we develop.
               </p>
             </Reveal>
 
-            <div style={{ marginTop: isMobile ? 0 : 80 }}>
+            <div className="mt-0 md:mt-20">
               {[
                 {
                   year: "Knowledge",
@@ -732,46 +402,15 @@ export default function About() {
                 <Reveal
                   key={m.head}
                   delay={i * 120}
-                  style={{
-                    padding: "24px 0",
-                    borderBottom:
-                      i < 2 ? "1px solid rgba(139,94,60,0.12)" : "none",
-                  }}
+                  className={`py-6 ${i < 2 ? "border-b border-brand-earth/12" : ""}`}
                 >
-                  <span
-                    style={{
-                      fontFamily: "Jost, sans-serif",
-                      fontSize: 11,
-                      textTransform: "uppercase",
-                      letterSpacing: "0.14em",
-                      color: theme.earthLight,
-                    }}
-                  >
+                  <span className="font-sans text-[11px] uppercase tracking-[0.14em] text-brand-earth-light">
                     {m.year}
                   </span>
-                  <h4
-                    style={{
-                      fontFamily: "'Cormorant Garamond', serif",
-                      fontSize: 22,
-                      color: theme.earth,
-                      marginTop: 6,
-                      marginBottom: 0,
-                      fontWeight: 400,
-                    }}
-                  >
+                  <h4 className="font-serif text-[22px] text-brand-earth mt-1.5 mb-0 font-normal">
                     {m.head}
                   </h4>
-                  <p
-                    style={{
-                      fontFamily: "Jost, sans-serif",
-                      fontSize: 13,
-                      fontWeight: 300,
-                      color: theme.text,
-                      lineHeight: 1.7,
-                      marginTop: 8,
-                      marginBottom: 0,
-                    }}
-                  >
+                  <p className="font-sans text-[13px] font-light text-brand-text leading-[1.7] mt-2 mb-0">
                     {m.body}
                   </p>
                 </Reveal>
@@ -780,45 +419,16 @@ export default function About() {
           </div>
         </section>
 
-        <section style={{ background: theme.bg, padding: sectionPad }}>
-          <div style={{ marginBottom: 60 }}>
-            <Reveal as="p"
-              style={{
-                fontFamily: "Jost, sans-serif",
-                fontSize: 11,
-                textTransform: "uppercase",
-                letterSpacing: "0.16em",
-                color: theme.muted,
-                marginBottom: 12,
-                marginTop: 0,
-              }}
-            >
+        <section className="bg-brand-bg px-6 md:px-12 lg:px-20 py-16 md:py-20 lg:py-24">
+          <div className="mb-15 md:mb-[60px]">
+            <Reveal as="p" className="font-sans text-[11px] uppercase tracking-[0.16em] text-brand-muted mb-3 mt-0">
               The Team
             </Reveal>
-            <Reveal as="h2"
-              delay={100}
-              style={{
-                fontFamily: "'Cormorant Garamond', serif",
-                fontSize: isMobile ? 36 : 48,
-                color: theme.earth,
-                fontWeight: 400,
-                margin: 0,
-              }}
-            >
+            <Reveal as="h2" delay={100} className="font-serif text-[36px] md:text-[48px] text-brand-earth font-normal m-0">
               Experts in Sustainable Design.
             </Reveal>
           </div>
-          <div
-            style={{
-              display: "grid",
-              gridTemplateColumns: isMobile
-                ? "1fr"
-                : isTablet
-                  ? "repeat(2,1fr)"
-                  : "repeat(3,1fr)",
-              gap: 32,
-            }}
-          >
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-12">
             {team.map((p, i) => (
               <Reveal key={p.name} delay={i * 120}>
                 <ZoomImage
@@ -826,42 +436,13 @@ export default function About() {
                   alt={p.alt}
                   wrapperStyle={{ aspectRatio: "3/4" }}
                 />
-                <h3
-                  style={{
-                    fontFamily: "'Cormorant Garamond', serif",
-                    fontSize: 24,
-                    color: theme.earth,
-                    marginTop: 18,
-                    marginBottom: 0,
-                    fontWeight: 400,
-                  }}
-                >
+                <h3 className="font-serif text-[24px] text-brand-earth mt-[18px] mb-0 font-normal leading-tight">
                   {p.name}
                 </h3>
-                <p
-                  style={{
-                    fontFamily: "Jost, sans-serif",
-                    fontSize: 12,
-                    textTransform: "uppercase",
-                    letterSpacing: "0.1em",
-                    color: theme.muted,
-                    marginTop: 6,
-                    marginBottom: 0,
-                  }}
-                >
+                <p className="font-sans text-[12px] uppercase tracking-[0.1em] text-brand-muted mt-1.5 mb-0">
                   {p.role}
                 </p>
-                <p
-                  style={{
-                    fontFamily: "Jost, sans-serif",
-                    fontSize: 13,
-                    fontWeight: 300,
-                    color: theme.text,
-                    lineHeight: 1.7,
-                    marginTop: 10,
-                    marginBottom: 0,
-                  }}
-                >
+                <p className="font-sans text-[13px] font-light text-brand-text leading-[1.7] mt-2.5 mb-0">
                   {p.bio}
                 </p>
               </Reveal>

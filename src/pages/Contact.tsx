@@ -1,17 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
 
-const theme = {
-  bg: '#F7F3EE',
-  dark: '#2C1F14',
-  earth: '#8B5E3C',
-  earthLight: '#C4956A',
-  muted: '#9C8B7A',
-  text: '#4A3B28',
-  parchment: '#EDE3D2',
-  white: '#FFFFFF',
-  overlayDark: 'rgba(30,18,10,0.48)',
-};
-
 const contacts = [
   { label: 'Visit', detail: 'No:3 Sri Griha House, 8th Avenue\nAshok Nagar, Chennai - 600083' },
   { label: 'Write', detail: 'consultingsubham@gmail.com\nsubhamconsulting@gmail.com' },
@@ -41,7 +29,7 @@ const reachOptions = [
   },
 ];
 
-function Reveal({ children, delay = 0, as: Tag = 'div' as any, style = {}, ...rest }: any) {
+function Reveal({ children, delay = 0, as: Tag = 'div' as any, style = {}, className = '', ...rest }: any) {
   const ref = useRef<any>(null);
   const [visible, setVisible] = useState(false);
   useEffect(() => {
@@ -59,6 +47,7 @@ function Reveal({ children, delay = 0, as: Tag = 'div' as any, style = {}, ...re
   return (
     <Tag
       ref={ref}
+      className={className}
       style={{
         opacity: visible ? 1 : 0,
         transform: visible ? 'translateY(0)' : 'translateY(28px)',
@@ -118,9 +107,7 @@ export default function Contact() {
   }, []);
 
   const isMobile = windowWidth <= 768;
-  const isTablet = windowWidth <= 1024;
   const heroParallax = scrollY * 0.15;
-  const sectionPadX = isMobile ? 24 : isTablet ? 48 : 80;
 
   const onChange = (k: string) => (e: any) => setForm((f) => ({ ...f, [k]: e.target.value }));
   const onSubmit = (e: any) => {
@@ -128,99 +115,66 @@ export default function Contact() {
     setSubmitted(true);
   };
 
-  const inputBase: any = {
-    width: '100%',
-    background: 'transparent',
-    border: 'none',
-    borderBottom: `1px solid rgba(139,94,60,0.25)`,
-    padding: '14px 0',
-    fontFamily: 'Jost, sans-serif', fontSize: 15, fontWeight: 300,
-    color: theme.dark, outline: 'none',
-    transition: 'border-color 0.3s ease',
-  };
-  const labelBase: any = {
-    display: 'block',
-    fontFamily: 'Jost, sans-serif', fontSize: 11,
-    textTransform: 'uppercase', letterSpacing: '0.18em',
-    color: theme.muted, marginBottom: 8,
-  };
-
   return (
-    <div style={{ background: theme.bg, color: theme.dark, fontFamily: "Jost, sans-serif" }}>
+    <div className="bg-brand-bg text-brand-dark font-sans">
       {/* HERO */}
-      <header style={{ position: 'relative', width: '100%', height: '100vh', overflow: 'hidden' }}>
+      <header className="relative w-full h-screen overflow-hidden">
         <img
           src="https://images.unsplash.com/photo-1497366216548-37526070297c?w=1920"
           alt="Atmospheric studio interior"
+          className="absolute inset-0 w-full h-[115%] object-cover animate-[heroload_1.8s_ease-out_forwards] will-change-transform"
           style={{
-            position: 'absolute', inset: 0, width: '100%', height: '115%', objectFit: 'cover',
-            transform: `translateY(${heroParallax}px)`, animation: 'heroload 1.8s ease-out forwards',
+            transform: `translateY(${heroParallax}px)`,
           }}
         />
-        <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to bottom, rgba(30,18,10,0.55) 0%, rgba(30,18,10,0.3) 50%, rgba(30,18,10,0.1) 100%)' }} />
-        <div style={{ position: 'absolute', left: sectionPadX, bottom: isMobile ? '12%' : '20%', zIndex: 10, maxWidth: 660 }}>
-          <div style={{ height: 1, width: 60, background: 'rgba(255,255,255,0.6)', marginBottom: 24 }} />
-          <h1 style={{
-            fontFamily: 'Cormorant Garamond, serif', fontSize: isMobile ? 48 : isTablet ? 64 : 84,
-            fontWeight: 400, color: '#FFFFFF', lineHeight: 1.0, margin: 0,
-          }}>
-            <span style={{ display: 'block', overflow: 'hidden' }}>
-              <span style={{
-                display: 'inline-block', transform: heroLoaded.l1 ? 'translateY(0)' : 'translateY(50px)',
-                opacity: heroLoaded.l1 ? 1 : 0, transition: 'all 900ms cubic-bezier(0.16,1,0.3,1)',
-              }}>Let's Start a</span>
+        <div className="absolute inset-0 bg-gradient-to-b from-[#1F1F1F]/55 via-[#1F1F1F]/30 to-[#1F1F1F]/10" />
+        <div className="absolute left-6 md:left-12 lg:left-20 bottom-[12%] md:bottom-[20%] z-10 max-w-[660px]">
+          <div className="h-[1px] w-[60px] bg-white/60 mb-6" />
+          <h1 className="font-serif text-[48px] md:text-[64px] lg:text-[84px] font-normal text-white leading-none m-0">
+            <span className="block overflow-hidden">
+              <span className={`inline-block transition-all duration-900 ease-[cubic-bezier(0.16,1,0.3,1)] ${heroLoaded.l1 ? "translate-y-0 opacity-100" : "translate-y-[50px] opacity-0"}`}>
+                Let's Start a
+              </span>
             </span>
-            <span style={{ display: 'block', overflow: 'hidden' }}>
-              <span style={{
-                display: 'inline-block', fontStyle: 'italic',
-                transform: heroLoaded.l2 ? 'translateY(0)' : 'translateY(50px)',
-                opacity: heroLoaded.l2 ? 1 : 0, transition: 'all 900ms cubic-bezier(0.16,1,0.3,1)',
-              }}>Conversation</span>
+            <span className="block overflow-hidden">
+              <span className={`inline-block italic transition-all duration-900 ease-[cubic-bezier(0.16,1,0.3,1)] ${heroLoaded.l2 ? "translate-y-0 opacity-100" : "translate-y-[50px] opacity-0"}`}>
+                Conversation
+              </span>
             </span>
           </h1>
-          <div style={{ height: 1, width: 120, background: 'rgba(255,255,255,0.6)', marginTop: 28, marginLeft: 'auto' }} />
+          <div className="h-[1px] w-[120px] bg-white/60 mt-7 ml-auto" />
         </div>
-        <div style={{
-          position: 'absolute', bottom: 36, left: '50%', transform: 'translateX(-50%)',
-          display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 8, zIndex: 10,
-          opacity: heroLoaded.scroll ? 1 : 0, transition: 'opacity 0.6s ease',
-        }}>
-          <div style={{ width: 22, height: 34, border: '1.5px solid #fff', borderRadius: 12, position: 'relative' }}>
-            <div style={{
-              position: 'absolute', left: '50%', top: 6, width: 2, height: 5, background: '#fff',
-              borderRadius: 2, transform: 'translateX(-50%)', animation: 'mousedot 1.8s ease-in-out infinite',
-            }} />
+        <div className={`absolute bottom-9 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 z-10 transition-opacity duration-600 ${heroLoaded.scroll ? "opacity-100" : "opacity-0"}`}>
+          <div className="w-[22px] h-[34px] border-[1.5px] border-white rounded-[12px] relative">
+            <div className="absolute left-1/2 top-1.5 w-[2px] h-[5px] bg-white rounded-[2px] -translate-x-1/2 animate-[mousedot_1.8s_ease-in-out_infinite]" />
           </div>
-          <div style={{ fontFamily: 'Jost, sans-serif', fontSize: 10, textTransform: 'uppercase', letterSpacing: '0.2em', color: 'rgba(255,255,255,0.7)' }}>Scroll Down</div>
+          <div className="font-sans text-[10px] uppercase tracking-[0.2em] text-white/70">Scroll Down</div>
         </div>
       </header>
 
       <main>
         {/* CONTACT INFO GRID */}
-        <section style={{ padding: `${isMobile ? 64 : 100}px ${sectionPadX}px` }}>
-          <div style={{ display: 'grid', gridTemplateColumns: isMobile ? '1fr' : '1fr 1fr', gap: isMobile ? 48 : 80, alignItems: 'start' }}>
+        <section className="px-6 md:px-12 lg:px-20 py-16 md:py-[100px]">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-20 items-start">
             <div>
               <Reveal>
-                <span style={{ fontFamily: 'Jost, sans-serif', fontSize: 11, textTransform: 'uppercase', letterSpacing: '0.18em', color: theme.muted }}>Contact</span>
-                <h2 style={{ fontFamily: 'Cormorant Garamond, serif', fontSize: isMobile ? 32 : 44, color: theme.earth, marginTop: 12, marginBottom: 24, fontWeight: 400 }}>Get in touch with us.</h2>
-                <p style={{ fontFamily: 'Jost, sans-serif', fontSize: 15, fontWeight: 300, color: theme.text, lineHeight: 1.85, maxWidth: 440, margin: 0 }}>
+                <span className="font-sans text-[11px] uppercase tracking-[0.18em] text-brand-muted">Contact</span>
+                <h2 className="font-serif text-[32px] md:text-[44px] text-brand-earth mt-3 mb-6 font-normal">Get in touch with us.</h2>
+                <p className="font-sans text-[15px] font-light text-brand-text leading-[1.85] max-w-[440px] m-0">
                   Whether you have a specific project in mind, want to explore sustainable materials, or wish to consult on a structural system, we'd love to hear from you.
                 </p>
               </Reveal>
 
-              <div style={{ marginTop: 64 }}>
+              <div className="mt-16">
                 {contacts.map((c, i) => (
                   <Reveal key={c.label} delay={i * 100}>
                     <div
+                      className="group flex items-center justify-between py-8 border-t border-brand-earth/12 cursor-pointer transition-colors duration-200 gap-6 hover:bg-brand-earth/5"
                       onMouseEnter={() => setRowHovered({ ...rowHovered, [i]: true })}
                       onMouseLeave={() => setRowHovered({ ...rowHovered, [i]: false })}
-                      style={{
-                        padding: '32px 0', borderTop: '1px solid rgba(139,94,60,0.12)',
-                        display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 24,
-                      }}
                     >
-                      <span style={{ fontFamily: 'Cormorant Garamond, serif', fontStyle: 'italic', fontSize: 28, color: theme.earth }}>{c.label}</span>
-                      <span style={{ flex: 1, textAlign: 'right', fontSize: 14, color: theme.text, fontWeight: 300, whiteSpace: 'pre-line', lineHeight: 1.6 }}>{c.detail}</span>
+                      <span className="font-serif italic text-[28px] text-brand-earth">{c.label}</span>
+                      <span className="flex-1 text-right text-[14px] text-brand-text font-light whitespace-pre-line leading-[1.6]">{c.detail}</span>
                     </div>
                   </Reveal>
                 ))}
@@ -228,31 +182,31 @@ export default function Contact() {
             </div>
 
             {/* FORM */}
-            <Reveal delay={200} style={{ background: theme.parchment, padding: isMobile ? 32 : 56, borderRadius: 2 }}>
+            <Reveal delay={200} className="bg-brand-parchment p-8 md:p-14 rounded-[2px]">
               {submitted ? (
-                <div style={{ textAlign: 'center', padding: '40px 0' }}>
-                  <h3 style={{ fontFamily: 'Cormorant Garamond, serif', fontSize: 32, color: theme.earth, marginBottom: 16 }}>Thank You</h3>
-                  <p style={{ fontSize: 15, color: theme.text, fontWeight: 300 }}>Your message has been received. We will get back to you within two working days.</p>
+                <div className="text-center py-10">
+                  <h3 className="font-serif text-[32px] text-brand-earth mb-4">Thank You</h3>
+                  <p className="text-[15px] text-brand-text font-light">Your message has been received. We will get back to you within two working days.</p>
                 </div>
               ) : (
                 <form onSubmit={onSubmit}>
-                  <div style={{ marginBottom: 32 }}>
-                    <label style={labelBase}>Full Name</label>
-                    <input style={inputBase} placeholder="Enter your name" required value={form.name} onChange={onChange('name')} />
+                  <div className="mb-8">
+                    <label className="block font-sans text-[11px] uppercase tracking-[0.18em] text-brand-muted mb-2">Full Name</label>
+                    <input className="w-full bg-transparent border-b border-brand-earth/25 py-3.5 font-sans text-[15px] font-light text-brand-dark outline-none transition-colors focus:border-brand-earth" placeholder="Enter your name" required value={form.name} onChange={onChange('name')} />
                   </div>
-                  <div style={{ display: 'grid', gridTemplateColumns: isMobile ? '1fr' : '1fr 1fr', gap: 32, marginBottom: 32 }}>
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
                     <div>
-                      <label style={labelBase}>Email Address</label>
-                      <input type="email" style={inputBase} placeholder="Enter your email" required value={form.email} onChange={onChange('email')} />
+                      <label className="block font-sans text-[11px] uppercase tracking-[0.18em] text-brand-muted mb-2">Email Address</label>
+                      <input type="email" className="w-full bg-transparent border-b border-brand-earth/25 py-3.5 font-sans text-[15px] font-light text-brand-dark outline-none transition-colors focus:border-brand-earth" placeholder="Enter your email" required value={form.email} onChange={onChange('email')} />
                     </div>
                     <div>
-                      <label style={labelBase}>Phone Number</label>
-                      <input style={inputBase} placeholder="Enter phone number" value={form.phone} onChange={onChange('phone')} />
+                      <label className="block font-sans text-[11px] uppercase tracking-[0.18em] text-brand-muted mb-2">Phone Number</label>
+                      <input className="w-full bg-transparent border-b border-brand-earth/25 py-3.5 font-sans text-[15px] font-light text-brand-dark outline-none transition-colors focus:border-brand-earth" placeholder="Enter phone number" value={form.phone} onChange={onChange('phone')} />
                     </div>
                   </div>
-                  <div style={{ marginBottom: 32 }}>
-                    <label style={labelBase}>Subject</label>
-                    <select style={inputBase} value={form.subject} onChange={onChange('subject')}>
+                  <div className="mb-8">
+                    <label className="block font-sans text-[11px] uppercase tracking-[0.18em] text-brand-muted mb-2">Subject</label>
+                    <select className="w-full bg-transparent border-b border-brand-earth/25 py-3.5 font-sans text-[15px] font-light text-brand-dark outline-none transition-colors focus:border-brand-earth appearance-none" value={form.subject} onChange={onChange('subject')}>
                       <option>General Inquiry</option>
                       <option>Sustainable Construction</option>
                       <option>Structural Consulting</option>
@@ -260,18 +214,13 @@ export default function Contact() {
                       <option>Real Estate Development</option>
                     </select>
                   </div>
-                  <div style={{ marginBottom: 40 }}>
-                    <label style={labelBase}>Message</label>
-                    <textarea style={{ ...inputBase, height: 120, resize: 'none' }} placeholder="How can we help you?" required value={form.message} onChange={onChange('message')} />
+                  <div className="mb-10">
+                    <label className="block font-sans text-[11px] uppercase tracking-[0.18em] text-brand-muted mb-2">Message</label>
+                    <textarea className="w-full bg-transparent border-b border-brand-earth/25 py-3.5 font-sans text-[15px] font-light text-brand-dark outline-none transition-colors focus:border-brand-earth h-[120px] resize-none" placeholder="How can we help you?" required value={form.message} onChange={onChange('message')} />
                   </div>
                   <button
                     type="submit"
-                    style={{
-                      width: '100%', background: theme.earth, color: '#fff', border: 'none',
-                      padding: '16px', fontFamily: 'Jost, sans-serif', fontSize: 12,
-                      textTransform: 'uppercase', letterSpacing: '0.14em', cursor: 'pointer',
-                      transition: 'background 0.3s ease',
-                    }}
+                    className="w-full bg-brand-earth text-white py-4 font-sans text-[12px] uppercase tracking-[0.14em] transition-colors hover:bg-brand-dark"
                   >
                     Send Message
                   </button>
@@ -282,33 +231,30 @@ export default function Contact() {
         </section>
 
         {/* REACH OPTIONS */}
-        <section style={{ padding: `0 ${sectionPadX}px ${isMobile ? 64 : 100}px` }}>
-          <div style={{ textAlign: 'center', marginBottom: 64 }}>
+        <section className="px-6 md:px-12 lg:px-20 pb-16 md:pb-[100px]">
+          <div className="text-center mb-16">
             <Reveal>
-              <span style={{ fontFamily: 'Jost, sans-serif', fontSize: 11, textTransform: 'uppercase', letterSpacing: '0.18em', color: theme.muted }}>Visit Us</span>
-              <h2 style={{ fontFamily: 'Cormorant Garamond, serif', fontSize: isMobile ? 36 : 52, color: theme.earth, marginTop: 12, fontWeight: 400 }}>Ways to Reach</h2>
+              <span className="font-sans text-[11px] uppercase tracking-[0.18em] text-brand-muted">Visit Us</span>
+              <h2 className="font-serif text-[36px] md:text-[52px] text-brand-earth mt-3 font-normal">Ways to Reach</h2>
             </Reveal>
           </div>
 
-          <div style={{ display: 'grid', gridTemplateColumns: isMobile ? '1fr' : 'repeat(3, 1fr)', gap: 32 }}>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {reachOptions.map((opt, i) => (
               <Reveal key={opt.title} delay={i * 120}>
                 <a 
                   href={opt.link} 
                   target={opt.link ? "_blank" : undefined} 
                   rel="noreferrer"
+                  className="group cursor-pointer no-underline text-inherit"
                   onMouseEnter={() => setCardHovered({ ...cardHovered, [i]: true })}
                   onMouseLeave={() => setCardHovered({ ...cardHovered, [i]: false })}
-                  style={{ cursor: "pointer", textDecoration: 'none', color: 'inherit' }}
                 >
-                  <div style={{ overflow: 'hidden', borderRadius: 2 }}>
-                    <img src={opt.image} alt={opt.alt} style={{
-                      width: '100%', aspectRatio: '3/4', objectFit: 'cover', display: 'block',
-                      transform: cardHovered[i] ? 'scale(1.06)' : 'scale(1)', transition: 'transform 0.75s ease',
-                    }} />
+                  <div className="overflow-hidden rounded-[2px] aspect-[3/4]">
+                    <img src={opt.image} alt={opt.alt} className="w-full h-full object-cover block transition-transform duration-750 ease-in-out group-hover:scale-[1.06]" />
                   </div>
-                  <h3 style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: 26, color: theme.earth, marginTop: 20, marginBottom: 10, fontWeight: 400 }}>{opt.title}</h3>
-                  <p style={{ fontFamily: 'Jost, sans-serif', fontSize: 14, fontWeight: 300, color: theme.text, lineHeight: 1.7, margin: 0 }}>{opt.desc}</p>
+                  <h3 className="font-serif text-[26px] text-brand-earth mt-5 mb-2.5 font-normal leading-tight">{opt.title}</h3>
+                  <p className="font-sans text-[14px] font-light text-brand-text leading-[1.7] m-0">{opt.desc}</p>
                 </a>
               </Reveal>
             ))}
@@ -316,17 +262,18 @@ export default function Contact() {
         </section>
 
         {/* MAP PLACEHOLDER */}
-        <section style={{ height: 480, background: theme.parchment, position: 'relative', overflow: 'hidden' }} ref={quoteRef}>
+        <section className="h-[480px] bg-brand-parchment relative overflow-hidden" ref={quoteRef}>
           <img
             src="https://images.unsplash.com/photo-1526778548025-fa2f459cd5c1?w=1920"
             alt="Chennai landscape aerial"
-            style={{ width: '100%', height: '120%', objectFit: 'cover', transform: `translateY(${quoteOffset}px)`, willChange: 'transform' }}
+            className="w-full h-[120%] object-cover will-change-transform"
+            style={{ transform: `translateY(${quoteOffset}px)` }}
           />
-          <div style={{ position: 'absolute', inset: 0, background: 'rgba(44,31,20,0.3)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-            <div style={{ background: '#fff', padding: '32px 48px', textAlign: 'center', boxShadow: '0 24px 48px rgba(0,0,0,0.15)' }}>
-              <h3 style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: 24, color: theme.earth, marginBottom: 8 }}>Our Studio</h3>
-              <p style={{ fontSize: 14, color: theme.text, fontWeight: 300 }}>Ashok Nagar, Chennai</p>
-              <a href="https://maps.google.com" target="_blank" rel="noreferrer" style={{ display: 'inline-block', marginTop: 20, fontSize: 11, textTransform: 'uppercase', letterSpacing: '0.12em', color: theme.earthLight, textDecoration: 'none', borderBottom: `1px solid ${theme.earthLight}` }}>View on Maps →</a>
+          <div className="absolute inset-0 bg-brand-dark/30 flex items-center justify-center">
+            <div className="bg-white p-8 md:p-12 text-center shadow-[0_24px_48px_rgba(0,0,0,0.15)]">
+              <h3 className="font-serif text-[24px] text-brand-earth mb-2">Our Studio</h3>
+              <p className="text-[14px] text-brand-text font-light">Ashok Nagar, Chennai</p>
+              <a href="https://maps.google.com" target="_blank" rel="noreferrer" className="inline-block mt-5 text-[11px] uppercase tracking-[0.12em] text-brand-earth-light no-underline border-b border-brand-earth-light hover:text-brand-earth hover:border-brand-earth transition-colors">View on Maps →</a>
             </div>
           </div>
         </section>
