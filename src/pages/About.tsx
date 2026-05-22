@@ -6,6 +6,7 @@ const theme = {
   earth: "#8B5E3C",
   earthLight: "#C4956A",
   muted: "#9C8B7A",
+  text: "#4A3B28",
   parchment: "#EDE3D2",
   white: "#FFFFFF",
   overlayDark: "rgba(30,18,10,0.48)",
@@ -271,7 +272,7 @@ export default function About() {
 
   const stats = [
     { target: 50, suffix: "+", label: "Projects Completed" },
-    { target: 8, suffix: "+", label: "Service Offerings" },
+    { target: 12, suffix: "+", label: "Service Offerings" },
     { target: 100, suffix: "%", label: "Natural Materials" },
   ];
 
@@ -376,7 +377,7 @@ export default function About() {
                   transitionDelay: "300ms",
                 }}
               >
-                About Our Story
+                Reviving Wisdom
               </span>
             </span>
             <span style={{ display: "block", overflow: "hidden" }}>
@@ -390,7 +391,7 @@ export default function About() {
                   transitionDelay: "520ms",
                 }}
               >
-                Legacy of Purpose
+                Engineering Change
               </span>
             </span>
           </h1>
@@ -423,7 +424,7 @@ export default function About() {
               willChange: "transform",
             }}
           >
-            Where every space becomes an unforgettable experience.
+            Crafting future-ready spaces that breathe.
           </p>
         </section>
 
@@ -482,9 +483,7 @@ export default function About() {
                     margin: 0,
                   }}
                 >
-                  Our mission is to redefine construction in India — building
-                  spaces that are environmentally responsible, structurally
-                  sound, and deeply connected to nature and human well-being.
+                  Our vision is to redefine the future of construction through sustainable innovation, conscious design, and environmentally responsible building practices.
                 </p>
               </Reveal>
             </div>
@@ -605,13 +604,12 @@ export default function About() {
                   fontWeight: 400,
                 }}
               >
-                A vision born from the belief that buildings should heal, not
-                harm.
+                Building for wellness and nature.
               </Reveal>
               {[
-                "Sanchana Subbarayan founded Subham Consulting & Construction with one clear conviction — the spaces we inhabit should support human well-being and nature in equal measure. Her journey into sustainable construction began with a simple but profound realisation: modern buildings not only deplete the environment through resource consumption and pollution, but also affect human health through chemical emissions from conventional construction materials.",
-                "As people spend a significant part of their lives indoors, she believed the spaces we build should actively support both physical well-being and the natural world. Inspired by the wisdom of traditional Indian architecture and guided by modern engineering principles, Sanchana explored how sustainable building practices could be made practical, beautiful, and relevant for contemporary lifestyles.",
-                "This vision led to the foundation of Subham Consulting & Construction — a company committed to creating environmentally conscious, climate-responsive, and naturally connected spaces for the future.",
+                "Sanchana Subbarayan, Founder of Shubham Consulting and Construction, is a Civil Engineering graduate driven by a vision to create healthier and more sustainable living environments. Her journey began with a simple realization: modern buildings not only impact the environment through resource consumption, but also affect human health through chemical emissions from conventional materials.",
+                "Believing that the spaces we live in should support both human well-being and nature, Sanchana explored how traditional architecture could be merged with modern engineering principles. Her goal was to make sustainable building practices practical, affordable, and relevant for contemporary lifestyles.",
+                "Today, Shubham Consulting and Construction is dedicated to reviving traditional building wisdom through modern and environmentally responsible practices. We create thoughtfully designed spaces using natural materials and climate-conscious design that remain connected to nature and local context.",
               ].map((p, i) => (
                 <Reveal as="p"
                   key={i}
@@ -620,7 +618,7 @@ export default function About() {
                     fontFamily: "Jost, sans-serif",
                     fontSize: 15,
                     fontWeight: 300,
-                    color: theme.muted,
+                    color: theme.text,
                     lineHeight: 1.95,
                     margin: "0 0 24px",
                   }}
@@ -651,7 +649,7 @@ export default function About() {
                 margin: 0,
               }}
             >
-              Our roots go back to
+              The People Behind
             </Reveal>
             <Reveal as="h2"
               delay={100}
@@ -665,7 +663,7 @@ export default function About() {
                 margin: 0,
               }}
             >
-              the beginning.
+              The Purpose.
             </Reveal>
           </div>
 
@@ -694,51 +692,45 @@ export default function About() {
                   margin: 0,
                 }}
               >
-                Subham was born from a single conviction.
+                Commitment to Lasting Value.
               </h3>
               <p
                 style={{
                   fontFamily: "Jost, sans-serif",
                   fontSize: 13,
                   fontWeight: 300,
-                  color: theme.muted,
+                  color: theme.text,
                   lineHeight: 1.8,
                   marginTop: 12,
                 }}
               >
-                Founded in Chennai by civil engineer Sanchana Subbarayan,
-                Subham began as a response to a construction industry that
-                prioritised profit over people and planet. From our very first
-                project, we built with natural materials, traditional methods,
-                and a commitment to zero hazardous chemicals — offering
-                timeless, health-conscious spaces that honour the land they
-                stand on.
+                Shubham is a sustainable consulting and construction company working across India. Our expertise includes farmhouses, residences, institutional spaces, schools, and eco-development projects. We balance functionality, long-term value, and environmental responsibility in every site we develop.
               </p>
             </Reveal>
 
             <div style={{ marginTop: isMobile ? 0 : 80 }}>
               {[
                 {
-                  year: "2021",
-                  head: "The vision takes shape",
+                  year: "Knowledge",
+                  head: "Workshops & Programs",
                   body:
-                    "Sanchana begins researching sustainable construction methods, visiting traditional building sites across Tamil Nadu and studying natural material techniques.",
+                    "Alongside construction, we conduct workshops and knowledge programs to promote sustainable living and alternative building practices.",
                 },
                 {
-                  year: "2023",
-                  head: "First projects completed",
+                  year: "Strategy",
+                  head: "Construction Consulting",
                   body:
-                    "Subham delivers its first eco-conscious residences in Chennai, using rammed earth, natural COB, and passive cooling architecture.",
+                    "End-to-end services covering project planning, sustainable design guidance, material selection, and structural systems.",
                 },
                 {
-                  year: "2024",
-                  head: "Subham Consulting & Construction founded",
+                  year: "Future",
+                  head: "Conscious Innovation",
                   body:
-                    "Formally established in Chennai, Subham expands to offer full consulting, structural services, and sustainable construction across India.",
+                    "Committed to creating environmentally conscious, climate-responsive, and naturally connected spaces for future generations.",
                 },
               ].map((m, i) => (
                 <Reveal
-                  key={m.year}
+                  key={m.head}
                   delay={i * 120}
                   style={{
                     padding: "24px 0",
@@ -774,7 +766,7 @@ export default function About() {
                       fontFamily: "Jost, sans-serif",
                       fontSize: 13,
                       fontWeight: 300,
-                      color: theme.muted,
+                      color: theme.text,
                       lineHeight: 1.7,
                       marginTop: 8,
                       marginBottom: 0,
@@ -813,7 +805,7 @@ export default function About() {
                 margin: 0,
               }}
             >
-              The people behind the purpose.
+              Experts in Sustainable Design.
             </Reveal>
           </div>
           <div
@@ -864,7 +856,7 @@ export default function About() {
                     fontFamily: "Jost, sans-serif",
                     fontSize: 13,
                     fontWeight: 300,
-                    color: theme.muted,
+                    color: theme.text,
                     lineHeight: 1.7,
                     marginTop: 10,
                     marginBottom: 0,

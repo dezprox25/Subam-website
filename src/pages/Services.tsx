@@ -6,6 +6,7 @@ const theme = {
   earth: "#8B5E3C",
   earthLight: "#C4956A",
   muted: "#9C8B7A",
+  text: "#4A3B28",
   parchment: "#EDE3D2",
   white: "#FFFFFF",
   overlayDark: "rgba(30,18,10,0.48)",
@@ -15,56 +16,65 @@ const services = [
   {
     title: "Sustainable Construction",
     body:
-      "We design and build environmentally responsible spaces using natural materials and nature-friendly methods that promote long-term durability and healthier living environments. Every material is chosen for its ecological footprint, structural integrity, and contribution to a healthier indoor environment. From rammed earth walls to passive cooling systems, we build homes that work with nature, not against it.",
+      "We design and build environmentally responsible spaces using sustainable materials and nature-friendly construction methods that promote long-term durability and healthier living environments. From rammed earth walls to passive cooling systems, we build homes that work with nature, not against it.",
     image: "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=900",
     alt: "Sustainable construction using natural materials",
     imageLeft: false,
   },
   {
-    title: "Construction Consulting",
+    title: "Farmhouse Development",
     body:
-      "End-to-end consulting covering project planning, sustainable design guidance, material selection, and execution support from concept to completion. We work alongside architects, developers, and individual homeowners to ensure every decision aligns with environmental responsibility, structural soundness, and long-term value. Our consultants bring decades of combined expertise to every engagement.",
-    image: "https://images.unsplash.com/photo-1600585154526-990dced4db0d?w=900",
-    alt: "Construction consulting and project planning",
+      "Thoughtfully designed farmhouses that blend modern comfort with natural living, creating peaceful and functional spaces connected to the surrounding landscape. We integrate traditional wisdom with modern engineering for breathable, durable living.",
+    image: "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=900",
+    alt: "Farmhouse development with natural surroundings",
     imageLeft: true,
   },
   {
-    title: "Farmhouse Development",
+    title: "Institutional & School Projects",
     body:
-      "Thoughtfully designed farmhouses that blend modern comfort with natural living, creating peaceful spaces connected to the surrounding landscape. Our farmhouse projects are built using locally sourced natural materials, integrated water harvesting systems, and passive design strategies that reduce energy consumption while maximising comfort across every season.",
-    image: "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=900",
-    alt: "Farmhouse development with natural surroundings",
+      "Sustainable and functional educational and institutional spaces designed to enhance comfort, learning, community interaction, and environmental responsibility.",
+    image: "https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?w=900",
+    alt: "Sustainable institutional building project",
     imageLeft: false,
   },
   {
-    title: "Institutional Projects",
+    title: "Consulting Services",
     body:
-      "Sustainable schools, wellness centres, and community institutions built with the same commitment to natural materials and healthy environments. We believe institutional buildings carry the greatest responsibility — they shape how communities live, learn, and heal. Our institutional projects set a new standard for what public and educational spaces can be.",
-    image: "https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?w=900",
-    alt: "Sustainable institutional building project",
+      "End-to-end consulting services covering project planning, sustainable design guidance, material selection, construction strategy, and structural consulting for safe, efficient building systems.",
+    image: "https://images.unsplash.com/photo-1600585154526-990dced4db0d?w=900",
+    alt: "Construction consulting and project planning",
     imageLeft: true,
   },
 ];
 
 const additionalServices = [
   {
-    title: "Interior Consultation",
-    desc: "Natural material finishes, breathable walls, and zero-chemical interiors designed for long-term human health and aesthetic harmony.",
-    image: "https://images.unsplash.com/photo-1600047509807-ba8f99d2cdde?w=700",
-    alt: "Natural interior design consultation",
+    title: "Workshops & Knowledge",
+    desc: "Conducting awareness programs focused on sustainable living, traditional construction, and alternative building practices.",
+    image: "https://images.unsplash.com/photo-1517048676732-d65bc937f952?w=700",
+    alt: "Sustainable building workshop",
   },
   {
-    title: "Landscape & Site Design",
-    desc: "Site planning that honours the natural topography, integrates native planting, and creates outdoor spaces that feel like extensions of the land.",
+    title: "Government Projects",
+    desc: "Execution and consulting for public sector projects with a focus on quality, sustainability, and structural reliability.",
+    image: "https://images.unsplash.com/photo-1542621334-a254cf47733d?w=700",
+    alt: "Public sector infrastructure project",
+  },
+  {
+    title: "Real Estate & Site Development",
+    desc: "End-to-end solutions focused on creating well-planned, sustainable, and future-ready spaces from land planning to layout execution.",
     image: "https://images.unsplash.com/photo-1448375240586-882707db888b?w=700",
-    alt: "Sustainable landscape and site design",
+    alt: "Sustainable site development planning",
   },
-  {
-    title: "Renovation & Restoration",
-    desc: "Breathing new life into existing structures using natural materials, structural upgrades, and sustainable retrofits that restore beauty without compromise.",
-    image: "https://images.unsplash.com/photo-1464226184884-fa280b87c399?w=700",
-    alt: "Building renovation and restoration project",
-  },
+];
+
+const roofFinishes = [
+  "Traditional Lime Plasters",
+  "Vaulted Domes",
+  "Madras Terrace",
+  "Mangalore Tiles",
+  "Bamboo & Thatch",
+  "Artisanal Textures",
 ];
 
 function Reveal({ children, delay = 0, as: Tag = "div" as any, style = {}, ...rest }: any) {
@@ -226,7 +236,7 @@ export default function Services() {
                   transition: "all 900ms cubic-bezier(0.16,1,0.3,1) 300ms",
                 }}
               >
-                Our Services
+                Our Expertise
               </span>
             </span>
             <span style={{ display: "block", overflow: "hidden" }}>
@@ -239,7 +249,7 @@ export default function Services() {
                   transition: "all 900ms cubic-bezier(0.16,1,0.3,1) 520ms",
                 }}
               >
-                Rooted in Nature
+                In Sustainable Design
               </span>
             </span>
           </h1>
@@ -305,7 +315,7 @@ export default function Services() {
                       fontFamily: "Jost, sans-serif",
                       fontSize: 15,
                       fontWeight: 300,
-                      color: theme.muted,
+                      color: theme.text,
                       lineHeight: 1.95,
                       margin: 0,
                     }}
@@ -313,7 +323,7 @@ export default function Services() {
                     {s.body}
                   </p>
                   <a
-                    href="#"
+                    href="/contact"
                     onMouseEnter={() => setLinkHovered({ ...linkHovered, [i]: true })}
                     onMouseLeave={() => setLinkHovered({ ...linkHovered, [i]: false })}
                     style={{
@@ -423,9 +433,31 @@ export default function Services() {
                   fontWeight: 400,
                 }}
               >
-                "The buildings of the future should not only protect us from the
-                elements but reconnect us with the world around us."
+                "Traditional building wisdom meets modern engineering for spaces that truly breathe."
               </h2>
+            </Reveal>
+          </div>
+        </section>
+
+        {/* ====== FINISHES SECTION ====== */}
+        <section style={{ padding: sectionPad, background: theme.parchment }}>
+          <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr" : "1fr 1fr", gap: 60, alignItems: "center" }}>
+            <Reveal>
+              <h2 style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: isMobile ? 36 : 52, color: theme.earth, marginBottom: 24 }}>Luxury Finishes & Roof Options</h2>
+              <p style={{ color: theme.text, lineHeight: 1.8, marginBottom: 32 }}>Natural finishes and climate-conscious roofing systems crafted for timeless elegance. We specialize in artisanal textures that support healthy indoor air quality.</p>
+              <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "16px 32px" }}>
+                {roofFinishes.map(f => (
+                  <div key={f} style={{ display: "flex", alignItems: "center", gap: 12 }}>
+                    <span style={{ width: 6, height: 6, borderRadius: "50%", background: theme.earthLight }} />
+                    <span style={{ fontSize: 14, color: theme.dark }}>{f}</span>
+                  </div>
+                ))}
+              </div>
+            </Reveal>
+            <Reveal delay={200}>
+              <div style={{ overflow: "hidden", borderRadius: 3 }}>
+                <img src="https://images.unsplash.com/photo-1600047509807-ba8f99d2cdde?w=800" alt="Artisanal wall finish" style={{ width: "100%", height: isMobile ? 300 : 440, objectFit: "cover" }} />
+              </div>
             </Reveal>
           </div>
         </section>
@@ -504,7 +536,7 @@ export default function Services() {
                       fontFamily: "Jost, sans-serif",
                       fontSize: 14,
                       fontWeight: 300,
-                      color: theme.muted,
+                      color: theme.text,
                       lineHeight: 1.7,
                       margin: 0,
                     }}

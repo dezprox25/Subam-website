@@ -6,6 +6,7 @@ const theme = {
   earth: '#8B5E3C',
   earthLight: '#C4956A',
   muted: '#9C8B7A',
+  text: '#4A3B28',
   parchment: '#EDE3D2',
   white: '#FFFFFF',
   overlayDark: 'rgba(30,18,10,0.48)',
@@ -19,22 +20,24 @@ const contacts = [
 
 const reachOptions = [
   {
-    title: 'Studio Visit',
-    desc: 'Walk through our material library, see samples of rammed earth, lime plaster, and natural finishes, and meet the team in person.',
-    image: 'https://images.unsplash.com/photo-1497366216548-37526070297c?w=700',
-    alt: 'Studio with natural materials and workspace',
+    title: 'Instagram',
+    desc: 'Follow our journey and see our latest sustainable construction projects and material studies.',
+    image: 'https://images.unsplash.com/photo-1611162617213-7d7a39e9b1d7?w=700',
+    alt: 'Social media interaction',
+    link: 'https://www.instagram.com/subham_consulting'
+  },
+  {
+    title: 'LinkedIn',
+    desc: 'Connect with us for professional consulting, structural analysis, and corporate collaborations.',
+    image: 'https://images.unsplash.com/photo-1521737604893-d14cc237f11d?w=700',
+    alt: 'Professional networking',
+    link: 'https://www.linkedin.com/in/subhamconsulting-andconstruction'
   },
   {
     title: 'Project Inquiry',
-    desc: 'Share your site, vision, and timeline. We respond to every inquiry within two working days with a tailored next step.',
+    desc: 'Share your vision for a sustainable space. We respond to every inquiry with a tailored next step.',
     image: 'https://images.unsplash.com/photo-1542621334-a254cf47733d?w=700',
-    alt: 'Architectural plans and project documents',
-  },
-  {
-    title: 'Press & Collaboration',
-    desc: 'For media features, speaking engagements, or collaborations with allied practices, write to us directly with context and intent.',
-    image: 'https://images.unsplash.com/photo-1517048676732-d65bc937f952?w=700',
-    alt: 'Collaboration meeting around a table',
+    alt: 'Architectural planning documents',
   },
 ];
 
@@ -200,8 +203,8 @@ export default function Contact() {
               <Reveal>
                 <span style={{ fontFamily: 'Jost, sans-serif', fontSize: 11, textTransform: 'uppercase', letterSpacing: '0.18em', color: theme.muted }}>Contact</span>
                 <h2 style={{ fontFamily: 'Cormorant Garamond, serif', fontSize: isMobile ? 32 : 44, color: theme.earth, marginTop: 12, marginBottom: 24, fontWeight: 400 }}>Get in touch with us.</h2>
-                <p style={{ fontFamily: 'Jost, sans-serif', fontSize: 15, fontWeight: 300, color: theme.muted, lineHeight: 1.85, maxWidth: 440, margin: 0 }}>
-                  Whether you have a specific project in mind, want to explore sustainable materials, or simply wish to learn more about our approach, we'd love to hear from you.
+                <p style={{ fontFamily: 'Jost, sans-serif', fontSize: 15, fontWeight: 300, color: theme.text, lineHeight: 1.85, maxWidth: 440, margin: 0 }}>
+                  Whether you have a specific project in mind, want to explore sustainable materials, or wish to consult on a structural system, we'd love to hear from you.
                 </p>
               </Reveal>
 
@@ -217,7 +220,7 @@ export default function Contact() {
                       }}
                     >
                       <span style={{ fontFamily: 'Cormorant Garamond, serif', fontStyle: 'italic', fontSize: 28, color: theme.earth }}>{c.label}</span>
-                      <span style={{ flex: 1, textAlign: 'right', fontSize: 14, color: theme.muted, fontWeight: 300, whiteSpace: 'pre-line', lineHeight: 1.6 }}>{c.detail}</span>
+                      <span style={{ flex: 1, textAlign: 'right', fontSize: 14, color: theme.text, fontWeight: 300, whiteSpace: 'pre-line', lineHeight: 1.6 }}>{c.detail}</span>
                     </div>
                   </Reveal>
                 ))}
@@ -229,7 +232,7 @@ export default function Contact() {
               {submitted ? (
                 <div style={{ textAlign: 'center', padding: '40px 0' }}>
                   <h3 style={{ fontFamily: 'Cormorant Garamond, serif', fontSize: 32, color: theme.earth, marginBottom: 16 }}>Thank You</h3>
-                  <p style={{ fontSize: 15, color: theme.muted, fontWeight: 300 }}>Your message has been received. We will get back to you within two working days.</p>
+                  <p style={{ fontSize: 15, color: theme.text, fontWeight: 300 }}>Your message has been received. We will get back to you within two working days.</p>
                 </div>
               ) : (
                 <form onSubmit={onSubmit}>
@@ -251,9 +254,10 @@ export default function Contact() {
                     <label style={labelBase}>Subject</label>
                     <select style={inputBase} value={form.subject} onChange={onChange('subject')}>
                       <option>General Inquiry</option>
-                      <option>Project Consultation</option>
-                      <option>Material Studio Visit</option>
-                      <option>Press & Collaboration</option>
+                      <option>Sustainable Construction</option>
+                      <option>Structural Consulting</option>
+                      <option>Workshops & Programs</option>
+                      <option>Real Estate Development</option>
                     </select>
                   </div>
                   <div style={{ marginBottom: 40 }}>
@@ -289,10 +293,13 @@ export default function Contact() {
           <div style={{ display: 'grid', gridTemplateColumns: isMobile ? '1fr' : 'repeat(3, 1fr)', gap: 32 }}>
             {reachOptions.map((opt, i) => (
               <Reveal key={opt.title} delay={i * 120}>
-                <div
+                <a 
+                  href={opt.link} 
+                  target={opt.link ? "_blank" : undefined} 
+                  rel="noreferrer"
                   onMouseEnter={() => setCardHovered({ ...cardHovered, [i]: true })}
                   onMouseLeave={() => setCardHovered({ ...cardHovered, [i]: false })}
-                  style={{ cursor: 'pointer' }}
+                  style={{ cursor: "pointer", textDecoration: 'none', color: 'inherit' }}
                 >
                   <div style={{ overflow: 'hidden', borderRadius: 2 }}>
                     <img src={opt.image} alt={opt.alt} style={{
@@ -300,9 +307,9 @@ export default function Contact() {
                       transform: cardHovered[i] ? 'scale(1.06)' : 'scale(1)', transition: 'transform 0.75s ease',
                     }} />
                   </div>
-                  <h3 style={{ fontFamily: 'Cormorant Garamond, serif', fontSize: 26, color: theme.earth, marginTop: 20, marginBottom: 10, fontWeight: 400 }}>{opt.title}</h3>
-                  <p style={{ fontFamily: 'Jost, sans-serif', fontSize: 14, fontWeight: 300, color: theme.muted, lineHeight: 1.7, margin: 0 }}>{opt.desc}</p>
-                </div>
+                  <h3 style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: 26, color: theme.earth, marginTop: 20, marginBottom: 10, fontWeight: 400 }}>{opt.title}</h3>
+                  <p style={{ fontFamily: 'Jost, sans-serif', fontSize: 14, fontWeight: 300, color: theme.text, lineHeight: 1.7, margin: 0 }}>{opt.desc}</p>
+                </a>
               </Reveal>
             ))}
           </div>
@@ -317,8 +324,8 @@ export default function Contact() {
           />
           <div style={{ position: 'absolute', inset: 0, background: 'rgba(44,31,20,0.3)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
             <div style={{ background: '#fff', padding: '32px 48px', textAlign: 'center', boxShadow: '0 24px 48px rgba(0,0,0,0.15)' }}>
-              <h3 style={{ fontFamily: 'Cormorant Garamond, serif', fontSize: 24, color: theme.earth, marginBottom: 8 }}>Our Studio</h3>
-              <p style={{ fontSize: 14, color: theme.muted, fontWeight: 300 }}>Ashok Nagar, Chennai</p>
+              <h3 style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: 24, color: theme.earth, marginBottom: 8 }}>Our Studio</h3>
+              <p style={{ fontSize: 14, color: theme.text, fontWeight: 300 }}>Ashok Nagar, Chennai</p>
               <a href="https://maps.google.com" target="_blank" rel="noreferrer" style={{ display: 'inline-block', marginTop: 20, fontSize: 11, textTransform: 'uppercase', letterSpacing: '0.12em', color: theme.earthLight, textDecoration: 'none', borderBottom: `1px solid ${theme.earthLight}` }}>View on Maps →</a>
             </div>
           </div>

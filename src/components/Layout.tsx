@@ -7,6 +7,7 @@ const theme = {
   earth: '#8B5E3C',
   earthLight: '#C4956A',
   muted: '#9C8B7A',
+  text: '#4A3B28',
   parchment: '#EDE3D2',
   white: '#FFFFFF',
 };
@@ -38,7 +39,7 @@ export default function Layout() {
   }, [location]);
 
   return (
-    <div className="subham" style={{ background: theme.bg, minHeight: '100vh', display: 'flex', flexDirection: 'column' }}>
+    <div className="shubham" style={{ background: theme.bg, minHeight: '100vh', display: 'flex', flexDirection: 'column' }}>
       {/* NAVBAR */}
       <nav
         style={{
@@ -61,7 +62,7 @@ export default function Layout() {
         }}
       >
         <Link to="/" style={{ fontFamily: 'Cormorant Garamond, serif', fontStyle: 'italic', fontSize: 26, color: 'inherit' }}>
-          Subham
+          Shubham
         </Link>
 
         <div style={{ display: 'flex', alignItems: 'center', gap: 24 }}>
@@ -181,7 +182,7 @@ export default function Layout() {
 
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', borderTop: '1px solid rgba(247,243,238,0.08)', paddingTop: 28 }}>
           <span style={{ fontSize: 12, color: 'rgba(255,255,255,0.3)' }}>
-            © {new Date().getFullYear()} Subham Consulting & Construction. All rights reserved.
+            © {new Date().getFullYear()} Shubham Consulting & Construction. All rights reserved.
           </span>
           <span style={{ fontFamily: 'Cormorant Garamond, serif', fontStyle: 'italic', fontSize: 14, color: 'rgba(196,149,106,0.5)' }}>
             Sustainable Luxury, Naturally Built.

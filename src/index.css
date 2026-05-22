@@ -6,6 +6,7 @@
   --earth: #8B5E3C;
   --earth-light: #C4956A;
   --muted: #9C8B7A;
+  --text: #4A3B28;
   --parchment: #EDE3D2;
   --white: #FFFFFF;
 }
@@ -22,7 +23,7 @@ html {
 
 body {
   background: var(--bg);
-  color: var(--muted);
+  color: var(--text);
   font-family: 'Jost', sans-serif;
   font-weight: 300;
   font-size: 15px;

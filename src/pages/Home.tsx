@@ -75,14 +75,14 @@ export default function Home() {
       <header className="hero">
         {SLIDES.map((src, i) => (
           <div key={src} className={`hero__slide${i === activeSlide ? " active" : ""}`}>
-            <img src={src} alt="Subham sustainable architecture" />
+            <img src={src} alt="Shubham sustainable architecture" />
           </div>
         ))}
         <div className="hero__overlay" />
         <div className="hero__content">
-          <div className={`hero__line${showHl1 ? " show" : ""}`}><span>Where Luxury</span></div>
+          <div className={`hero__line${showHl1 ? " show" : ""}`}><span>Luxury That</span></div>
           <span className="hero__rule" />
-          <div className={`hero__line${showHl2 ? " show" : ""}`}><span>Meets Wanderlust</span></div>
+          <div className={`hero__line${showHl2 ? " show" : ""}`}><span>Breathes</span></div>
           <span className="hero__rule hero__rule--end" />
         </div>
         <div className={`scroll-down${showScroll ? " show" : ""}`}>
@@ -93,43 +93,30 @@ export default function Home() {
 
       <section className="intro">
         <div className="intro__inner">
-          <h2 className="reveal">Not just a structure.<br />A living, breathing space.</h2>
-          <p className="reveal">We design and build high-end, self-sustainable spaces that are eco-conscious and deeply connected to nature — without compromising on luxury. Inspired by traditional building wisdom and guided by modern engineering, every space we create is crafted to create harmony between architecture, human well-being, and the environment.</p>
+          <h2 className="reveal">Not just a home.<br />A living ecosystem.</h2>
+          <p className="reveal">Shubham Consulting and Construction is redefining luxury through sustainability. We design and build high-end spaces that are fully self-sustainable, eco-conscious, and deeply connected to nature — without compromising on elegance. Every space is thoughtfully curated to create harmony between architecture, wellness, and the environment.</p>
         </div>
       </section>
 
       <section className="bleed" ref={bleedSec}>
-        <img ref={bleedRef} src="https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?w=1920" alt="Atmospheric Subham project landscape" />
-        <div className="bleed__label"><h2>Our Work & Services</h2></div>
-      </section>
-
-      <section className="projects">
-        {[
-          { img: "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800", t: "— Sustainable Construction", d: "Eco-conscious homes built with natural materials" },
-          { img: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=800", t: "— Farmhouse Development", d: "Nature-connected living spaces" },
-          { img: "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=800", t: "— Institutional Projects", d: "Sustainable schools and institutions" },
-        ].map((p) => (
-          <article key={p.t} className="project reveal">
-            <div className="project__img"><img src={p.img} alt={p.t.replace("— ", "")} /></div>
-            <div className="project__meta"><h3>{p.t}</h3><p>{p.d}</p></div>
-          </article>
-        ))}
+        <img ref={bleedRef} src="https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?w=1920" alt="Atmospheric Shubham project landscape" />
+        <div className="bleed__label"><h2>Crafting Future-Ready Residences</h2></div>
       </section>
 
       <section className="trust">
-        <h2 className="reveal">Experience why Subham is a trusted name in sustainable construction.</h2>
+        <h2 className="reveal">Our Philosophy: Zero Harm. Maximum Harmony.</h2>
         <div className="trust__cols">
-          <p className="reveal">For years, we have been redefining what construction means in India — building spaces that are environmentally responsible, structurally sound, and deeply connected to the land. Our commitment to traditional materials, sustainable systems, and thoughtful design has earned us the trust of homeowners, institutions, and communities across the country.</p>
-          <p className="reveal">What sets Subham apart is our belief that a building should heal its occupants, not harm them. From zero hazardous chemicals to breathable walls and passive cooling — every decision we make is guided by the health of the people who will live inside, and the health of the planet they live on. This is not just construction. This is conscious living.</p>
+          <p className="reveal">At Shubham, we believe your home should heal you, not harm the planet. Our construction methodology is built on a foundation of 0% hazardous chemicals, using breathable natural materials that support long-term human health. We combine traditional wisdom with modern engineering to create structures that are as durable as they are beautiful.</p>
+          <p className="reveal">What sets us apart is our commitment to integrated self-sustainable systems. From solar energy and rainwater harvesting to bio-gas plants and passive cooling design, every decision is guided by long-term efficiency, comfort, and environmental stewardship. This is conscious living, elevated.</p>
         </div>
       </section>
 
       <section className="values">
         {[
-          { img: "https://images.unsplash.com/photo-1521737604893-d14cc237f11d?w=600", tag: "Legacy", h: "Rooted in Purpose", b: "Subham was founded on a single conviction — that buildings should support life, not deplete it." },
-          { img: "https://images.unsplash.com/photo-1464226184884-fa280b87c399?w=600", tag: "Local", h: "Sourced from the Land", b: "We source natural materials locally — rammed earth, mud blocks, natural COB — honouring the region's building heritage." },
-          { img: "https://images.unsplash.com/photo-1545389336-cf090694435e?w=600", tag: "Wellness", h: "Healthy by Design", b: "Zero hazardous chemicals. Breathable materials. Every finish chosen for long-term human health." },
-          { img: "https://images.unsplash.com/photo-1574482620826-7f5f77f48d75?w=600", tag: "Nature", h: "Built Within Nature", b: "Natural materials — wood, stone, earth — treated with respect for the environment they come from." },
+          { img: "https://images.unsplash.com/photo-1521737604893-d14cc237f11d?w=600", tag: "Solar", h: "Solar Energy Systems", b: "Harnessing the sun to power your modern lifestyle with zero emissions." },
+          { img: "https://images.unsplash.com/photo-1464226184884-fa280b87c399?w=600", tag: "Water", h: "Rainwater Harvesting", b: "Integrated collection systems designed to secure your water future naturally." },
+          { img: "https://images.unsplash.com/photo-1545389336-cf090694435e?w=600", tag: "Cooling", h: "Passive Cooling", b: "Architectural design that maintains comfort without high energy consumption." },
+          { img: "https://images.unsplash.com/photo-1574482620826-7f5f77f48d75?w=600", tag: "Waste", h: "Bio-Gas & Bio-Septic", b: "Closing the loop with integrated waste management and renewable energy." },
         ].map((v) => (
           <article key={v.h} className="value reveal">
             <div className="value__img">
@@ -143,12 +130,12 @@ export default function Home() {
 
       <section className="services">
         <div className="services__left">
-          <span className="lbl">Our Services</span>
-          <h2>Our Services</h2>
+          <span className="lbl">Materials of Wisdom</span>
+          <h2>Traditional Materials. Modern Engineering.</h2>
           {[
-            { h: "Sustainable Construction", b: "We design and build environmentally responsible spaces using natural materials and nature-friendly methods that promote long-term durability and healthier living environments." },
-            { h: "Construction Consulting", b: "End-to-end consulting covering project planning, sustainable design guidance, material selection, and execution support from concept to completion." },
-            { h: "Farmhouse Development", b: "Thoughtfully designed farmhouses that blend modern comfort with natural living, creating peaceful spaces connected to the surrounding landscape." },
+            { h: "Rammed Earth & Mud Blocks", b: "Breathable, thermal-efficient walls that provide natural insulation and a unique organic aesthetic." },
+            { h: "Natural COB & Stone", b: "Utilizing foundation stones and natural COB for structural integrity that honours building heritage." },
+            { h: "Artisanal Finishes", b: "Lime plasters, traditional textures, and Madras terrace roofing for timeless elegance and health." },
           ].map((s) => (
             <div key={s.h} className="service reveal"><h3>{s.h}</h3><p>{s.b}</p></div>
           ))}
@@ -159,7 +146,7 @@ export default function Home() {
             "https://images.unsplash.com/photo-1600566753086-00f18fb6b3ea?w=900",
             "https://images.unsplash.com/photo-1505409859467-3a796fd5798e?w=900",
           ].map((src) => (
-            <div key={src} className="imgwrap"><img src={src} alt="Subham project" /></div>
+            <div key={src} className="imgwrap"><img src={src} alt="Shubham project" /></div>
           ))}
         </div>
       </section>
@@ -170,27 +157,36 @@ export default function Home() {
         <div className="quote__content">
           <span className="quote__mark">"</span>
           <p className="quote__text">Build a home that lives with you, not against nature.</p>
+          <p style={{ color: 'white', marginTop: '20px', opacity: 0.8, fontSize: '14px' }}>Starting at ₹3,000 to ₹3,500 per sq.ft.*</p>
         </div>
       </section>
 
-      <section className="editorial">
-        <div className="editorial__col">
-          <div className="editorial__img editorial__img--a reveal"><img src="https://images.unsplash.com/photo-1448375240586-882707db888b?w=800" alt="Forest landscape" /></div>
-          <div className="editorial__text reveal">
-            <h3>An environmentally responsible approach.</h3>
-            <p>Subham Consulting & Construction exists to prove that luxury and sustainability are not opposites. We build with a deep commitment to environmental stewardship — protecting the ecosystems our buildings inhabit, and preserving the natural beauty of every site we work on.</p>
-            <a href="#" className="editorial__link">Learn more →</a>
+      <section className="benefits">
+        <div className="benefits__inner">
+          <div className="benefits__header reveal">
+            <span className="lbl">Why Choose Shubham?</span>
+            <h2>Sustainable Luxury. Uncompromised Quality.</h2>
           </div>
-        </div>
-        <div className="editorial__col">
-          <div className="editorial__img editorial__img--b reveal"><img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800" alt="Mountain lake" /></div>
-          <div className="editorial__img editorial__img--c reveal"><img src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=800" alt="Stone pathway" /></div>
+          <div className="benefits__grid">
+            {[
+              { h: "Lower Maintenance", b: "Built to last with natural materials that age gracefully, reducing long-term upkeep costs." },
+              { h: "Healthier Living", b: "Zero hazardous chemicals and breathable walls ensure a living space that actively supports your wellness." },
+              { h: "Unique Aesthetics", b: "Artisanal finishes and traditional wisdom meet modern design for a home unlike any other." },
+              { h: "Future Ready", b: "A sustainable investment that appreciates in value while fulfilling your environmental responsibility." },
+            ].map((item, i) => (
+              <div key={item.h} className="benefit reveal">
+                <span className="benefit__num">0{i + 1}</span>
+                <h3>{item.h}</h3>
+                <p>{item.b}</p>
+              </div>
+            ))}
+          </div>
         </div>
       </section>
 
       <section className="connect">
         <div className="connect__img">
-          <img src="https://images.unsplash.com/photo-1600047509358-9dc75507daeb?w=900" alt="Subham project at golden hour" />
+          <img src="https://images.unsplash.com/photo-1600047509358-9dc75507daeb?w=900" alt="Shubham project at golden hour" />
           <div className="connect__title">Let's Connect</div>
         </div>
         <div className="connect__right">
@@ -231,7 +227,7 @@ export default function Home() {
         .intro { background: var(--bg); padding: 120px 80px 100px; text-align: center; }
         .intro__inner { max-width: 720px; margin: 0 auto; }
         .intro h2 { font-style: italic; font-size: 52px; color: var(--earth); line-height: 1.15; }
-        .intro p { margin-top: 32px; font-size: 15px; line-height: 1.9; color: var(--muted); max-width: 680px; margin-left: auto; margin-right: auto; font-weight: 300; }
+        .intro p { margin-top: 32px; font-size: 15px; line-height: 1.9; color: var(--text); max-width: 680px; margin-left: auto; margin-right: auto; font-weight: 300; }
 
         .bleed { position: relative; width: 100%; height: 560px; overflow: hidden; }
         .bleed img { width: 100%; height: 100%; object-fit: cover; will-change: transform; }
@@ -245,12 +241,12 @@ export default function Home() {
         .project:hover .project__img img { transform: scale(1.06); }
         .project__meta { padding: 20px 28px 0; }
         .project__meta h3 { font-size: 20px; color: var(--earth); }
-        .project__meta p { font-size: 13px; color: var(--muted); margin-top: 6px; font-weight: 300; }
+        .project__meta p { font-size: 13px; color: var(--text); margin-top: 6px; font-weight: 300; }
 
         .trust { background: var(--bg); padding: 100px 80px; }
         .trust h2 { font-size: 52px; color: var(--earth); max-width: 780px; margin-bottom: 48px; line-height: 1.15; }
         .trust__cols { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; }
-        .trust__cols p { font-size: 14px; line-height: 1.9; color: var(--muted); font-weight: 300; }
+        .trust__cols p { font-size: 14px; line-height: 1.9; color: var(--text); font-weight: 300; }
 
         .values { background: var(--bg); padding: 0 80px 100px; display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; }
         .value__img { position: relative; overflow: hidden; aspect-ratio: 3/4; }
@@ -259,16 +255,16 @@ export default function Home() {
         .value__tag { position: absolute; bottom: 16px; left: 16px; background: rgba(247,243,238,.92); color: var(--earth); font-family: 'Jost', sans-serif; font-size: 10px; text-transform: uppercase; letter-spacing: .14em; padding: 5px 12px; border-radius: 2px; }
         .value__body { padding-top: 20px; }
         .value__body h3 { font-size: 24px; color: var(--earth); }
-        .value__body p { font-size: 13px; color: var(--muted); line-height: 1.75; margin-top: 10px; font-weight: 300; }
+        .value__body p { font-size: 13px; color: var(--text); line-height: 1.75; margin-top: 10px; font-weight: 300; }
 
         .services { background: var(--bg); padding: 80px 0 0; display: grid; grid-template-columns: .85fr 1.15fr; gap: 0; }
         .services__left { padding: 80px; }
-        .lbl { font-family: 'Jost', sans-serif; font-size: 11px; text-transform: uppercase; letter-spacing: .16em; color: var(--muted); }
+        .lbl { font-family: 'Jost', sans-serif; font-size: 11px; text-transform: uppercase; letter-spacing: .16em; color: var(--earth-light); }
         .services__left h2 { font-size: 48px; color: var(--earth); margin-top: 12px; margin-bottom: 64px; }
         .service { padding-top: 28px; border-top: 1px solid rgba(139,94,60,.2); max-width: 380px; margin-bottom: 60px; }
         .service:last-child { margin-bottom: 0; }
         .service h3 { font-size: 26px; color: var(--earth); }
-        .service p { font-size: 14px; color: var(--muted); line-height: 1.75; margin-top: 10px; font-weight: 300; }
+        .service p { font-size: 14px; color: var(--text); line-height: 1.75; margin-top: 10px; font-weight: 300; }
         .services__right { display: flex; flex-direction: column; }
         .services__right .imgwrap { overflow: hidden; }
         .services__right img { width: 100%; height: 360px; object-fit: cover; display: block; transition: transform .7s ease; }
@@ -281,22 +277,15 @@ export default function Home() {
         .quote__mark { font-family: 'Cormorant Garamond', serif; font-size: 80px; color: rgba(255,255,255,.7); line-height: 0; float: left; margin-right: 8px; padding-top: 40px; }
         .quote__text { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 34px; color: #fff; line-height: 1.45; }
 
-        .editorial { background: var(--bg); padding: 100px 80px; display: grid; grid-template-columns: 1fr 1fr; gap: 24px; align-items: start; }
-        .editorial__col { display: flex; flex-direction: column; gap: 24px; }
-        .editorial__img { overflow: hidden; border-radius: 3px; }
-        .editorial__img img { width: 100%; object-fit: cover; transition: transform .65s ease; }
-        .editorial__img:hover img { transform: scale(1.05); }
-        .editorial__img--a img { height: 280px; }
-        .editorial__img--b img { height: 360px; }
-        .editorial__img--b { margin-top: 40px; }
-        .editorial__img--c img { height: 240px; }
-        .editorial__text { padding: 8px 0; }
-        .editorial__text h3 { font-size: 38px; color: var(--earth); line-height: 1.2; }
-        .editorial__text p { margin-top: 20px; font-size: 14px; color: var(--muted); line-height: 1.85; font-weight: 300; }
-        .editorial__link { display: inline-block; margin-top: 24px; position: relative; font-family: 'Jost', sans-serif; font-size: 12px; text-transform: uppercase; letter-spacing: .1em; color: var(--earth); transition: color .3s ease, letter-spacing .3s ease; }
-        .editorial__link::after { content: ''; position: absolute; left: 0; bottom: -4px; width: 0; height: 1px; background: currentColor; transition: width .3s ease; }
-        .editorial__link:hover { color: var(--earth-light); letter-spacing: .14em; }
-        .editorial__link:hover::after { width: 100%; }
+        .benefits { background: var(--parchment); padding: 120px 80px; }
+        .benefits__inner { max-width: 1200px; margin: 0 auto; }
+        .benefits__header { text-align: center; marginBottom: 80px; }
+        .benefits__header h2 { font-size: 52px; color: var(--earth); margin-top: 12px; }
+        .benefits__grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 40px; }
+        .benefit { position: relative; padding-top: 40px; border-top: 1px solid rgba(139,94,60,0.15); }
+        .benefit__num { position: absolute; top: 12px; left: 0; font-family: 'Jost', sans-serif; font-size: 10px; color: var(--earth-light); letter-spacing: 0.1em; }
+        .benefit h3 { font-size: 24px; color: var(--earth); margin-bottom: 16px; }
+        .benefit p { font-size: 14px; line-height: 1.7; color: var(--text); font-weight: 300; }
 
         .connect { display: grid; grid-template-columns: 1fr 1fr; min-height: 440px; margin-top: 80px; }
         .connect__img { position: relative; overflow: hidden; }
@@ -309,16 +298,17 @@ export default function Home() {
         .crow:hover { background: rgba(139,94,60,0.04); }
         .crow__label { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 32px; color: var(--earth); flex-shrink: 0; }
         .crow__rule { flex: 0 0 40px; height: 1px; background: rgba(139,94,60,0.3); }
-        .crow__detail { flex: 1; text-align: right; font-size: 13px; color: var(--muted); line-height: 1.6; font-weight: 300; white-space: pre-line; }
+        .crow__detail { flex: 1; text-align: right; font-size: 13px; color: var(--text); line-height: 1.6; font-weight: 300; white-space: pre-line; }
         .crow__arrow { font-family: 'Jost', sans-serif; font-size: 18px; color: var(--earth-light); transition: transform .25s ease; }
         .crow:hover .crow__arrow { transform: translateX(4px); }
 
         @media (max-width: 1024px) {
-          .intro, .trust, .values, .editorial { padding-left: 48px; padding-right: 48px; }
+          .intro, .trust, .values, .benefits { padding-left: 48px; padding-right: 48px; }
           .hero__line span { font-size: 64px; }
           .services { grid-template-columns: 1fr; }
           .services__left { padding: 64px 48px; }
           .values { grid-template-columns: repeat(2, 1fr); }
+          .benefits__grid { grid-template-columns: repeat(2, 1fr); }
         }
         @media (max-width: 768px) {
           .hero__content { left: 5%; bottom: 12%; }
@@ -332,7 +322,8 @@ export default function Home() {
           .services__left { padding: 48px 24px; } .services__left h2 { font-size: 36px; }
           .services__right { flex-direction: row; } .services__right img { height: 200px; }
           .quote { height: 280px; } .quote__text { font-size: 24px; } .quote__mark { font-size: 60px; padding-top: 30px; }
-          .editorial { padding: 80px 24px; grid-template-columns: 1fr; } .editorial__img--b { margin-top: 0; }
+          .benefits { padding: 80px 24px; } .benefits__header h2 { font-size: 36px; }
+          .benefits__grid { grid-template-columns: 1fr; gap: 24px; }
           .connect { grid-template-columns: 1fr; margin-top: 48px; }
           .connect__img img { height: 280px; min-height: 280px; }
           .connect__right { padding: 48px 24px; }
