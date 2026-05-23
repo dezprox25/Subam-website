@@ -177,17 +177,17 @@ export default function Services() {
           {services.map((s, i) => (
             <div
               key={s.title}
-              className={`grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-[100px] items-center ${i === services.length - 1 ? "" : "mb-20 md:mb-[140px]"}`}
+              className={`grid grid-cols-1 lg:grid-cols-2 gap-12 md:gap-20 items-center mb-24 md:mb-32 lg:mb-40 last:mb-0`}
             >
               <div className={isMobile ? "order-2" : s.imageLeft ? "order-2" : "order-1"}>
                 <Reveal>
-                  <span className="font-sans text-[11px] uppercase tracking-[0.18em] text-brand-muted">
+                  <span className="top-title mb-3">
                     Service {i + 1}
                   </span>
                   <h2 className="font-serif text-[32px] md:text-[44px] text-brand-earth mt-3 mb-6 font-normal">
                     {s.title}
                   </h2>
-                  <p className="font-sans text-[15px] font-light text-brand-text leading-[1.95] m-0">
+                  <p className="m-0">
                     {s.body}
                   </p>
                   <a
@@ -245,7 +245,7 @@ export default function Services() {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-[60px] items-center">
             <Reveal>
               <h2 className="font-serif text-[36px] md:text-[52px] text-brand-earth mb-6 leading-tight">Luxury Finishes & Roof Options</h2>
-              <p className="text-brand-text leading-[1.8] mb-8 font-light">Natural finishes and climate-conscious roofing systems crafted for timeless elegance. We specialize in artisanal textures that support healthy indoor air quality.</p>
+              <p className="mb-8">Natural finishes and climate-conscious roofing systems crafted for timeless elegance. We specialize in artisanal textures that support healthy indoor air quality.</p>
               <div className="grid grid-cols-2 gap-[16px_32px]">
                 {roofFinishes.map(f => (
                   <div key={f} className="flex items-center gap-3">
@@ -267,7 +267,7 @@ export default function Services() {
         <section className="px-6 md:px-12 lg:px-20 py-16 md:py-20 lg:py-24">
           <div className="text-center mb-[72px]">
             <Reveal>
-              <span className="font-sans text-[11px] uppercase tracking-[0.18em] text-brand-muted">
+              <span className="top-title mb-3">
                 Specialised Expertise
               </span>
               <h2 className="font-serif text-[36px] md:text-[52px] text-brand-earth mt-3 font-normal">
@@ -294,7 +294,7 @@ export default function Services() {
                   <h3 className="font-serif text-[26px] text-brand-earth mt-5 mb-2.5 font-normal leading-tight">
                     {s.title}
                   </h3>
-                  <p className="font-sans text-[14px] font-light text-brand-text leading-[1.7] m-0">
+                  <p className="m-0">
                     {s.desc}
                   </p>
                 </div>

@@ -155,12 +155,13 @@ export default function Contact() {
       <main>
         {/* CONTACT INFO GRID */}
         <section className="px-6 md:px-12 lg:px-20 py-16 md:py-[100px]">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-20 items-start">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 md:gap-24 items-start">
+            {/* INFO */}
             <div>
               <Reveal>
-                <span className="font-sans text-[11px] uppercase tracking-[0.18em] text-brand-muted">Contact</span>
+                <span className="top-title mb-3">Contact</span>
                 <h2 className="font-serif text-[32px] md:text-[44px] text-brand-earth mt-3 mb-6 font-normal">Get in touch with us.</h2>
-                <p className="font-sans text-[15px] font-light text-brand-text leading-[1.85] max-w-[440px] m-0">
+                <p className="max-w-[440px] m-0">
                   Whether you have a specific project in mind, want to explore sustainable materials, or wish to consult on a structural system, we'd love to hear from you.
                 </p>
               </Reveal>
@@ -174,7 +175,7 @@ export default function Contact() {
                       onMouseLeave={() => setRowHovered({ ...rowHovered, [i]: false })}
                     >
                       <span className="font-serif italic text-[28px] text-brand-earth">{c.label}</span>
-                      <span className="flex-1 text-right text-[14px] text-brand-text font-light whitespace-pre-line leading-[1.6]">{c.detail}</span>
+                      <span className="flex-1 text-right whitespace-pre-line">{c.detail}</span>
                     </div>
                   </Reveal>
                 ))}
@@ -186,41 +187,51 @@ export default function Contact() {
               {submitted ? (
                 <div className="text-center py-10">
                   <h3 className="font-serif text-[32px] text-brand-earth mb-4">Thank You</h3>
-                  <p className="text-[15px] text-brand-text font-light">Your message has been received. We will get back to you within two working days.</p>
+                  <p>Your message has been received. We will get back to you within two working days.</p>
                 </div>
               ) : (
-                <form onSubmit={onSubmit}>
-                  <div className="mb-8">
-                    <label className="block font-sans text-[11px] uppercase tracking-[0.18em] text-brand-muted mb-2">Full Name</label>
-                    <input className="w-full bg-transparent border-b border-brand-earth/25 py-3.5 font-sans text-[15px] font-light text-brand-dark outline-none transition-colors focus:border-brand-earth" placeholder="Enter your name" required value={form.name} onChange={onChange('name')} />
-                  </div>
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
+                <form onSubmit={onSubmit} className="space-y-8">
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                     <div>
-                      <label className="block font-sans text-[11px] uppercase tracking-[0.18em] text-brand-muted mb-2">Email Address</label>
-                      <input type="email" className="w-full bg-transparent border-b border-brand-earth/25 py-3.5 font-sans text-[15px] font-light text-brand-dark outline-none transition-colors focus:border-brand-earth" placeholder="Enter your email" required value={form.email} onChange={onChange('email')} />
+                      <label className="top-title mb-2">Full Name</label>
+                      <input
+                        type="text"
+                        name="name"
+                        value={form.name}
+                        onChange={onChange('name')}
+                        required
+                        className="w-full bg-transparent border-b border-brand-earth/30 py-2 focus:border-brand-earth outline-none transition-colors"
+                        placeholder="John Doe"
+                      />
                     </div>
                     <div>
-                      <label className="block font-sans text-[11px] uppercase tracking-[0.18em] text-brand-muted mb-2">Phone Number</label>
-                      <input className="w-full bg-transparent border-b border-brand-earth/25 py-3.5 font-sans text-[15px] font-light text-brand-dark outline-none transition-colors focus:border-brand-earth" placeholder="Enter phone number" value={form.phone} onChange={onChange('phone')} />
+                      <label className="top-title mb-2">Email Address</label>
+                      <input
+                        type="email"
+                        name="email"
+                        value={form.email}
+                        onChange={onChange('email')}
+                        required
+                        className="w-full bg-transparent border-b border-brand-earth/30 py-2 focus:border-brand-earth outline-none transition-colors"
+                        placeholder="john@example.com"
+                      />
                     </div>
                   </div>
-                  <div className="mb-8">
-                    <label className="block font-sans text-[11px] uppercase tracking-[0.18em] text-brand-muted mb-2">Subject</label>
-                    <select className="w-full bg-transparent border-b border-brand-earth/25 py-3.5 font-sans text-[15px] font-light text-brand-dark outline-none transition-colors focus:border-brand-earth appearance-none" value={form.subject} onChange={onChange('subject')}>
-                      <option>General Inquiry</option>
-                      <option>Sustainable Construction</option>
-                      <option>Structural Consulting</option>
-                      <option>Workshops & Programs</option>
-                      <option>Real Estate Development</option>
-                    </select>
-                  </div>
-                  <div className="mb-10">
-                    <label className="block font-sans text-[11px] uppercase tracking-[0.18em] text-brand-muted mb-2">Message</label>
-                    <textarea className="w-full bg-transparent border-b border-brand-earth/25 py-3.5 font-sans text-[15px] font-light text-brand-dark outline-none transition-colors focus:border-brand-earth h-[120px] resize-none" placeholder="How can we help you?" required value={form.message} onChange={onChange('message')} />
+                  <div>
+                    <label className="top-title mb-2">Message</label>
+                    <textarea
+                      name="message"
+                      value={form.message}
+                      onChange={onChange('message')}
+                      required
+                      rows={4}
+                      className="w-full bg-transparent border-b border-brand-earth/30 py-2 focus:border-brand-earth outline-none transition-colors resize-none"
+                      placeholder="Tell us about your project..."
+                    />
                   </div>
                   <button
                     type="submit"
-                    className="w-full bg-brand-earth text-white py-4 font-sans text-[12px] uppercase tracking-[0.14em] transition-colors hover:bg-brand-dark"
+                    className="w-full bg-brand-earth text-white font-sans text-[12px] uppercase tracking-[0.2em] py-5 rounded-[2px] hover:bg-brand-earth-light transition-colors duration-300"
                   >
                     Send Message
                   </button>
@@ -230,12 +241,12 @@ export default function Contact() {
           </div>
         </section>
 
-        {/* REACH OPTIONS */}
-        <section className="px-6 md:px-12 lg:px-20 pb-16 md:pb-[100px]">
+        {/* MAP / LOCATION */}
+        <section className="px-6 md:px-12 lg:px-20 py-16 md:py-24 border-t border-brand-earth/10">
           <div className="text-center mb-16">
             <Reveal>
-              <span className="font-sans text-[11px] uppercase tracking-[0.18em] text-brand-muted">Visit Us</span>
-              <h2 className="font-serif text-[36px] md:text-[52px] text-brand-earth mt-3 font-normal">Ways to Reach</h2>
+              <span className="top-title mb-3">Visit Us</span>
+              <h2 className="font-serif text-[36px] md:text-[52px] text-brand-earth mt-3 font-normal">Our Location</h2>
             </Reveal>
           </div>
 
@@ -254,7 +265,7 @@ export default function Contact() {
                     <img src={opt.image} alt={opt.alt} className="w-full h-full object-cover block transition-transform duration-750 ease-in-out group-hover:scale-[1.06]" />
                   </div>
                   <h3 className="font-serif text-[26px] text-brand-earth mt-5 mb-2.5 font-normal leading-tight">{opt.title}</h3>
-                  <p className="font-sans text-[14px] font-light text-brand-text leading-[1.7] m-0">{opt.desc}</p>
+                  <p className="m-0">{opt.desc}</p>
                 </a>
               </Reveal>
             ))}

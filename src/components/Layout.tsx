@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link, Outlet, useLocation } from 'react-router-dom';
+import HexagonBackground from './HexagonBackground';
+import CustomCursor from './CustomCursor';
 
 const theme = {
   bg: '#F7F3EE',
@@ -39,7 +41,9 @@ export default function Layout() {
   }, [location]);
 
   return (
-    <div className="shubham bg-brand-bg min-h-screen flex flex-col">
+    <div className="shubham bg-brand-bg min-h-screen flex flex-col relative overflow-hidden">
+      <CustomCursor />
+      <HexagonBackground />
       {/* NAVBAR */}
       <nav
         className={`fixed top-0 left-0 w-full h-20 z-[1000] flex items-center justify-between px-10 transition-all duration-400 ${

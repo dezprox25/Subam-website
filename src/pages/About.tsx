@@ -298,7 +298,7 @@ export default function About() {
               </Reveal>
               <Reveal delay={220} className="mt-2">
                 <span className="font-serif text-[80px] text-brand-earth-light leading-none block mb-3 h-10">“</span>
-                <p className="font-serif text-[22px] md:text-[26px] font-normal text-brand-earth leading-[1.55] max-w-[440px] m-0">
+                <p className="font-serif italic text-brand-earth max-w-[440px] m-0">
                   Our vision is to redefine the future of construction through sustainable innovation, conscious design, and environmentally responsible building practices.
                 </p>
               </Reveal>
@@ -313,7 +313,7 @@ export default function About() {
                 <span className="font-serif text-[48px] md:text-[62px] text-brand-earth block mb-2 leading-none">
                   <CountUp target={s.target} suffix={s.suffix} />
                 </span>
-                <span className="font-sans text-[11px] uppercase tracking-[0.16em] text-brand-muted">
+                <span className="top-title">
                   {s.label}
                 </span>
               </Reveal>
@@ -324,10 +324,10 @@ export default function About() {
         <section className="bg-brand-bg px-6 md:px-12 lg:px-20 py-16 md:py-20 lg:py-24">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-20">
             <div>
-              <Reveal as="p" className="font-sans text-[11px] text-brand-earth/45 tracking-[0.06em] mb-8 mt-0">
+              <Reveal as="p" className="top-title mb-8 mt-0">
                 About · Our Story · Foundation
               </Reveal>
-              <Reveal as="p" delay={80} className="font-sans text-[11px] uppercase tracking-[0.18em] text-brand-muted mb-4 mt-0">
+              <Reveal as="p" delay={80} className="top-title mb-4 mt-0">
                 Our Story
               </Reveal>
               <Reveal as="h3" delay={160} className="font-serif text-[30px] md:text-[38px] text-brand-earth leading-[1.2] mb-8 mt-0 font-normal">
@@ -338,7 +338,7 @@ export default function About() {
                 "Believing that the spaces we live in should support both human well-being and nature, Sanchana explored how traditional architecture could be merged with modern engineering principles. Her goal was to make sustainable building practices practical, affordable, and relevant for contemporary lifestyles.",
                 "Today, Shubham Consulting and Construction is dedicated to reviving traditional building wisdom through modern and environmentally responsible practices. We create thoughtfully designed spaces using natural materials and climate-conscious design that remain connected to nature and local context.",
               ].map((p, i) => (
-                <Reveal as="p" key={i} delay={240 + i * 100} className="font-sans text-[15px] font-light text-brand-text leading-[1.95] mb-6">
+                <Reveal as="p" key={i} delay={240 + i * 100} className="mb-6">
                   {p}
                 </Reveal>
               ))}
@@ -373,7 +373,7 @@ export default function About() {
               <h3 className="font-serif text-[24px] text-brand-earth leading-[1.3] font-normal m-0">
                 Commitment to Lasting Value.
               </h3>
-              <p className="font-sans text-[13px] font-light text-brand-text leading-[1.8] mt-3">
+              <p className="mt-3">
                 Shubham is a sustainable consulting and construction company working across India. Our expertise includes farmhouses, residences, institutional spaces, schools, and eco-development projects. We balance functionality, long-term value, and environmental responsibility in every site we develop.
               </p>
             </Reveal>
@@ -404,13 +404,13 @@ export default function About() {
                   delay={i * 120}
                   className={`py-6 ${i < 2 ? "border-b border-brand-earth/12" : ""}`}
                 >
-                  <span className="font-sans text-[11px] uppercase tracking-[0.14em] text-brand-earth-light">
+                  <span className="top-title mb-1.5">
                     {m.year}
                   </span>
                   <h4 className="font-serif text-[22px] text-brand-earth mt-1.5 mb-0 font-normal">
                     {m.head}
                   </h4>
-                  <p className="font-sans text-[13px] font-light text-brand-text leading-[1.7] mt-2 mb-0">
+                  <p className="mt-2 mb-0">
                     {m.body}
                   </p>
                 </Reveal>
@@ -421,7 +421,7 @@ export default function About() {
 
         <section className="bg-brand-bg px-6 md:px-12 lg:px-20 py-16 md:py-20 lg:py-24">
           <div className="mb-15 md:mb-[60px]">
-            <Reveal as="p" className="font-sans text-[11px] uppercase tracking-[0.16em] text-brand-muted mb-3 mt-0">
+            <Reveal as="p" className="top-title mb-3 mt-0">
               The Team
             </Reveal>
             <Reveal as="h2" delay={100} className="font-serif text-[36px] md:text-[48px] text-brand-earth font-normal m-0">
@@ -439,10 +439,10 @@ export default function About() {
                 <h3 className="font-serif text-[24px] text-brand-earth mt-[18px] mb-0 font-normal leading-tight">
                   {p.name}
                 </h3>
-                <p className="font-sans text-[12px] uppercase tracking-[0.1em] text-brand-muted mt-1.5 mb-0">
+                <p className="top-title text-[11px] mt-1.5 mb-0">
                   {p.role}
                 </p>
-                <p className="font-sans text-[13px] font-light text-brand-text leading-[1.7] mt-2.5 mb-0">
+                <p className="mt-2.5 mb-0">
                   {p.bio}
                 </p>
               </Reveal>

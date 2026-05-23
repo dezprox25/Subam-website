@@ -16,6 +16,15 @@ export default function Home() {
   const quoteRef = useRef<HTMLImageElement>(null);
   const bleedSec = useRef<HTMLElement>(null);
   const quoteSec = useRef<HTMLElement>(null);
+  
+  const [windowWidth, setWindowWidth] = useState(typeof window !== "undefined" ? window.innerWidth : 1280);
+  const isMobile = windowWidth < 1024;
+
+  useEffect(() => {
+    const onResize = () => setWindowWidth(window.innerWidth);
+    window.addEventListener("resize", onResize);
+    return () => window.removeEventListener("resize", onResize);
+  }, []);
 
   useEffect(() => {
     const t0 = setTimeout(() => setLoaded(true), 0);
@@ -100,31 +109,67 @@ export default function Home() {
           </div>
           <span className="block w-[60px] h-[1px] bg-white/50 my-[18px] ml-auto" />
         </div>
+        
+        {/* Home Hero Decorative Hexagons */}
+        <div className="absolute top-[20%] right-[10%] w-40 h-40 hexagon-float opacity-50 z-[30] hidden md:block">
+          <svg viewBox="0 0 100 100" className="w-full h-full fill-none stroke-white stroke-[2]">
+            <path d="M50 5 L90 28 L90 72 L50 95 L10 72 L10 28 Z" />
+          </svg>
+        </div>
+        <div className="absolute top-[60%] left-[15%] w-32 h-32 hexagon-float-slow opacity-40 z-[30] hidden lg:block" style={{ animationDelay: '-3s' }}>
+          <svg viewBox="0 0 100 100" className="w-full h-full fill-none stroke-white stroke-[1.5]">
+            <path d="M50 5 L90 28 L90 72 L50 95 L10 72 L10 28 Z" />
+          </svg>
+        </div>
+        <div className="absolute bottom-[25%] left-[40%] w-24 h-24 hexagon-float-reverse opacity-35 z-[30] hidden md:block" style={{ animationDelay: '-8s' }}>
+          <svg viewBox="0 0 100 100" className="w-full h-full fill-none stroke-white stroke-1">
+            <path d="M50 5 L90 28 L90 72 L50 95 L10 72 L10 28 Z" />
+          </svg>
+        </div>
+
         <div className={`absolute bottom-9 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 z-10 transition-opacity duration-600 ${showScroll ? "opacity-100" : "opacity-0"}`}>
           <div className="w-[22px] height-[34px] border-[1.5px] border-white rounded-f-12 relative after:content-[''] after:absolute after:left-1/2 after:top-[6px] after:-translate-x-1/2 after:w-[2px] after:h-[5px] after:bg-white after:rounded-[2px] after:animate-[mousedot_1.8s_ease-in-out_infinite]" style={{ height: '34px', borderRadius: '12px' }} />
           <div className="font-sans text-[10px] uppercase tracking-[0.2em] text-white/70 mt-1.5">Scroll Down</div>
         </div>
       </header>
 
-      <section className="bg-brand-bg px-6 md:px-12 lg:px-20 py-[120px] pb-[100px] text-center">
-        <div className="max-w-[720px] margin-0-auto" style={{ margin: '0 auto' }}>
+      <section className="bg-brand-bg px-6 md:px-12 lg:px-20 py-[120px] pb-[100px] text-center relative overflow-hidden">
+        {/* Decorative Section Hexagons */}
+        <div className="absolute top-[10%] right-[5%] w-40 h-40 hexagon-float-reverse opacity-25 z-10 pointer-events-none">
+          <svg viewBox="0 0 100 100" className="w-full h-full fill-none stroke-brand-earth/60 stroke-1">
+            <path d="M50 5 L90 28 L90 72 L50 95 L10 72 L10 28 Z" />
+          </svg>
+        </div>
+        <div className="max-w-[720px] margin-0-auto relative z-20" style={{ margin: '0 auto' }}>
           <h2 className="reveal italic text-[38px] md:text-[52px] text-brand-earth leading-[1.15]">Not just a home.<br />A living ecosystem.</h2>
-          <p className="reveal mt-8 text-[15px] leading-[1.9] text-brand-text max-w-[680px] mx-auto font-light">Shubham Consulting and Construction is redefining luxury through sustainability. We design and build high-end spaces that are fully self-sustainable, eco-conscious, and deeply connected to nature — without compromising on elegance. Every space is thoughtfully curated to create harmony between architecture, wellness, and the environment.</p>
+          <p className="reveal mt-8 max-w-[680px] mx-auto">Shubham Consulting and Construction is redefining luxury through sustainability. We design and build high-end spaces that are fully self-sustainable, eco-conscious, and deeply connected to nature — without compromising on elegance. Every space is thoughtfully curated to create harmony between architecture, wellness, and the environment.</p>
         </div>
       </section>
 
       <section className="relative w-full h-[380px] md:h-[560px] overflow-hidden" ref={bleedSec}>
         <img ref={bleedRef} src="https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?w=1920" alt="Atmospheric Shubham project landscape" className="w-full h-full object-cover will-change-transform" />
-        <div className="absolute bottom-0 left-0 w-full p-8 md:px-12 bg-gradient-to-t from-[#1F1F1F]/70 to-transparent">
+        <div className="absolute bottom-0 left-0 w-full p-8 md:px-12 bg-gradient-to-t from-[#1F1F1F]/70 to-transparent z-10">
           <h2 className="text-[30px] md:text-[42px] text-white">Crafting Future-Ready Residences</h2>
+        </div>
+        {/* Overlay Hexagons */}
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-64 h-64 hexagon-pulse opacity-40 z-20 pointer-events-none">
+          <svg viewBox="0 0 100 100" className="w-full h-full fill-none stroke-white stroke-[1.5]">
+            <path d="M50 5 L90 28 L90 72 L50 95 L10 72 L10 28 Z" />
+          </svg>
         </div>
       </section>
 
-      <section className="bg-brand-bg px-6 md:px-12 lg:px-20 py-[80px] md:py-[100px]">
-        <h2 className="reveal text-[36px] md:text-[52px] text-brand-earth max-w-[780px] mb-8 md:mb-12 leading-[1.15]">Our Philosophy: Zero Harm. Maximum Harmony.</h2>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-[60px]">
-          <p className="reveal text-[14px] leading-[1.9] text-brand-text font-light">At Shubham, we believe your home should heal you, not harm the planet. Our construction methodology is built on a foundation of 0% hazardous chemicals, using breathable natural materials that support long-term human health. We combine traditional wisdom with modern engineering to create structures that are as durable as they are beautiful.</p>
-          <p className="reveal text-[14px] leading-[1.9] text-brand-text font-light">What sets us apart is our commitment to integrated self-sustainable systems. From solar energy and rainwater harvesting to bio-gas plants and passive cooling design, every decision is guided by long-term efficiency, comfort, and environmental stewardship. This is conscious living, elevated.</p>
+      <section className="bg-brand-bg px-6 md:px-12 lg:px-20 py-[80px] md:py-[100px] relative overflow-hidden">
+        {/* Background Decorative Element */}
+        <div className="absolute bottom-[5%] left-[-5%] w-56 h-56 hexagon-float-slow opacity-20 z-10 pointer-events-none">
+          <svg viewBox="0 0 100 100" className="w-full h-full fill-none stroke-brand-earth/50 stroke-1">
+            <path d="M50 5 L90 28 L90 72 L50 95 L10 72 L10 28 Z" />
+          </svg>
+        </div>
+        <h2 className="reveal text-[36px] md:text-[52px] text-brand-earth max-w-[780px] mb-8 md:mb-12 leading-[1.15] relative z-20">Our Philosophy: Zero Harm. Maximum Harmony.</h2>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-[60px] relative z-20">
+          <p className="reveal">At Shubham, we believe your home should heal you, not harm the planet. Our construction methodology is built on a foundation of 0% hazardous chemicals, using breathable natural materials that support long-term human health. We combine traditional wisdom with modern engineering to create structures that are as durable as they are beautiful.</p>
+          <p className="reveal">What sets us apart is our commitment to integrated self-sustainable systems. From solar energy and rainwater harvesting to bio-gas plants and passive cooling design, every decision is guided by long-term efficiency, comfort, and environmental stewardship. This is conscious living, elevated.</p>
         </div>
       </section>
 
@@ -138,41 +183,72 @@ export default function Home() {
           <article key={v.h} className="group reveal">
             <div className="relative overflow-hidden aspect-[3/4]">
               <img src={v.img} alt={v.h} className="w-full h-full object-cover transition-transform duration-700 ease-in-out group-hover:scale-[1.06]" />
-              <span className="absolute bottom-4 left-4 bg-brand-bg/92 text-brand-earth font-sans text-[10px] uppercase tracking-[0.14em] px-3 py-1.5 rounded-[2px]">{v.tag}</span>
+              <span className="absolute bottom-4 left-4 bg-brand-bg/92 px-3 py-1.5 rounded-[2px] top-title text-[10px]">{v.tag}</span>
             </div>
             <div className="pt-5">
               <h3 className="text-[24px] text-brand-earth leading-tight">{v.h}</h3>
-              <p className="text-[13px] text-brand-text leading-[1.75] mt-2.5 font-light">{v.b}</p>
+              <p className="mt-2.5">{v.b}</p>
             </div>
           </article>
         ))}
       </section>
 
-      <section className="bg-brand-bg pt-20 grid grid-cols-1 lg:grid-cols-[0.85fr_1.15fr] gap-0">
-        <div className="p-12 md:p-16 lg:p-20">
-          <span className="font-sans text-[11px] uppercase tracking-[0.16em] text-brand-earth-light">Materials of Wisdom</span>
-          <h2 className="text-[36px] md:text-[48px] text-brand-earth mt-3 mb-16">Traditional Materials. Modern Engineering.</h2>
-          {[
-            { h: "Rammed Earth & Mud Blocks", b: "Breathable, thermal-efficient walls that provide natural insulation and a unique organic aesthetic." },
-            { h: "Natural COB & Stone", b: "Utilizing foundation stones and natural COB for structural integrity that honours building heritage." },
-            { h: "Artisanal Finishes", b: "Lime plasters, traditional textures, and Madras terrace roofing for timeless elegance and health." },
-          ].map((s) => (
-            <div key={s.h} className="pt-7 border-t border-brand-earth/20 max-w-[380px] mb-[60px] last:mb-0 reveal">
-              <h3 className="text-[26px] text-brand-earth leading-tight">{s.h}</h3>
-              <p className="text-[14px] text-brand-text leading-[1.75] mt-2.5 font-light">{s.b}</p>
+      <section className="bg-brand-bg py-24 px-6 md:px-12 lg:px-20 relative overflow-hidden">
+        <div className="max-w-[1200px] mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+          <div className="reveal">
+            <span className="top-title mb-3">Materials of Wisdom</span>
+            <h2 className="text-[36px] md:text-[48px] text-brand-earth mt-3 mb-10 leading-tight">Traditional Materials.<br />Modern Engineering.</h2>
+            <div className="space-y-12">
+              {[
+                { h: "Rammed Earth & Mud Blocks", b: "Breathable, thermal-efficient walls that provide natural insulation and a unique organic aesthetic." },
+                { h: "Natural COB & Stone", b: "Utilizing foundation stones and natural COB for structural integrity that honours building heritage." },
+                { h: "Artisanal Finishes", b: "Lime plasters, traditional textures, and Madras terrace roofing for timeless elegance and health." },
+              ].map((s) => (
+                <div key={s.h} className="pt-7 border-t border-brand-earth/20 max-w-[420px]">
+                  <h3 className="text-[24px] text-brand-earth leading-tight mb-3">{s.h}</h3>
+                  <p>{s.b}</p>
+                </div>
+              ))}
             </div>
-          ))}
-        </div>
-        <div className="flex flex-row lg:flex-col overflow-hidden">
-          {[
-            "https://images.unsplash.com/photo-1600047509807-ba8f99d2cdde?w=900",
-            "https://images.unsplash.com/photo-1600566753086-00f18fb6b3ea?w=900",
-            "https://images.unsplash.com/photo-1505409859467-3a796fd5798e?w=900",
-          ].map((src) => (
-            <div key={src} className="flex-1 overflow-hidden group">
-              <img src={src} alt="Shubham project" className="w-full h-[240px] md:h-[300px] lg:h-[360px] object-cover transition-transform duration-700 ease-in-out group-hover:scale-[1.04]" />
+          </div>
+
+          <div className="reveal flex justify-center items-center h-[600px] lg:h-[700px]">
+            <div className="hexagon-container scale-[0.85] md:scale-100">
+              {/* Circular Hexagon Layout - Desktop Positions */}
+              {[
+                { src: "https://images.unsplash.com/photo-1600047509807-ba8f99d2cdde?w=600", x: 0, y: -240, label: "Clay" },
+                { src: "https://images.unsplash.com/photo-1600566753086-00f18fb6b3ea?w=600", x: 210, y: -120, label: "Stone" },
+                { src: "https://images.unsplash.com/photo-1505409859467-3a796fd5798e?w=600", x: 210, y: 120, label: "Mud" },
+                { src: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=600", x: 0, y: 240, label: "Earth" },
+                { src: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=600", x: -210, y: 120, label: "Wood" },
+                { src: "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?w=600", x: -210, y: -120, label: "Lime" },
+              ].map((hex, i) => (
+                <div 
+                  key={i} 
+                  className="hexagon-item flex flex-col items-center group"
+                  style={{
+                    transform: isMobile ? 'none' : `translate(${hex.x}px, ${hex.y}px)`,
+                    position: isMobile ? 'relative' : 'absolute'
+                  } as any}
+                >
+                  <div className="w-40 h-44 md:w-48 md:h-52 hexagon-clip overflow-hidden shadow-xl">
+                    <img 
+                      src={hex.src} 
+                      alt={hex.label} 
+                      className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" 
+                    />
+                  </div>
+                  <span className="mt-3 font-sans text-[10px] uppercase tracking-[0.2em] text-brand-earth opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                    {hex.label}
+                  </span>
+                </div>
+              ))}
+              {/* Central Logo/Icon */}
+              <div className="absolute z-20 w-16 h-16 bg-brand-bg rounded-full flex items-center justify-center border border-brand-earth/30 shadow-inner hidden lg:flex">
+                <img src="/Subam Logo.png" alt="Shubham" className="w-8 opacity-40" />
+              </div>
             </div>
-          ))}
+          </div>
         </div>
       </section>
 
@@ -181,15 +257,15 @@ export default function Home() {
         <div className="absolute inset-0 bg-gradient-to-r from-[#1F1F1F]/15 via-[#1F1F1F]/55 to-[#1F1F1F]/65" />
         <div className="absolute right-[8%] top-1/2 -translate-y-1/2 text-right max-w-[560px] z-10">
           <span className="font-serif text-[60px] md:text-[80px] text-white/70 leading-none float-left mr-2 pt-[30px] md:pt-10">"</span>
-          <p className="font-serif italic text-[24px] md:text-[34px] text-white leading-[1.45]">Build a home that lives with you, not against nature.</p>
-          <p className="text-white mt-5 opacity-80 text-sm font-light">Starting at ₹3,000 to ₹3,500 per sq.ft.*</p>
+          <p className="font-serif italic text-white">Build a home that lives with you, not against nature.</p>
+          <p className="text-white mt-5 opacity-80">Starting at ₹3,000 to ₹3,500 per sq.ft.*</p>
         </div>
       </section>
 
       <section className="bg-brand-parchment px-6 md:px-12 lg:px-20 py-[80px] md:py-[120px]">
         <div className="max-w-[1200px] mx-auto">
           <div className="text-center mb-20 reveal">
-            <span className="font-sans text-[11px] uppercase tracking-[0.16em] text-brand-earth-light">Why Choose Shubham?</span>
+            <span className="top-title mb-3">Why Choose Shubham?</span>
             <h2 className="text-[36px] md:text-[52px] text-brand-earth mt-3 leading-tight">Sustainable Luxury. Uncompromised Quality.</h2>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-10">
@@ -200,9 +276,9 @@ export default function Home() {
               { h: "Future Ready", b: "A sustainable investment that appreciates in value while fulfilling your environmental responsibility." },
             ].map((item, i) => (
               <div key={item.h} className="relative pt-10 border-t border-brand-earth/15 reveal">
-                <span className="absolute top-3 left-0 font-sans text-[10px] text-brand-earth-light tracking-[0.1em]">0{i + 1}</span>
+                <span className="absolute top-3 left-0 top-title text-[10px]">0{i + 1}</span>
                 <h3 className="text-[24px] text-brand-earth mb-4 leading-tight">{item.h}</h3>
-                <p className="text-[14px] leading-[1.7] text-brand-text font-light">{item.b}</p>
+                <p>{item.b}</p>
               </div>
             ))}
           </div>
