@@ -271,10 +271,10 @@ export default function About() {
       <main>
         <section className="bg-brand-bg py-10 md:py-15 lg:py-20 overflow-hidden relative">
           <p
-            ref={ghostRef}
-            className="font-serif text-[32px] md:text-[48px] lg:text-[72px] italic font-normal text-brand-earth/10 text-center leading-[1.2] w-full m-0 px-10 will-change-transform whitespace-normal lg:whitespace-nowrap"
+            // ref={ghostRef}
+            className="font-serif text-[32px] md:text-[48px] lg:text-[72px] italic font-normal text-brand-earth text-center leading-[1.2] w-full m-0 px-10 will-change-transform whitespace-normal lg:whitespace-nowrap"
           >
-            Crafting future-ready spaces that breathe.
+            Crafting future ready spaces that breathe.
           </p>
         </section>
 
