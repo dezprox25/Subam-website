@@ -244,8 +244,8 @@ export default function Home() {
                 </div>
               ))}
               {/* Central Logo/Icon */}
-              <div className="absolute z-20 w-16 h-16 bg-brand-bg rounded-full flex items-center justify-center border border-brand-earth/30 shadow-inner hidden lg:flex">
-                <img src="/Subam Logo.png" alt="Shubham" className="w-8 opacity-40" />
+              <div className="absolute z-20   w-[182px] h-[182px] bg-brand-bg rounded-full flex items-center justify-center border border-brand-earth/30 shadow-inner hidden lg:flex">
+                <img src="/Subam Logo.png" alt="Shubham" className="w-[100px] opacity-90   " />
               </div>
             </div>
           </div>
