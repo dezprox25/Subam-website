@@ -178,7 +178,7 @@ export default function Home() {
           { img: "https://images.unsplash.com/photo-1521737604893-d14cc237f11d?w=600", tag: "Solar", h: "Solar Energy Systems", b: "Harnessing the sun to power your modern lifestyle with zero emissions." },
           { img: "https://images.unsplash.com/photo-1464226184884-fa280b87c399?w=600", tag: "Water", h: "Rainwater Harvesting", b: "Integrated collection systems designed to secure your water future naturally." },
           { img: "https://images.unsplash.com/photo-1545389336-cf090694435e?w=600", tag: "Cooling", h: "Passive Cooling", b: "Architectural design that maintains comfort without high energy consumption." },
-          { img: "https://images.unsplash.com/photo-1574482620826-7f5f77f48d75?w=600", tag: "Waste", h: "Bio-Gas & Bio-Septic", b: "Closing the loop with integrated waste management and renewable energy." },
+          { img: "https://images.unsplash.com/photo-1464226184884-fa280b87c399?w=600", tag: "Waste", h: "Bio-Gas & Bio-Septic", b: "Closing the loop with integrated waste management and renewable energy." },
         ].map((v) => (
           <article key={v.h} className="group reveal">
             <div className="relative overflow-hidden aspect-[3/4]">

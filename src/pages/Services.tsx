@@ -223,9 +223,9 @@ export default function Services() {
         {/* ====== QUOTE BANNER ====== */}
         <section ref={quoteBannerRef} className="relative w-full h-[340px] md:h-[480px] overflow-hidden">
           <img
-            src="https://images.unsplash.com/photo-1518005020250-6eb5f3f2754d?w=1920"
+            src="https://images.unsplash.com/photo-1600047509358-9dc75507daeb?w=400"
             alt="Natural stone texture close-up"
-            className="absolute inset-0 w-full h-[120%] object-cover will-change-transform"
+            className="absolute inset-0 w-full h-[120%] lg:top-[-20%] top-[-30%] object-cover will-change-transform"
             style={{
               transform: `translateY(${quoteBannerParallax}px)`,
             }}

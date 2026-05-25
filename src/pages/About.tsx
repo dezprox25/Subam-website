@@ -143,7 +143,7 @@ function PolaroidSection({ parallaxY, isMobile }: any) {
       <img
         src="https://images.unsplash.com/photo-1512917774080-9991f1c4c750?w=1920"
         alt="Immersive architectural interior"
-        className="absolute inset-0 object-cover w-full h-[110%] will-change-transform"
+        className="absolute left-0 lg:top-[-60%] top-[-90%] w-full h-[116%] md:h-[122%] object-cover will-change-transform"
         style={{
           transform: `translateY(${parallaxY * 0.4}px)`,
         }}
@@ -343,7 +343,22 @@ export default function About() {
                 </Reveal>
               ))}
             </div>
-            <div />
+            <Reveal delay={220} className="self-center">
+              <div className="max-w-[540px] ml-auto">
+                <ZoomImage
+                  src="https://images.unsplash.com/photo-1511818966892-d7d671e672a2?w=900"
+                  alt="Natural architecture and sustainable material palette"
+                  wrapperStyle={{ aspectRatio: "4 / 5" }}
+                  className="shadow-[0_28px_60px_rgba(31,31,31,0.12)]"
+                />
+                <div className="mt-5 pt-5 border-t border-brand-earth/15">
+                  <span className="top-title mb-2">Sustainable Vision</span>
+                  <p className="m-0">
+                    A visual reflection of Shubham&apos;s approach: grounded materials, soft light, and spaces that stay connected to nature.
+                  </p>
+                </div>
+              </div>
+            </Reveal>
           </div>
         </section>
 
