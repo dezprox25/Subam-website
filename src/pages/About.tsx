@@ -298,7 +298,7 @@ export default function About() {
               </Reveal>
               <Reveal delay={220} className="mt-2">
                 <span className="font-serif text-[80px] text-brand-earth-light leading-none block mb-3 h-10">“</span>
-                <p className="font-serif italic text-brand-earth max-w-[440px] m-0">
+                <p className="font-serif italic text-brand-earth text-[24px] md:text-[30px] leading-[1.55] max-w-[440px] m-0">
                   Our vision is to redefine the future of construction through sustainable innovation, conscious design, and environmentally responsible building practices.
                 </p>
               </Reveal>

@@ -6,6 +6,53 @@ const SLIDES = [
   "https://images.unsplash.com/photo-1599427303058-f04cbcf4756f?w=1920",
 ];
 
+// Content collections below act as a lightweight management layer:
+// add, edit, or remove entries here without changing the layout code.
+const TESTIMONIALS = [
+  {
+    quote:
+      "Add a verified client testimonial here to highlight the experience, build quality, and sustainability outcome of the project.",
+    client: "Client Name",
+    affiliation: "Residence / Farmhouse / Institutional Project",
+    accent: "Verified Client Voice",
+  },
+  {
+    quote:
+      "Use this space for a second approved testimonial focused on design collaboration, execution quality, or timeline delivery.",
+    client: "Client Name",
+    affiliation: "Private Residence / Hospitality Project",
+    accent: "Project Experience",
+  },
+  {
+    quote:
+      "Add a third approved testimonial here to build trust through real feedback from homeowners, developers, or consulting clients.",
+    client: "Client Name",
+    affiliation: "Consulting / Construction Client",
+    accent: "Trusted Feedback",
+  },
+];
+
+const AWARDS = [
+  {
+    name: "Award Title",
+    body: "Awarding Body",
+    year: "Year",
+    mark: "A1",
+  },
+  {
+    name: "Recognition Title",
+    body: "Institution / Jury Name",
+    year: "Year",
+    mark: "A2",
+  },
+  {
+    name: "Honour Title",
+    body: "Organisation / Council",
+    year: "Year",
+    mark: "A3",
+  },
+];
+
 export default function Home() {
   const [loaded, setLoaded] = useState(false);
   const [activeSlide, setActiveSlide] = useState(0);
@@ -259,6 +306,71 @@ export default function Home() {
           <span className="font-serif text-[60px] md:text-[80px] text-white/70 leading-none float-left mr-2 pt-[30px] md:pt-10">"</span>
           <p className="font-serif italic text-white">Build a home that lives with you, not against nature.</p>
           <p className="text-white mt-5 opacity-80">Starting at ₹3,000 to ₹3,500 per sq.ft.*</p>
+        </div>
+      </section>
+
+      <section className="bg-brand-bg px-6 md:px-12 lg:px-20 py-[80px] md:py-[110px]">
+        <div className="max-w-[1200px] mx-auto">
+          <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-12 reveal">
+            <div>
+              <span className="top-title mb-3">Client Testimonials</span>
+              <h2 className="text-[36px] md:text-[52px] text-brand-earth leading-tight">
+                Words From Future Case Studies.
+              </h2>
+            </div>
+            <p className="max-w-[420px] md:text-right">
+              This section is now data-driven, so verified testimonials can be added, updated, or removed from a single content list without restructuring the page.
+            </p>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6 md:gap-8">
+            {TESTIMONIALS.map((item, index) => (
+              <article
+                key={`${item.client}-${index}`}
+                className="reveal relative bg-brand-parchment border border-brand-earth/12 rounded-[18px] p-7 md:p-8 shadow-[0_20px_50px_rgba(31,31,31,0.05)] transition-transform duration-500 hover:-translate-y-1"
+              >
+                <span className="top-title mb-4">{item.accent}</span>
+                <p className="font-serif italic text-brand-earth text-[23px] md:text-[27px] leading-[1.55] min-h-[180px]">
+                  "{item.quote}"
+                </p>
+                <div className="pt-5 mt-5 border-t border-brand-earth/12">
+                  <h3 className="text-[22px] text-brand-earth leading-tight">{item.client}</h3>
+                  <p className="mt-2">{item.affiliation}</p>
+                </div>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="bg-brand-parchment px-6 md:px-12 lg:px-20 py-[80px] md:py-[110px]">
+        <div className="max-w-[1200px] mx-auto">
+          <div className="text-center mb-12 reveal">
+            <span className="top-title mb-3">Awards Received</span>
+            <h2 className="text-[36px] md:text-[52px] text-brand-earth leading-tight">
+              Recognition Ready To Showcase.
+            </h2>
+            <p className="max-w-[700px] mx-auto mt-5">
+              The awards module is in place and responsive. Replace the placeholder entries below with confirmed award names, logos, awarding bodies, and receipt years as client-approved assets become available.
+            </p>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
+            {AWARDS.map((award, index) => (
+              <article
+                key={`${award.name}-${index}`}
+                className="reveal bg-brand-bg border border-brand-earth/12 rounded-[20px] p-7 md:p-8 text-center shadow-[0_20px_50px_rgba(31,31,31,0.04)]"
+              >
+                <div className="w-[88px] h-[88px] mx-auto mb-6 rounded-[22px] border border-brand-earth/18 bg-white/65 flex items-center justify-center shadow-inner">
+                  <span className="font-serif text-[28px] text-brand-earth">{award.mark}</span>
+                </div>
+                <span className="top-title mb-3">Awards Module</span>
+                <h3 className="text-[24px] text-brand-earth leading-tight">{award.name}</h3>
+                <p className="mt-3">{award.body}</p>
+                <p className="mt-4 font-sans text-[12px] uppercase tracking-[0.16em] text-brand-earth">
+                  {award.year}
+                </p>
+              </article>
+            ))}
+          </div>
         </div>
       </section>
 
