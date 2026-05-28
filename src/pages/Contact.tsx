@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState } from 'react';
 
 const contacts = [
   { label: 'Visit', detail: 'No:3 Sri Griha House, 8th Avenue\nAshok Nagar, Chennai - 600083' },
-  { label: 'Write', detail: 'consultingsubham@gmail.com\nsubhamconsulting@gmail.com' },
+  { label: 'Write', detail: 'Consultingsubham@gmail.com\nCareers.consultingsubham@gmail.com' },
   { label: 'Call', detail: '+91 84385 30234 (WhatsApp)\nMon–Fri · 10:00 AM – 4:00 PM' },
 ];
 

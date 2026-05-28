@@ -229,13 +229,20 @@ export default function About() {
     {
       img: "https://images.unsplash.com/photo-1560250097-0b93528c311a?w=600",
       alt: "Design and consulting team member",
-      name: "Design & Consulting Team",
-      role: "Structural & Sustainable Design",
-      bio: "Our team of engineers and consultants brings deep expertise in natural materials, structural systems, and climate-responsive design.",
+      name: "Associate Architect",
+      role: "Architectural Lead",
+      bio: "Expertise in blending traditional aesthetics with modern functionality, leading the design vision for sustainable residential and commercial projects.",
     },
     {
       img: "https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=600",
-      alt: "Construction specialist on site",
+      alt: "Paari Design Studio",
+      name: "Paari Design Studio",
+      role: "Collaborating Design Practice",
+      bio: "Paari Design Studio is a sustainable architecture and design practice rooted in natural materials, climate-responsive spaces, and timeless Indian history, while looking towards the future with a novel outlook. Our work blends earth, craft, and contemporary living to create spaces that feel grounded, meaningful, and deeply connected to nature.",
+    },
+    {
+      img: "https://images.unsplash.com/photo-1556157382-97dee2dcb04e?w=600",
+      alt: "Construction specialists on site",
       name: "Construction Specialists",
       role: "Site Execution & Quality",
       bio: "Skilled builders trained in traditional construction methods — rammed earth, mud block, natural COB — executed with modern precision.",
@@ -391,6 +398,12 @@ export default function About() {
               <p className="mt-3">
                 Shubham is a sustainable consulting and construction company working across India. Our expertise includes farmhouses, residences, institutional spaces, schools, and eco-development projects. We balance functionality, long-term value, and environmental responsibility in every site we develop.
               </p>
+              <div className="mt-8 pt-8 border-t border-brand-earth/10">
+                <span className="top-title mb-2">Future Horizons</span>
+                <p className="m-0 italic">
+                  Looking ahead, Shubham is preparing to bring its sustainable engineering expertise to public infrastructure and government projects, aiming to create climate-responsive civic spaces for the next generation.
+                </p>
+              </div>
             </Reveal>
 
             <div className="mt-0 md:mt-20">

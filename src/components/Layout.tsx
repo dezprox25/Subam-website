@@ -18,6 +18,7 @@ const navItems = [
   { label: 'Home', href: '/' },
   { label: 'About', href: '/about' },
   { label: 'Services', href: '/services' },
+  { label: 'Careers', href: '/careers' },
   { label: 'Contact', href: '/contact' },
 ];
 
@@ -43,7 +44,7 @@ export default function Layout() {
   return (
     <div className="shubham bg-brand-bg min-h-screen flex flex-col relative overflow-hidden">
       <CustomCursor />
-      <HexagonBackground />
+      {/* <HexagonBackground /> */}
       {/* NAVBAR */}
       <nav
         className={`fixed top-0 left-0 w-full h-20 z-[1000] flex items-center justify-between px-10 transition-all duration-400 ${
@@ -143,12 +144,17 @@ export default function Layout() {
           ))}
         </div>
 
-        <div className="flex flex-col md:flex-row justify-between items-center border-t border-white/5 pt-7 gap-4">
-          <div className="flex items-center gap-4">
+        <div className="flex flex-col md:flex-row justify-between items-center border-t border-white/5 pt-7 gap-4 text-center md:text-left">
+          <div className="flex flex-col md:flex-row items-center gap-4">
             <img src="/Subam Logo.png" alt="Shubham" className="h-8 w-auto brightness-0 invert opacity-50" />
-            <span className="text-[12px] text-white/30 font-light">
-              © {new Date().getFullYear()} Shubham Consulting & Construction. All rights reserved.
-            </span>
+            <div className="flex flex-col">
+              <span className="text-[12px] text-white/30 font-light">
+                © {new Date().getFullYear()} Shubham Consulting & Construction. All rights reserved.
+              </span>
+              <span className="text-[10px] text-white/20 font-light mt-1 uppercase tracking-widest">
+                Developed by <a href="https://www.dezprox.com" target="_blank" rel="noopener noreferrer" className="hover:text-brand-earth transition-colors">dezprox</a>
+              </span>
+            </div>
           </div>
           <span className="font-serif italic text-[14px] text-brand-earth-light/50">
             Sustainable Luxury, Naturally Built.

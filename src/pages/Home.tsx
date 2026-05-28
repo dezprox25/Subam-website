@@ -1,4 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
+import awards1 from "../assests/awards/awards1.jpeg";
+import awards2 from "../assests/awards/awards2.jpeg";
 
 const SLIDES = [
   "https://images.unsplash.com/photo-1600047509807-ba8f99d2cdde?w=1920",
@@ -34,16 +36,24 @@ const TESTIMONIALS = [
 
 const AWARDS = [
   {
-    name: "Award Title",
-    body: "Awarding Body",
-    year: "Year",
+    name: "Excellence Engineer Award 2024",
+    body: "சீர்மிகு பொறியாளர் விருது · Presented to Ms. Sanchana Subbarayan",
+    year: "Chennai · 2024",
     mark: "A1",
+    image: awards1,
   },
   {
-    name: "Recognition Title",
-    body: "Institution / Jury Name",
-    year: "Year",
+    name: "Professional Achievement Award",
+    body: "Recognizing Engineering Excellence · Sponsored by Renacon Biocons",
+    year: "2024",
     mark: "A2",
+    image: awards2,
+  },
+  {
+    name: "Honour Title",
+    body: "Organisation / Council",
+    year: "Year",
+    mark: "A3",
   },
   {
     name: "Honour Title",
@@ -353,21 +363,33 @@ export default function Home() {
               The awards module is in place and responsive. Replace the placeholder entries below with confirmed award names, logos, awarding bodies, and receipt years as client-approved assets become available.
             </p>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12">
             {AWARDS.map((award, index) => (
               <article
                 key={`${award.name}-${index}`}
-                className="reveal bg-brand-bg border border-brand-earth/12 rounded-[20px] p-7 md:p-8 text-center shadow-[0_20px_50px_rgba(31,31,31,0.04)]"
+                className="reveal bg-brand-bg border border-brand-earth/12 rounded-[24px] overflow-hidden shadow-[0_30px_60px_rgba(31,31,31,0.06)] group transition-all duration-500 hover:shadow-[0_40px_80px_rgba(31,31,31,0.1)]"
               >
-                <div className="w-[88px] h-[88px] mx-auto mb-6 rounded-[22px] border border-brand-earth/18 bg-white/65 flex items-center justify-center shadow-inner">
-                  <span className="font-serif text-[28px] text-brand-earth">{award.mark}</span>
+                <div className="relative w-full aspect-[4/3] overflow-hidden bg-white/40">
+                  {(award as any).image ? (
+                    <img 
+                      src={(award as any).image} 
+                      alt={award.name} 
+                      className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-[1.04]" 
+                    />
+                  ) : (
+                    <div className="w-full h-full flex items-center justify-center">
+                      <span className="font-serif text-[48px] text-brand-earth/30">{award.mark}</span>
+                    </div>
+                  )}
+                  <div className="absolute top-6 left-6 bg-brand-bg/90 backdrop-blur-md px-4 py-2 rounded-full border border-brand-earth/15">
+                    <span className="top-title text-[10px] !mb-0">{award.year}</span>
+                  </div>
                 </div>
-                <span className="top-title mb-3">Awards Module</span>
-                <h3 className="text-[24px] text-brand-earth leading-tight">{award.name}</h3>
-                <p className="mt-3">{award.body}</p>
-                <p className="mt-4 font-sans text-[12px] uppercase tracking-[0.16em] text-brand-earth">
-                  {award.year}
-                </p>
+                <div className="p-8 md:p-10 text-left">
+                  <span className="top-title mb-4">Award of Excellence</span>
+                  <h3 className="text-[28px] md:text-[34px] text-brand-earth leading-tight mb-4">{award.name}</h3>
+                  <p className="text-[16px] leading-relaxed opacity-80">{award.body}</p>
+                </div>
               </article>
             ))}
           </div>
@@ -406,7 +428,7 @@ export default function Home() {
         <div className="bg-brand-parchment p-12 md:p-16 lg:p-[64px_72px] flex flex-col justify-center">
           {[
             { l: "Visit", d: "No:3 Sri Griha House, 8th Avenue\nAshok Nagar, Chennai - 600083" },
-            { l: "Write", d: "consultingsubham@gmail.com\nsubhamconsulting@gmail.com" },
+            { l: "Write", d: "Consultingsubham@gmail.com\nCareers.consultingsubham@gmail.com" },
             { l: "Call", d: "+91 84385 30234 (WhatsApp)\nMon–Fri · 10:00 AM – 4:00 PM" },
           ].map((c) => (
             <div key={c.l} className="group flex items-center justify-between py-7 border-b border-brand-earth/18 cursor-pointer transition-colors duration-200 gap-6 hover:bg-brand-earth/5">
