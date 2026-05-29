@@ -2,10 +2,28 @@ import React, { useEffect, useRef, useState } from "react";
 import awards1 from "../assests/awards/awards1.jpeg";
 import awards2 from "../assests/awards/awards2.jpeg";
 
+// Home page images
+import heroSlide1 from "../assests/home/shubham-sustainable-luxury-home-hero-01.png";
+import heroSlide2 from "../assests/home/shubham-sustainable-luxury-home-hero-02.png";
+import heroSlide3 from "../assests/home/shubham-sustainable-luxury-home-hero-03.png";
+import futureResidence from "../assests/home/shubham-future-ready-residence-exterior.png";
+import solarEnergy from "../assests/home/shubham-solar-energy-system-installation.png";
+import rainwaterHarvesting from "../assests/home/shubham-rainwater-harvesting-system.png";
+import passiveCooling from "../assests/home/shubham-passive-cooling-design-ventilation.png";
+import biogasBioseptic from "../assests/home/shubham-biogas-bioseptic-waste-management.png";
+import clayMaterial from "../assests/home/shubham-clay-wall-natural-material.png";
+import stoneMaterial from "../assests/home/shubham-stone-masonry-construction.png";
+import mudMaterial from "../assests/home/shubham-mud-block-wall-traditional.png";
+import earthMaterial from "../assests/home/shubham-rammed-earth-wall-sustainable.png";
+import woodMaterial from "../assests/home/shubham-clay-wall-natural-material.png";
+import limeMaterial from "../assests/home/shubham-clay-wall-natural-material.png";
+import projectLandscape from "../assests/home/shubham-project-landscape-view.png";
+import constructionProject from "../assests/home/shubham-construction-project-golden-hour.png";
+
 const SLIDES = [
-  "https://images.unsplash.com/photo-1600047509807-ba8f99d2cdde?w=1920",
-  "https://images.unsplash.com/photo-1600585154526-990dced4db0d?w=1920",
-  "https://images.unsplash.com/photo-1599427303058-f04cbcf4756f?w=1920",
+  heroSlide1,
+  heroSlide2,
+  heroSlide3,
 ];
 
 // Content collections below act as a lightweight management layer:
@@ -204,7 +222,7 @@ export default function Home() {
       </section>
 
       <section className="relative w-full h-[380px] md:h-[560px] overflow-hidden" ref={bleedSec}>
-        <img ref={bleedRef} src="https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?w=1920" alt="Atmospheric Shubham project landscape" className="w-full h-full object-cover will-change-transform" />
+        <img ref={bleedRef} src={futureResidence} alt="Atmospheric Shubham project landscape" className="w-full h-full object-cover will-change-transform" />
         <div className="absolute bottom-0 left-0 w-full p-8 md:px-12 bg-gradient-to-t from-[#1F1F1F]/70 to-transparent z-10">
           <h2 className="text-[30px] md:text-[42px] text-white">Crafting Future-Ready Residences</h2>
         </div>
@@ -232,10 +250,10 @@ export default function Home() {
 
       <section className="bg-brand-bg px-6 md:px-12 lg:px-20 pb-[80px] md:pb-[100px] grid grid-cols-2 lg:grid-cols-4 gap-4 md:gap-5">
         {[
-          { img: "https://images.unsplash.com/photo-1521737604893-d14cc237f11d?w=600", tag: "Solar", h: "Solar Energy Systems", b: "Harnessing the sun to power your modern lifestyle with zero emissions." },
-          { img: "https://images.unsplash.com/photo-1464226184884-fa280b87c399?w=600", tag: "Water", h: "Rainwater Harvesting", b: "Integrated collection systems designed to secure your water future naturally." },
-          { img: "https://images.unsplash.com/photo-1545389336-cf090694435e?w=600", tag: "Cooling", h: "Passive Cooling", b: "Architectural design that maintains comfort without high energy consumption." },
-          { img: "https://images.unsplash.com/photo-1464226184884-fa280b87c399?w=600", tag: "Waste", h: "Bio-Gas & Bio-Septic", b: "Closing the loop with integrated waste management and renewable energy." },
+          { img: solarEnergy, tag: "Solar", h: "Solar Energy Systems", b: "Harnessing the sun to power your modern lifestyle with zero emissions." },
+          { img: rainwaterHarvesting, tag: "Water", h: "Rainwater Harvesting", b: "Integrated collection systems designed to secure your water future naturally." },
+          { img: passiveCooling, tag: "Cooling", h: "Passive Cooling", b: "Architectural design that maintains comfort without high energy consumption." },
+          { img: biogasBioseptic, tag: "Waste", h: "Bio-Gas & Bio-Septic", b: "Closing the loop with integrated waste management and renewable energy." },
         ].map((v) => (
           <article key={v.h} className="group reveal">
             <div className="relative overflow-hidden aspect-[3/4]">
@@ -273,12 +291,12 @@ export default function Home() {
             <div className="hexagon-container scale-[0.85] md:scale-100">
               {/* Circular Hexagon Layout - Desktop Positions */}
               {[
-                { src: "https://images.unsplash.com/photo-1600047509807-ba8f99d2cdde?w=600", x: 0, y: -240, label: "Clay" },
-                { src: "https://images.unsplash.com/photo-1600566753086-00f18fb6b3ea?w=600", x: 210, y: -120, label: "Stone" },
-                { src: "https://images.unsplash.com/photo-1505409859467-3a796fd5798e?w=600", x: 210, y: 120, label: "Mud" },
-                { src: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=600", x: 0, y: 240, label: "Earth" },
-                { src: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=600", x: -210, y: 120, label: "Wood" },
-                { src: "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?w=600", x: -210, y: -120, label: "Lime" },
+                { src: clayMaterial, x: 0, y: -240, label: "Clay" },
+                { src: stoneMaterial, x: 210, y: -120, label: "Stone" },
+                { src: mudMaterial, x: 210, y: 120, label: "Mud" },
+                { src: earthMaterial, x: 0, y: 240, label: "Earth" },
+                { src: woodMaterial, x: -210, y: 120, label: "Wood" },
+                { src: limeMaterial, x: -210, y: -120, label: "Lime" },
               ].map((hex, i) => (
                 <div 
                   key={i} 
@@ -310,7 +328,7 @@ export default function Home() {
       </section>
 
       <section className="relative w-full h-[280px] md:h-[320px] overflow-hidden" ref={quoteSec}>
-        <img ref={quoteRef} src="https://images.unsplash.com/photo-1500534314209-a25ddb2bd429?w=1920" alt="Mountain landscape" className="w-full h-full object-cover will-change-transform" />
+        <img ref={quoteRef} src={projectLandscape} alt="Mountain landscape" className="w-full h-full object-cover will-change-transform" />
         <div className="absolute inset-0 bg-gradient-to-r from-[#1F1F1F]/15 via-[#1F1F1F]/55 to-[#1F1F1F]/65" />
         <div className="absolute right-[8%] top-1/2 -translate-y-1/2 text-right max-w-[560px] z-10">
           <span className="font-serif text-[60px] md:text-[80px] text-white/70 leading-none float-left mr-2 pt-[30px] md:pt-10">"</span>
@@ -421,7 +439,7 @@ export default function Home() {
 
       <section className="grid grid-cols-1 md:grid-cols-2 min-h-[440px] mt-12 md:mt-20">
         <div className="relative overflow-hidden group">
-          <img src="https://images.unsplash.com/photo-1600047509358-9dc75507daeb?w=900" alt="Shubham project at golden hour" className="w-full h-[280px] md:h-full object-cover transition-transform duration-800 ease-in-out group-hover:scale-[1.04]" />
+          <img src={constructionProject} alt="Shubham project at golden hour" className="w-full h-[280px] md:h-full object-cover transition-transform duration-800 ease-in-out group-hover:scale-[1.04]" />
           <div className="absolute inset-0 bg-gradient-to-t from-[#1F1F1F]/72 via-[#1F1F1F]/10 to-transparent pointer-events-none" />
           <div className="absolute bottom-10 left-1/2 -translate-x-1/2 z-10 text-center font-serif italic text-[40px] md:text-[48px] text-white">Let's Connect</div>
         </div>

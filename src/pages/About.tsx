@@ -1,5 +1,19 @@
 import React, { useState, useEffect, useRef } from "react";
 
+// About page images
+import aboutHero from "../assests/about/shubham-about-sustainable-facade-hero.png";
+import polaroidBackground from "../assests/about/shubham-architectural-interior-background.png";
+import polaroidImage1 from "../assests/about/shubham-interior-detail-polaroid-01.png";
+import polaroidImage2 from "../assests/about/shubham-natural-material-polaroid-02.png";
+import founderImage from "../assests/about/shubham-founder-sanchana-subbarayan.png";
+import associateArchitect from "../assests/about/shubham-associate-architect-team.png";
+import paariStudio from "../assests/about/shubham-paari-design-studio-partner.png";
+import constructionSpecialists from "../assests/about/shubham-construction-specialists-team.png";
+import constructionSite from "../assests/about/shubham-construction-site-natural-materials.png";
+import sustainableDetail from "../assests/about/shubham-sustainable-architecture-detail.png";
+import naturalMaterialPalette from "../assests/about/shubham-natural-material-palette-vision.png";
+import sustainableConstructionProject from "../assests/about/shubham-sustainable-construction-project.png";
+
 const EASE = "cubic-bezier(0.22,1,0.36,1)";
 
 // ---------- Reveal hook ----------
@@ -141,7 +155,7 @@ function PolaroidSection({ parallaxY, isMobile }: any) {
       className="relative w-full overflow-hidden h-[420px] md:h-[560px]"
     >
       <img
-        src="https://images.unsplash.com/photo-1512917774080-9991f1c4c750?w=1920"
+        src={polaroidBackground}
         alt="Immersive architectural interior"
         className="absolute left-0 lg:top-[-60%] top-[-90%] w-full h-[116%] md:h-[122%] object-cover will-change-transform"
         style={{
@@ -158,7 +172,7 @@ function PolaroidSection({ parallaxY, isMobile }: any) {
           className={`bg-white p-3 pb-9 shadow-[0_18px_40px_rgba(31,31,31,0.35)] z-[2] -mr-10 transition-all duration-900 ease-out delay-200 ${trig ? "opacity-100 rotate-[-6deg] translate-y-0" : "opacity-0 rotate-[-6deg] translate-y-5"}`}
         >
           <img
-            src="https://images.unsplash.com/photo-1600047509358-9dc75507daeb?w=400"
+            src={polaroidImage1}
             alt="Interior architectural detail"
             className="object-cover block"
             style={imgSize}
@@ -168,7 +182,7 @@ function PolaroidSection({ parallaxY, isMobile }: any) {
           className={`bg-white p-3 pb-9 shadow-[0_18px_40px_rgba(31,31,31,0.35)] z-[1] transition-all duration-900 ease-out delay-[450ms] ${trig ? "opacity-100 rotate-[4deg] translate-y-0" : "opacity-0 rotate-[4deg] translate-y-5"}`}
         >
           <img
-            src="https://images.unsplash.com/photo-1600566752355-35792bedcfea?w=400"
+            src={polaroidImage2}
             alt="Natural material texture detail"
             className="object-cover block"
             style={imgSize}
@@ -220,28 +234,28 @@ export default function About() {
 
   const team = [
     {
-      img: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=600",
+      img: founderImage,
       alt: "Sanchana Subbarayan, Founder",
       name: "Sanchana Subbarayan",
       role: "Founder & Civil Engineer",
       bio: "A civil engineering graduate with a vision to make sustainable construction practical, beautiful, and accessible across India.",
     },
     {
-      img: "https://images.unsplash.com/photo-1560250097-0b93528c311a?w=600",
+      img: associateArchitect,
       alt: "Design and consulting team member",
       name: "Associate Architect",
       role: "Architectural Lead",
       bio: "Expertise in blending traditional aesthetics with modern functionality, leading the design vision for sustainable residential and commercial projects.",
     },
     {
-      img: "https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=600",
+      img: paariStudio,
       alt: "Paari Design Studio",
       name: "Paari Design Studio",
       role: "Collaborating Design Practice",
       bio: "Paari Design Studio is a sustainable architecture and design practice rooted in natural materials, climate-responsive spaces, and timeless Indian history, while looking towards the future with a novel outlook. Our work blends earth, craft, and contemporary living to create spaces that feel grounded, meaningful, and deeply connected to nature.",
     },
     {
-      img: "https://images.unsplash.com/photo-1556157382-97dee2dcb04e?w=600",
+      img: constructionSpecialists,
       alt: "Construction specialists on site",
       name: "Construction Specialists",
       role: "Site Execution & Quality",
@@ -253,7 +267,7 @@ export default function About() {
     <div className="bg-brand-bg text-brand-dark font-sans">
       <header className="relative w-full h-screen overflow-hidden">
         <img
-          src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=1920"
+          src={aboutHero}
           alt="Sustainable architectural facade at golden hour"
           className="absolute inset-0 w-full h-full object-cover animate-[heroload_1.8s_ease-out_forwards]"
         />
@@ -289,7 +303,7 @@ export default function About() {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-[60px] items-start">
             <Reveal>
               <ZoomImage
-                src="https://images.unsplash.com/photo-1600566753086-00f18fb6b3ea?w=800"
+                src={constructionSite}
                 alt="Construction site with natural materials"
                 height={isMobile ? 360 : 560}
               />
@@ -297,7 +311,7 @@ export default function About() {
             <div className="flex flex-col gap-8">
               <Reveal delay={100}>
                 <ZoomImage
-                  src="https://images.unsplash.com/photo-1600047509807-ba8f99d2cdde?w=700"
+                  src={sustainableDetail}
                   alt="Sustainable architecture detail"
                   height={240}
                   wrapperStyle={{ marginTop: isMobile ? 0 : 60 }}
@@ -353,7 +367,7 @@ export default function About() {
             <Reveal delay={220} className="self-center">
               <div className="max-w-[540px] ml-auto">
                 <ZoomImage
-                  src="https://images.unsplash.com/photo-1511818966892-d7d671e672a2?w=900"
+                  src={naturalMaterialPalette}
                   alt="Natural architecture and sustainable material palette"
                   wrapperStyle={{ aspectRatio: "4 / 5" }}
                   className="shadow-[0_28px_60px_rgba(31,31,31,0.12)]"
@@ -387,7 +401,7 @@ export default function About() {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-[60px] items-start">
             <Reveal>
               <ZoomImage
-                src="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=600"
+                src={sustainableConstructionProject}
                 alt="Sustainable construction project"
                 height={300}
                 className="mb-6"
