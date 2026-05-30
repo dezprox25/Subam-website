@@ -37,7 +37,7 @@ function Reveal({ children, delay = 0, as: Tag = 'div' as any, style = {}, class
     if (reduced) { setVisible(true); return; }
     const el = ref.current;
     if (!el) return;
-    const io = new IntersectionObserver(
+    const io = new IntersectionObserver(   
       ([entry]) => { if (entry.isIntersecting) { setVisible(true); io.disconnect(); } },
       { threshold: 0.12 }
     );
